@@ -8,7 +8,7 @@ const loginRouter = require('./routes/login.routes');
 
 const app = express();
 
-const port = process.env.PORT ?? 3000;
+const port = process.env.PORT ?? 4000;
 
 // config
 config(app);
