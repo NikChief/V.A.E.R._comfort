@@ -16,6 +16,7 @@ function Login(props) {
       user_email: event.target.email.value,
       user_password: event.target.password.value,
     }
+    console.log('19', body)
     fetch('/login', {
       method: 'POST',
       headers: {

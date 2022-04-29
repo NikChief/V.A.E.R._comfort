@@ -20,8 +20,7 @@ router
           user_email,
         },
       });
-
-      if (user && await bcrypt.compare(user_password, user.password)) {
+      if (user && await bcrypt.compare(user_password, user.user_password)) {
         req.session.user = user;
         res
           .status(200)
