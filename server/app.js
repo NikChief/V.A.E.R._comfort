@@ -5,6 +5,7 @@ const config = require('./config/config');
 const homeRouter = require('./routes/home.routes');
 const registrationRouter = require('./routes/registration.routes');
 const loginRouter = require('./routes/login.routes');
+const logoutRouter = require('./routes/logout.route');
 
 const app = express();
 
@@ -17,5 +18,6 @@ config(app);
 app.use('/', homeRouter);
 app.use('/registration', registrationRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 app.listen(port, () => console.log(`Сервер запущен на порте ${port}`));
