@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
+import TypeList from "../TypeList/TypeList";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/typelist" element={<TypeList />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
 
