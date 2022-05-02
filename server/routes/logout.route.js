@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 router.get('/', (req, res) => {
   try {
-    console.log('5')
     req.session.destroy();
     // res.clearCookie('user_sid');
     res.send({
