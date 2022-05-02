@@ -12,7 +12,7 @@ export function userReducer(state = initialState, action) {
 
     case LOGGEDOUT_USER:
       return {
-        ...state, user: {}
+        ...state, user: ''
       }
 
     default:
