@@ -8,7 +8,7 @@ function Nav(props) {
       <ul id="" className="login-registration_container">
         <li ><Link to="/login" className=''><h3>Войти</h3></Link></li>
         <li ><Link to="/registration" className=''><h3>Зарегистрироваться</h3></Link></li>
-        {}
+        <li ><Link to="/profile" className=''><h3>Профиль</h3></Link></li>
       </ul>
     </div>
   );
