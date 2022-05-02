@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { loggedInUserAC } from '../../redux/actionCreators/userAC';
 import style from './Registration.module.css'
 
 function Registration(props) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector(state => state.userState);
-  // user_name, user_email, user_password, user_repeatPassword,
-  const [regState, setRegState] = useState(false)
+
   const registrationFunction = (event) => {
     event.preventDefault();
     const body = {
@@ -29,10 +29,7 @@ function Registration(props) {
       .then(res => {
         if (res.status === 200) {
           navigate('/')
-        } else {
-          setRegState(true)
-          
-        }
+        } 
         return res.json()
       })
       .then(data => {
@@ -51,7 +48,7 @@ function Registration(props) {
         <div className={style.namefield}><label htmlFor="repeat_password">Введите пароль повторно. Они должны совпадать</label></div>
         <div className={style.input}><input type="password" placeholder="Введите пароль еще раз" name="repeat_password" id="repeat_password" /></div>
         <div>
-          {regState && user.message}
+        {!user.loggedIn && user.message}
         </div>
         <div><input type="submit" value="Зарегистрироваться" /></div>
       </form>
