@@ -2,6 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Nav(props) {
+<<<<<<< Updated upstream
+=======
+
+  const { user } =useSelector(state => state.userState);
+  console.log('10', user)
+  const dispatch = useDispatch();
+
+  const logout = (e) => {
+    e.preventDefault();
+
+    fetch('/logout')
+      .then(response => {
+        dispatch(loggedOutUserAC())
+      })
+  }
+
+>>>>>>> Stashed changes
   return (
     <div>
       <Link to="/" className="logotype">Logo</Link>

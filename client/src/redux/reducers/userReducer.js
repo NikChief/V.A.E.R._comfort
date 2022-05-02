@@ -1,6 +1,6 @@
 import { LOGGEDIN_USER, LOGGEDOUT_USER } from '../actionTypes/userAT'
 
-const initialState = { user: {} }
+const initialState = { user: '' }
 
 
 export function userReducer(state = initialState, action) {
