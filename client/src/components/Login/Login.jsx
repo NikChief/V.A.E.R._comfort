@@ -34,7 +34,7 @@ function Login(props) {
       })
       .then(data => {
         dispatch(loggedInUserAC(data))
-        console.log(user)
+        console.log('37',user)
       })
   }
   return (
