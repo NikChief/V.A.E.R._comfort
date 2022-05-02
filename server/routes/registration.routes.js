@@ -6,25 +6,6 @@ const { User } = require('../db/models');
 
 router
   .route('/')
-  .get((req, res) => {
-    if (req.session.userId) {
-      res
-        .status(200)
-        .json({
-          // message: 'Пользователь авторизован.',
-          loggedIn: true,
-          userId: req.session.userId,
-        });
-    } else {
-      res
-        .status(200)
-        .json({
-          // message: 'Пользователь не авторизован.',
-          loggedIn: false,
-          userId: req.session.userId,
-        });
-    }
-  })
   .post(async (req, res) => {
     const {
       user_name, user_email, user_password, user_repeatPassword,
@@ -41,12 +22,14 @@ router
       res
         .status(400)
         .json({
+          loggedIn: false,
           message: 'Такой пользователь уже существует.',
         });
     } else if (user_password !== user_repeatPassword) {
       res
         .status(400)
         .json({
+          loggedIn: false,
           message: 'Пароли не совпадают.',
         });
     } else {
@@ -59,6 +42,7 @@ router
       res
         .status(200)
         .json({
+          loggedIn: true,
           message: 'Регистрация успешна.',
           userId: req.session.userId,
         });
