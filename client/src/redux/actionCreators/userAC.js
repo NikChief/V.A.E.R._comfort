@@ -1,4 +1,4 @@
-import { LOGGEDIN_USER, LOGGEDOUT_USER } from '../actionTypes/userAT'
+import { LOGGEDIN_USER, LOGOUT_USER } from '../actionTypes/userAT'
 
 export function loggedInUserAC(payload) {
   return {
@@ -7,9 +7,8 @@ export function loggedInUserAC(payload) {
   }
 }
 
-export function loggedOutUserAC(payload) {
+export function loggedOutUserAC() {
   return {
-    type: LOGGEDOUT_USER,
-    payload
+    type: LOGOUT_USER,
   }
 }
