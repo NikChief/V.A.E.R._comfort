@@ -18,7 +18,6 @@ function Nav(props) {
       })
   }
 
-
   return (
     <div>
       <Link to="/" className="logotype">Logo</Link>
