@@ -11,9 +11,7 @@ export function userReducer(state = initialState, action) {
       }
 
     case LOGOUT_USER:
-      return {
-        ...state, user: {}
-      }
+      return {...state, user: undefined}
 
     default:
       return state
