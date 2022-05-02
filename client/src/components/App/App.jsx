@@ -7,6 +7,7 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Error404 from '../Error404/Error404';
+import Profile from "../Profile/Profile";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="*" element={<Error404 />} />
