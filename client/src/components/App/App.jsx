@@ -12,6 +12,7 @@ import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
 import BasketList from '../BasketList/BasketList'
 import OrderForm from "../OrderForm/OrderForm";
+import Item from "../Item/Item"
 
 function App() {
 
