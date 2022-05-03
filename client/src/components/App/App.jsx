@@ -9,7 +9,6 @@ import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
 import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
-import Basketcard from "../Basket card/BasketCard";
 import BasketList from "../BasketList/BasketList";
 
 
