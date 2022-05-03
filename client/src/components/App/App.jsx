@@ -9,6 +9,8 @@ import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
 import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
+import Basketcard from "../Basket card/BasketCard";
+import BasketList from "../BasketList/BasketList";
 
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/typelist" element={<TypeList />} />
+        <Route path="/users/:id/basket" element={<BasketList />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </>

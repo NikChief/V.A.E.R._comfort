@@ -35,6 +35,7 @@ function Nav(props) {
         <li ><Link to="/typelist" className=''><h3>Одежда</h3></Link></li>
       </>
       )}
+      <li ><Link to="/users/:id/basket" className=''><h3>Корзина</h3></Link></li>
       </ul>
     </div>
   );
