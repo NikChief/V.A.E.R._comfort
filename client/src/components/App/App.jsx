@@ -9,6 +9,7 @@ import Registration from '../Registration/Registration';
 import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
 import TypeList from "../TypeList/TypeList";
+import CategoryType from "../CategoryType/CategoryType";
 
 
 function App() {
@@ -17,13 +18,15 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Nav />
+        <TypeList />
         
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/typelist" element={<TypeList />} />
+
+          <Route path="/catalogue/:type" element={<CategoryType />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
 
