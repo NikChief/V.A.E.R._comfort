@@ -2,8 +2,8 @@ import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorAC';
 import { initOrdersAC } from '../actionCreators/ordersAC';
 import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
+import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
 import { SAGA_INIT_COLORS } from '../actionTypes/colorAT';
-import { ERR_LOGGEDIN_USER, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
 import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 
 async function fetchData({url, headers, method, body}) {
@@ -87,6 +87,17 @@ function* fetchLoggedOutUser() {
   }
 }
 
+
+function* fetchIsUserAuthorized() {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: '/login',
+      }
+    );
+    
+    yield put(loggedInUserAC(data));
+
 function* fetchInitColorsAC() {
   try {
     const data = yield call(
@@ -96,6 +107,7 @@ function* fetchInitColorsAC() {
     );
     
     yield put(initColorsAC(data));
+
   } catch (e) {
     yield put(
       {
@@ -112,4 +124,5 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGOUT_USER, fetchLoggedOutUser)
   yield takeEvery(SAGA_INIT_COLORS, fetchInitColorsAC)
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
+  yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
 }
