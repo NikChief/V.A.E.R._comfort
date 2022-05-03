@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-function Basket(props) {
+function OrderForm(props) {
   return (
     <div>
       
@@ -9,4 +8,4 @@ function Basket(props) {
   );
 }
 
-export default Basket;
+export default OrderForm;
