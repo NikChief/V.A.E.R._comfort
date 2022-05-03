@@ -1,7 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { loggedInUserAC } from '../../redux/actionCreators/userAC';
+import { clearUserMessageAC, loggedInUserAC } from '../../redux/actionCreators/userAC';
 import style from './Login.module.css'
 
 function Login(props) {
@@ -9,6 +10,10 @@ function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector(state => state.userState);
+
+  useEffect(() => {
+    dispatch(clearUserMessageAC())
+  },[dispatch])
 
   const loginFunction = (event) => {
     event.preventDefault();
