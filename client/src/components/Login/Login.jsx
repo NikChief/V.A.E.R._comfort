@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { clearUserMessageAC, loggedInUserAC } from '../../redux/actionCreators/userAC';
+import { clearUserMessageAC, fetchLoggedInUserAC } from '../../redux/actionCreators/userAC';
 import style from './Login.module.css'
 
 function Login(props) {
@@ -21,27 +21,18 @@ function Login(props) {
       user_email: event.target.email.value,
       user_password: event.target.password.value,
     }
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-      .then(res => {
-        if (res.status === 200) {
-          navigate('/')
-        } 
-        return res.json()
-      })
-      .then(data => {
-        dispatch(loggedInUserAC(data))
-      })
-
+    dispatch(fetchLoggedInUserAC(body))
   }
+
+  useEffect(() => {
+    if (user.loggedIn === true) {
+      navigate('/')
+    }
+  },[user, navigate])
+
   return (
     <div className={style.login_form_container}>
-      <form action="/login" method="post" onSubmit={loginFunction}>
+      <form action="/login" method="post" onSubmit={loginFunction} autoComplete='off'>
         <div className={style.namefield}><label htmlFor="email">Введите e-mail</label></div>
         <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
         <div className={style.namefield}><label htmlFor="password">Введите пароль</label></div>
