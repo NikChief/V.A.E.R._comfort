@@ -1,0 +1,2 @@
+export const INIT_COLORS = 'INIT_COLORS';
+export const SAGA_INIT_COLORS = 'SAGA_INIT_COLORS';

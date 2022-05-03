@@ -6,6 +6,8 @@ const homeRouter = require('./routes/home.routes');
 const registrationRouter = require('./routes/registration.routes');
 const loginRouter = require('./routes/login.routes');
 const logoutRouter = require('./routes/logout.route');
+const patternsRouter = require('./routes/patterns.routes');
+const colorsRouter = require('./routes/colors.routes');
 
 const app = express();
 
@@ -19,5 +21,7 @@ app.use('/', homeRouter);
 app.use('/registration', registrationRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/patterns', patternsRouter);
+app.use('/colors', colorsRouter);
 
 app.listen(port, () => console.log(`Сервер запущен на порте ${port}`));

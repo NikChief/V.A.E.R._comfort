@@ -5,10 +5,11 @@ const initialState = { basket: [] }
 
 export function basketReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ITEM_TO_BASKET:
-      return {
-        ...state, basket: action.payload
-      }
+    // case ADD_ITEM_TO_BASKET:
+
+    //   return {
+    //     ...state, baskets: action.payload
+    //   }
 
     default:
       return state

@@ -37,7 +37,7 @@ function Nav(props) {
                 <li className='nav-item'><Link to='/registration' className='nav-link'>Зарегистрироваться</Link></li>
               </>
               )}
-              <li ><Link to='/users/:id/basket' className='nav-link'>Корзина</Link></li>
+              <li ><Link to='/basket' className='nav-link'>Корзина</Link></li>
             </ul>
           </div>
         </div>
