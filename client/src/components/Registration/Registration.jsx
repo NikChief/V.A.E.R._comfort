@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { clearUserMessageAC, loggedInUserAC } from '../../redux/actionCreators/userAC';
+import { clearUserMessageAC, fetchRegisterUserAC } from '../../redux/actionCreators/userAC';
 import style from './Registration.module.css'
 
 function Registration(props) {
@@ -23,27 +23,19 @@ function Registration(props) {
       user_password: event.target.password.value,
       user_repeatPassword: event.target.repeat_password.value,
     }
-
-    fetch('/registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-      .then(res => {
-        if (res.status === 200) {
-          navigate('/')
-        } 
-        return res.json()
-      })
-      .then(data => {
-        dispatch(loggedInUserAC(data))
-      })
+    
+    dispatch(fetchRegisterUserAC(body))
   }
+
+  useEffect(() => {
+    if (user.loggedIn === true) {
+      navigate('/')
+    }
+  },[user, navigate])
+
   return (
     <div className={style.registration_form_container}>
-      <form action="/login" method="post" onSubmit={registrationFunction}>
+      <form action="/login" method="post" onSubmit={registrationFunction} autoComplete='off'>
         <div className={style.namefield}><label htmlFor="name">Имя</label></div>
         <div className={style.input}><input type="text" placeholder="Введите имя" name="name" id="name" required /></div>
         <div className={style.namefield}><label htmlFor="email">E-mail</label></div>
