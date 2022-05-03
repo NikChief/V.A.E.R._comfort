@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { useNavigate } from 'react-router-dom';
 
 function Profile(props) {
-  const  user = useSelector(state => state.userState);
-  console.log(user)
+  const { user } = useSelector(state => state.userState);
+  console.log(user);
+  const navigate = useNavigate();
   // const { orders } = useSelector(state => state.ordersState);
-  const userHardcode = {
-    name: 'Mr.Hardcode',
-    email: 'mrhardcode@mrhardcode'
-  }
+  // const userHardcode = {
+  //   name: 'Mr.Hardcode',
+  //   email: 'mrhardcode@mrhardcode'
+  // }
   const ordersHardcode = [{
     id: 1,
     sum: 55,
@@ -42,18 +44,20 @@ function Profile(props) {
   function userOrdersFunction(event) {
     event.preventDefault();
     console.log(orders);
-    setOrders(ordersHardcode.filter(order => event.target.value==='all'? true : order.status === event.target.value))
+    setOrders(ordersHardcode.filter(order => event.target.value === 'all' ? true : order.status === event.target.value))
     // console.log(event.target.value)
     console.log(orders)
   }
 
   return (
-    <div className='container'>
+    <div>
+    { user.loggedIn ? 
+    (<div className='container' >
       <h3>Личная информация</h3>
       <div>Имя: </div>
-      <div>{user.name}user.name</div>
+      <div>{user.userId}</div>
       <div>E-mail: </div>
-      <div>{user.email}user.email</div>
+      <div>{user.userEmail}</div>
       <br />
       <h3>История заказов</h3>
       <div>
@@ -79,18 +83,10 @@ function Profile(props) {
             <td>{order.sum}</td>
             <td>{order.status}</td>
           </tr>)) : (<div>Нет заказов</div>)}
-          {/* <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr> */}
         </tbody>
       </table>
+    </div>)
+    : navigate('/')}
     </div>
   );
 }
