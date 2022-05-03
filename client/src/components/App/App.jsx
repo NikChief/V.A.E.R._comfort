@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
+import BasketList from '../BasketList/BasketList'
 
 
 
@@ -30,24 +31,18 @@ function App() {
 
   return ( 
     <>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Nav />
-        <TypeList />
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
+      <Nav />
+      <TypeList />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
 
-          <Route path="/catalogue/:type" element={<CategoryType />} />
-          <Route path="/users/:id/basket" element={<BasketList />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-
-      </BrowserRouter>
-    </Provider>
+        <Route path="/catalogue/:type" element={<CategoryType />} />
+        <Route path="/users/:id/basket" element={<BasketList />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </>
   );
 }

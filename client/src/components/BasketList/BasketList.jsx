@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
-import Basketcard from '../Basket card/BasketCard';
+import Basketcard from '../BasketCard/BasketCard';
 
 function BasketList(props) {
 

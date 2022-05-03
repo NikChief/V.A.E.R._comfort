@@ -32,7 +32,7 @@ function Login(props) {
 
   return (
     <div className={style.login_form_container}>
-      <form action="/login" method="post" onSubmit={loginFunction}>
+      <form action="/login" method="post" onSubmit={loginFunction} autoComplete='off'>
         <div className={style.namefield}><label htmlFor="email">Введите e-mail</label></div>
         <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
         <div className={style.namefield}><label htmlFor="password">Введите пароль</label></div>
