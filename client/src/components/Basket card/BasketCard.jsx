@@ -15,7 +15,7 @@ function Basketcard({ orderItem }) {
             <p className="card-text">Будет название модели</p>
           </div>
           <div>
-            <h5 className="card-title">Цвет:</h5>
+            <h5 className="card-title">Цвета:</h5>
             <div>
               <img src="..." className="card-img-top" alt="..."></img>
               <img src="..." className="card-img-top" alt="..."></img>  
