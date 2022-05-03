@@ -1,6 +1,6 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
-import { loggedInUserAC } from '../actionCreators/userAC';
-import { ERR_LOGGEDIN_USER, SAGA_LOGGEDIN_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
+import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
+import { ERR_LOGGEDIN_USER, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
 
 async function fetchData({url, headers, method, body}) {
   const response = await fetch(url, {method, headers, body});
@@ -56,10 +56,27 @@ function* fetchRegisterInUser(action) {
   }
 }
 
+function* fetchLoggedOutUser() {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: '/logout',
+      }
+    );
+    
+    yield put(loggedOutUserAC());
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
 
 export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGGEDIN_USER, fetchLoggedInUser)
   yield takeEvery(SAGA_REGISTER_USER, fetchRegisterInUser)
-  // yield takeEvery('FETCH_REGISTER_USER', regUserAsync)
-  // yield takeEvery('FETCH_LOGOUT_USER', logoutUserAsync)
+  yield takeEvery(SAGA_LOGOUT_USER, fetchLoggedOutUser)
 }
