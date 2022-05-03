@@ -10,8 +10,8 @@ import Profile from "../Profile/Profile";
 import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
-import Basketcard from "../Basket card/BasketCard";
-import BasketList from "../BasketList/BasketList";
+
+
 
 
 function App() {
