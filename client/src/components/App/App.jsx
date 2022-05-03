@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
 import BasketList from '../BasketList/BasketList'
+import OrderForm from "../OrderForm/OrderForm";
 
 
 
@@ -38,9 +39,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-
         <Route path="/catalogue/:type" element={<CategoryType />} />
-        <Route path="/users/:id/basket" element={<BasketList />} />
+        <Route path="/basket" element={<BasketList />} />
+        <Route path="/basket/orderform" element={<OrderForm />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </>
