@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { loggedInUserAC } from '../../redux/actionCreators/userAC';
+import { clearUserMessageAC, loggedInUserAC } from '../../redux/actionCreators/userAC';
 import style from './Login.module.css'
 
 function Login(props) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector(state => state.userState);
-  // user_name, user_email, user_password, user_repeatPassword,
-  const [logState, setLogState] = useState(false)
+
+  useEffect(() => {
+    dispatch(clearUserMessageAC())
+  },[dispatch])
+
   const loginFunction = (event) => {
     event.preventDefault();
     const body = {
       user_email: event.target.email.value,
       user_password: event.target.password.value,
     }
-    console.log('19', body)
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -27,25 +31,23 @@ function Login(props) {
       .then(res => {
         if (res.status === 200) {
           navigate('/')
-        } else {
-          setLogState(true)
-        }
+        } 
         return res.json()
       })
       .then(data => {
         dispatch(loggedInUserAC(data))
-        console.log('37',user)
       })
+
   }
   return (
     <div className={style.login_form_container}>
       <form action="/login" method="post" onSubmit={loginFunction}>
-        <div className={style.namefield}><label for="email">Введите e-mail</label></div>
+        <div className={style.namefield}><label htmlFor="email">Введите e-mail</label></div>
         <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
-        <div className={style.namefield}><label for="password">Введите пароль</label></div>
+        <div className={style.namefield}><label htmlFor="password">Введите пароль</label></div>
         <div className={style.input}><input type="password" placeholder="Введите пароль" name="password" id="password" /></div>
         <div>
-          {logState && user.message}
+          {!user.loggedIn && user.message}
         </div>
         <div><input type="submit" value="Войти" /></div>
       </form>

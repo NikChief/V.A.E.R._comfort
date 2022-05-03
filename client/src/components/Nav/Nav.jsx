@@ -8,7 +8,6 @@ function Nav(props) {
 
   const { user } =useSelector(state => state.userState);
   const dispatch = useDispatch();
-
   const logout = (e) => {
     e.preventDefault();
 
@@ -22,8 +21,9 @@ function Nav(props) {
     <div>
       <Link to="/" className="logotype">Logo</Link>
       <ul id="" className="login-registration_container">
-      {user ?
+      {user.loggedIn ?
        (<>
+        <li ><Link to="/profile" className=''><h3>Профиль</h3></Link></li>
         <li onClick={logout} className=''><h3>Выйти</h3></li>
        </>
        )
@@ -35,6 +35,7 @@ function Nav(props) {
         <li ><Link to="/typelist" className=''><h3>Одежда</h3></Link></li>
       </>
       )}
+      <li ><Link to="/users/:id/basket" className=''><h3>Корзина</h3></Link></li>
       </ul>
     </div>
   );
