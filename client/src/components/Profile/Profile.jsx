@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate } from 'react-router-dom';
-import { allOrdersAC, completedOrdersAC, fullfiledOrdersAC, initOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
+import { allOrdersAC, completedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 
 function Profile(props) {
@@ -11,21 +11,24 @@ function Profile(props) {
   console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { orders } = useSelector(state => state.ordersState);
+  const {orders}  = useSelector(state => state.ordersState);
   console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
 
-  useEffect(() => {
-    fetch('/profile')
-      .then(res => res.json())
-      .then(data => dispatch(initOrdersAC(data.orders)))
-      // .then(data => console.log(data.orders)))
-      .catch(err => console.log(err.message))
+  useEffect(()=>{
+    dispatch(fetchInitOrdersAC())
   }, [dispatch])
+  // useEffect(() => {
+  //   fetch('/profile')
+  //     .then(res => res.json())
+  //     .then(data => dispatch(initOrdersAC(data.orders)))
+  //     // .then(data => console.log(data.orders)))
+  //     .catch(err => console.log(err.message))
+  // }, [dispatch])
 
-  function changeOrdersState (event) {
-    if (event.target.value==='fullfiled') {
+  function changeOrdersState(event) {
+    if (event.target.value === 'fullfiled') {
       dispatch(fullfiledOrdersAC())
     }
     if (event.target.value === 'all') {
@@ -71,8 +74,8 @@ function Profile(props) {
               </tr>
             </thead>
             <tbody>
-              {(orders.length) ? (orders.map(order => 
-              < ProfileOrderString key={order.id} order={order}/>
+              {(orders.length) ? (orders.map(order =>
+                < ProfileOrderString key={order.id} order={order} />
               )) : (<div>Нет заказов</div>)}
             </tbody>
           </table>

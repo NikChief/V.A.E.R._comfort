@@ -5,6 +5,7 @@ const initialState = { orders: [] }
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
+      console.log('8=>',state.orders);
       return {
         ...state, orders: action.payload, constOrders: action.payload
       }

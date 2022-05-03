@@ -1,10 +1,16 @@
 
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT'
 
 export function initOrdersAC(payload) {
   return {
     type: INIT_ORDERS,
     payload
+  }
+}
+
+export function fetchInitOrdersAC() {
+  return {
+    type: SAGA_INIT_ORDERS,
   }
 }
 
