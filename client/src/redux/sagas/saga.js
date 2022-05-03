@@ -97,6 +97,15 @@ function* fetchIsUserAuthorized() {
     );
     
     yield put(loggedInUserAC(data));
+  }  catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
 
 function* fetchInitColorsAC() {
   try {
