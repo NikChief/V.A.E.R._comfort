@@ -1,5 +1,6 @@
-export const ALL_ORDERS = 'ALL_ORDERS';
+export const INIT_ORDERS = 'INIT_ORDERS';
 export const FULLFILED_ORDERS = 'FULLFILED_ORDERS';
 export const COMPLETED_ORDERS = 'COMPLETED_ORDERS';
 export const REJECTED_ORDERS = 'REJECTED_ORDERS';
 export const PAYED_ORDERS = 'PAYED_ORDERS';
+export const ALL_ORDERS = 'ALL_ORDERS';
