@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchInitColorsAC } from '../../redux/actionCreators/colorAC';
+import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import Color from '../Color/Color';
 import styles from './ColorChoiceForm.module.css'
 
