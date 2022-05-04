@@ -28,8 +28,6 @@ function App() {
     <>
       <Nav />
       <TypeList />
-      <Item />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
