@@ -27,18 +27,18 @@ router
   .post(async (req, res) => {
     try {
       const {
-        user_email, user_password,
+        email, password,
       } = req.body;
 
       const user = await User.findOne({
         where: {
-          user_email,
+          email,
         },
       });
-      if (user && await bcrypt.compare(user_password, user.user_password)) {
+      if (user && await bcrypt.compare(password, user.password)) {
         req.session.userId = user.id;
-        req.session.userEmail = user.user_email;
-        req.session.userName = user.user_name;
+        req.session.userEmail = user.email;
+        req.session.userName = user.name;
         res
           .status(200)
           .json({
