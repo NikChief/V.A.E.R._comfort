@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { loggedInUserAC } from "../../redux/actionCreators/userAC";
+import { fetchIsUserAuthorizedAC } from "../../redux/actionCreators/userAC";
 import { Routes, Route } from "react-router-dom";
 import Nav from '../Nav/Nav';
 import Home from '../Home/Home';
@@ -12,23 +12,18 @@ import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
 import BasketList from '../BasketList/BasketList'
 import OrderForm from "../OrderForm/OrderForm";
-import Item from "../Item/Item";
+import Footer from "../Footer/Footer";
+import Item from "../Item/Item"
 
 function App() {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('/login')
-      .then(res => res.json())
-      .then(data => {
-        dispatch(loggedInUserAC(data))
-        // {loggedIn: false, message: 'Пользователь не в системе'}
-        //{loggedIn: true, message: 'Пользователь в системе', userId: 1}
-      })
+    dispatch(fetchIsUserAuthorizedAC())
   }, [dispatch])
 
-  return ( 
+  return (
     <>
       <Nav />
       <TypeList />
@@ -44,6 +39,7 @@ function App() {
         <Route path="/basket" element={<BasketList />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer/>
     </>
   );
 }

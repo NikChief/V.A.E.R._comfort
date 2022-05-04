@@ -1,4 +1,12 @@
-import { CLEAR_USER_MESSAGE, LOGGEDIN_USER, LOGOUT_USER, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT'
+import { 
+  CLEAR_USER_MESSAGE, 
+  LOGGEDIN_USER, 
+  LOGOUT_USER, 
+  SAGA_LOGGEDIN_USER, 
+  SAGA_LOGOUT_USER, 
+  SAGA_REGISTER_USER, 
+  SAGA_IS_USER_AUTHORIZED 
+} from '../actionTypes/userAT'
 
 export function loggedInUserAC(payload) {
   return {
@@ -36,5 +44,11 @@ export function fetchLoggedOutUserAC() {
 export function clearUserMessageAC() {
   return {
     type: CLEAR_USER_MESSAGE,
+  }
+}
+
+export function fetchIsUserAuthorizedAC() {
+  return {
+    type: SAGA_IS_USER_AUTHORIZED,
   }
 }

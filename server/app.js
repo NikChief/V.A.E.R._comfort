@@ -8,6 +8,7 @@ const loginRouter = require('./routes/login.routes');
 const logoutRouter = require('./routes/logout.route');
 const patternsRouter = require('./routes/patterns.routes');
 const colorsRouter = require('./routes/colors.routes');
+const profileRouter = require('./routes/profile.route');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/patterns', patternsRouter);
 app.use('/colors', colorsRouter);
+app.use('/profile', profileRouter);
 
 app.listen(port, () => console.log(`Сервер запущен на порте ${port}`));
