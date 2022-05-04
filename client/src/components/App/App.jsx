@@ -1,28 +1,35 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from 'react-redux'
-import { store } from '../../redux/store';
-
+import { useDispatch } from "react-redux";
+import { fetchIsUserAuthorizedAC } from "../../redux/actionCreators/userAC";
+import { Routes, Route } from "react-router-dom";
 import Nav from '../Nav/Nav';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
+import { useEffect } from "react";
 import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
 import BasketList from '../BasketList/BasketList'
 import OrderForm from "../OrderForm/OrderForm";
+import Footer from "../Footer/Footer";
 import Item from "../Item/Item"
-import PatternList from "../PatternList/PatternList";
-
-
+import PatternList from "../PatternList/PatternList"
 
 function App() {
-  return ( 
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchIsUserAuthorizedAC())
+  }, [dispatch])
+
+  return (
     <>
       <Nav />
       <TypeList />
-      {/* <Item /> */}
+      <Item />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
@@ -35,6 +42,7 @@ function App() {
         <Route path="/basket" element={<BasketList />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer/>
     </>
   );
 }

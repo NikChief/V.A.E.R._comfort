@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import style from './Category.module.css'
 
 function Category({category}) {
+
   const params = useParams();
 
   return (
