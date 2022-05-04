@@ -6,7 +6,6 @@ const initialState = { user: '' }
 export function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGGEDIN_USER:
-      console.log('action.payload', action.payload)
       return {
         ...state, user: action.payload
       }
