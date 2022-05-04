@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchInitColorsAC } from '../../redux/actionCreators/colorAC';
+import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import styles from './ColorChoiceForm.module.css'
 
 function ColorChoiceForm(props) {
@@ -17,7 +17,12 @@ function ColorChoiceForm(props) {
   
   return (
     <div>
-      colors
+      <select className="form-select" id='color_id'>
+        <option selected>Выберите цвет</option>
+        <option value="1">красный</option>
+        <option value="2">белый</option>
+        <option value="3">желтый</option>
+      </select>
     </div>
   );
 }

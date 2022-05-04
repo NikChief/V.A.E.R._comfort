@@ -1,4 +1,4 @@
-import { INIT_COLORS, SAGA_INIT_COLORS } from "../actionTypes/colorAT";
+import { INIT_COLORS, SAGA_INIT_COLORS } from "../actionTypes/colorsAT";
 
 export function initColorsAC(payload) {
   return {
