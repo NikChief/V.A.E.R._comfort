@@ -8,13 +8,13 @@ router
   .route('/')
   .post(async (req, res) => {
     const {
-      user_name, user_email, user_password, user_repeatPassword,
+      name, email, password, repeatPassword,
     } = req.body;
 
     const user = await User.findOne({
       where: {
         // eslint-disable-next-line camelcase
-        user_email,
+        email,
       },
     });
 
@@ -25,7 +25,7 @@ router
           loggedIn: false,
           message: 'Такой пользователь уже существует.',
         });
-    } else if (user_password !== user_repeatPassword) {
+    } else if (password !== repeatPassword) {
       res
         .status(400)
         .json({
@@ -34,13 +34,15 @@ router
         });
     } else {
       const newUser = await User.create({
-        user_name,
-        user_email,
-        user_password: await bcrypt.hash(user_password, 10),
+        name,
+        email,
+        password: await bcrypt.hash(password, 10),
       });
+
       req.session.userId = newUser.id;
-      req.session.userEmail = newUser.user_email;
-      req.session.userName = newUser.user_name;
+      req.session.userEmail = newUser.email;
+      req.session.userName = newUser.name;
+
       res
         .status(200)
         .json({
