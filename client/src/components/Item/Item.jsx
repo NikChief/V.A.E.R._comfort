@@ -65,16 +65,19 @@ function Item(props) {
               {(currentItem.color_count === 3)
               ?
               <>
-                <ColorChoiceForm/>
-                <ColorChoiceForm/>
-                <ColorChoiceForm/>
+              <ColorChoiceForm colorType={'основной цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет 2'}/>
               </>
-              :
-              (currentItem.color_count === 1) 
-              ?
-                <ColorChoiceForm/>
-              :
-              <></>
+            :
+            (currentItem.color_count === 2) 
+            ?
+            <>
+              <ColorChoiceForm colorType={'основной цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет'}/>
+            </>
+            :
+              <ColorChoiceForm colorType={'основной цвет'}/>
               }
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
@@ -115,6 +118,7 @@ function Item(props) {
             {(currentItem.size_type_id === 1)
             &&
             <>
+                       
             <div className='mb-3'>
               <label htmlFor='bust' className='form-label'>Обхват груди</label>
               <input type='text' className='form-control' id='bust'></input>
@@ -136,6 +140,7 @@ function Item(props) {
               <input type='text' className='form-control' id='groin_to_bone'></input>
             </div>
             </>
+
             }
             {(currentItem.size_type_id === 3)
             &&
