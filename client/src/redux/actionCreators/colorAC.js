@@ -7,9 +7,8 @@ export function initColorsAC(payload) {
   }
 }
 
-export function fetchInitColorsAC(payload) {
+export function fetchInitColorsAC() {
   return {
     type: SAGA_INIT_COLORS,
-    payload
   }
 }

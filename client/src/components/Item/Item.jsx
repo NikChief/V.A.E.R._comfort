@@ -23,12 +23,6 @@ function Item(props) {
       // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
 
-  // useEffect(() => {
-  //   fetch('/colors')
-  //     .then(res => res.json())
-  //     .then(data => dispatch(initCurrentItemAC(data)))
-  // }, [dispatch, currentItem])
-
 
   return (
     <div className={styles.itemContainer}>

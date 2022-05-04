@@ -65,7 +65,7 @@ function Profile(props) {
               <option value="payed">Оплаченные заказы</option>
             </select>
           </div>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">Номер заказа</th>

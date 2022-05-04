@@ -4,19 +4,19 @@ function OrderForm(props) {
   return (
     <div>
       <form>
-        <div class='mb-3'>
-          <label for='address' class='form-label'>Адрес</label>
-          <input type='text' class='form-control' id='address'></input>
+        <div className='mb-3'>
+          <label for='address' className='form-label'>Адрес</label>
+          <input type='text' className='form-control' id='address'></input>
         </div>
-        <div class='mb-3'>
-          <label for='phone' class='form-label'>Телефон</label>
-          <input type='text' class='form-control' id='phone'></input>
+        <div className='mb-3'>
+          <label for='phone' className='form-label'>Телефон</label>
+          <input type='text' className='form-control' id='phone'></input>
         </div>
-        <div class='mb-3'>
-          <label for='name' class='form-label'>Имя</label>
-          <input type='text' class='form-control' id='name'></input>
+        <div className='mb-3'>
+          <label for='name' className='form-label'>Имя</label>
+          <input type='text' className='form-control' id='name'></input>
         </div>
-        <button type='submit' class='btn btn-primary'>Оформить заказ</button>
+        <button type='submit' className='btn btn-primary'>Оформить заказ</button>
       </form>
     </div>
   );
