@@ -59,9 +59,10 @@ function Item(props) {
   }, [basket, dispatch])
 
   useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify(basket));
-    localStorage.setItem('itemsInfoFromDb', JSON.stringify(itemsInfoFromDb));
-    console.log('hi')
+    localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
+    // localStorage.setItem('basket', JSON.stringify(basket));
+    // localStorage.setItem('itemsInfoFromDb', JSON.stringify(itemsInfoFromDb));
+    // console.log('hi')
   }, [basket]);
 
   return (

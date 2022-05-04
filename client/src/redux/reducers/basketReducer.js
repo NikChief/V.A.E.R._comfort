@@ -2,8 +2,10 @@ import { ADD_ITEM_TO_BASKET, GET_ITEMS_INFO_FROM_DB, INIT_BASKET_TOTAL } from '.
 
 // const initialState = { basket: [] }
 const initialState = {
-  basket: JSON.parse(localStorage.getItem('basket')) ?? [],
-  itemsInfoFromDb: JSON.parse(localStorage.getItem('itemsInfoFromDb')) ?? [],
+  // basket: JSON.parse(localStorage.getItem('basket')) ?? [],
+  // itemsInfoFromDb: JSON.parse(localStorage.getItem('itemsInfoFromDb')) ?? [],
+  basket: JSON.parse(localStorage.getItem('basket')).basket ?? [],
+  itemsInfoFromDb: JSON.parse(localStorage.getItem('basket')).itemsInfoFromDb ?? [],
   basketTotal: ''
 };
 

@@ -1,0 +1,7 @@
+.basketContainer {
+  display: flex;
+}
+
+.basketInnerContainer {
+  margin: 15px;
+}
