@@ -12,6 +12,7 @@ import TypeList from "../TypeList/TypeList";
 import CategoryType from "../CategoryType/CategoryType";
 import BasketList from '../BasketList/BasketList'
 import OrderForm from "../OrderForm/OrderForm";
+import Footer from "../Footer/Footer";
 import Item from "../Item/Item"
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/basket" element={<BasketList />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer/>
     </>
   );
 }
