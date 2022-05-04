@@ -18,10 +18,10 @@ function Registration(props) {
   const registrationFunction = (event) => {
     event.preventDefault();
     const body = {
-      user_name: event.target.name.value,
-      user_email: event.target.email.value,
-      user_password: event.target.password.value,
-      user_repeatPassword: event.target.repeat_password.value,
+      name: event.target.name.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+      repeatPassword: event.target.repeat_password.value,
     }
     
     dispatch(fetchRegisterUserAC(body))
@@ -38,11 +38,11 @@ function Registration(props) {
       <form action="/login" method="post" onSubmit={registrationFunction} autoComplete='off'>
         <div className={style.namefield}><label htmlFor="name">Имя</label></div>
         <div className={style.input}><input type="text" placeholder="Введите имя" name="name" id="name" required /></div>
-        <div className={style.namefield}><label htmlFor="email">E-mail</label></div>
+        <div className={style.namefield}><label htmlFor="email">Электронная почта</label></div>
         <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
         <div className={style.namefield}><label htmlFor="password">Пароль</label></div>
         <div className={style.input}><input type="password" placeholder="Введите пароль" name="password" id="password" /></div>
-        <div className={style.namefield}><label htmlFor="repeat_password">Введите пароль повторно. Они должны совпадать</label></div>
+        <div className={style.namefield}><label htmlFor="repeat_password">Повторите пароль</label></div>
         <div className={style.input}><input type="password" placeholder="Введите пароль еще раз" name="repeat_password" id="repeat_password" /></div>
         <div>
         {!user.loggedIn && user.message}

@@ -4,6 +4,7 @@ import { userReducer} from "./userReducer";
 import { basketReducer } from "./basketReducer";
 import { colorsReducer } from "./colorsReducer";
 import { itemReducer } from "./itemReducer";
+import { materialsReducer } from "./materialsReducer";
 
 
 export const rootReducer = combineReducers({
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   basketState: basketReducer,
   itemState: itemReducer,
   colorsState: colorsReducer,
+  materialsState: materialsReducer,
 })
