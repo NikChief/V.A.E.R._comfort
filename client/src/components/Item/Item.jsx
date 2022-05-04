@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addItemToBasketAC } from '../../redux/actionCreators/basketAC';
+import { addItemToBasketAC, getItemsInfoFromDbAC } from '../../redux/actionCreators/basketAC';
 // import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
@@ -17,6 +17,8 @@ function Item(props) {
   const patternId = 1001;
   const { currentItem } = useSelector(state => state.itemState);
   const { basket } = useSelector(state => state.basketState);
+  const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  console.log('itemsInfoFromDb', itemsInfoFromDb)
 
   const dispatch = useDispatch();
 
@@ -28,6 +30,7 @@ function Item(props) {
   const getInput = (e) => {
     e.preventDefault();
     const body = {
+      pattern_id: patternId,
       pattern_name: currentItem.name,
       patter_image: currentItem.image,
       base_size: e.target.base_size.value,
@@ -47,7 +50,18 @@ function Item(props) {
   }
 
   useEffect(() => {
+    for (let item of basket) {
+      console.log('item', item)
+      fetch(`/items/${item.pattern_id}/${item.material_id}`)
+        .then(res=>res.json())
+        .then(data=>dispatch(getItemsInfoFromDbAC(data)))
+    }
+  }, [basket, dispatch])
+
+  useEffect(() => {
     localStorage.setItem('basket', JSON.stringify(basket));
+    localStorage.setItem('itemsInfoFromDb', JSON.stringify(itemsInfoFromDb));
+    console.log('hi')
   }, [basket]);
 
   return (
