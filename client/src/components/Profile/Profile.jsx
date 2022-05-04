@@ -58,7 +58,7 @@ function Profile(props) {
           <h3>История заказов</h3>
           <div>
             <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
-              <option value="all" selected>Все заказы</option>
+              <option value="all" defaultValue>Все заказы</option>
               <option value="fullfiled">Подтвержденные заказы</option>
               <option value="rejected">Отмененные заказы</option>
               <option value="completed">Выполненные заказы</option>

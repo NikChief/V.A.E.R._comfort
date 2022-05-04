@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const { Color } = require('../db/models');
-// const { Material } = require('../db/models');
+const { Material } = require('../db/models');
 
 router
   .route('/colors')
@@ -36,25 +36,9 @@ router
 
 router
   .route('/materials')
-  .get((req, res) => {
+  .get(async (req, res) => {
     // async выше надо добавить
-    // const materials = await Material.findAll();
-
-    const materials = [
-      {
-        id: 1,
-        type: 'зимняя',
-      },
-      {
-        id: 2,
-        type: 'летняя',
-      },
-      {
-        id: 3,
-        type: 'непонятная',
-      },
-    ];
-
+    const materials = await Material.findAll();
     res
       .status(200)
       .json(materials);

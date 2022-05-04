@@ -18,7 +18,7 @@ function ColorChoiceForm(props) {
   return (
     <div>
       <select className="form-select" id='color_id'>
-        <option selected>Выберите цвет</option>
+        <option defaultValue>Выберите цвет</option>
         <option value="1">красный</option>
         <option value="2">белый</option>
         <option value="3">желтый</option>
