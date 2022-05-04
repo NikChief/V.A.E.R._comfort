@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // const { Color } = require('../db/models');
 const { Material } = require('../db/models');
+// const { Item } = require('../db/models');
 
 router
   .route('/colors')
@@ -42,6 +43,48 @@ router
     res
       .status(200)
       .json(materials);
+  });
+
+router
+  .route('/items/:pattern_id/:material_id')
+  .get((req, res) => {
+    // async выше надо добавить
+    // const { pattern_id, material_id } = req.params;
+
+    // const items = await Item.findAll({
+    //   where: {
+    //     pattern_id, 
+    //     material_id,
+    //   }
+    // });
+
+    const items = [
+      {
+        id: 1,
+        pattern_id: 11111,
+        material_id: 22222,
+        price: 1000,
+        old_price: 2000,
+      },
+      {
+        id: 2,
+        pattern_id: 11112,
+        material_id: 22224,
+        price: 1000,
+        old_price: 2000,
+      },
+      {
+        id: 3,
+        pattern_id: 11113,
+        material_id: 22223,
+        price: 1000,
+        old_price: 2000,
+      },
+    ];
+    console.log('items', items)
+    res
+      .status(200)
+      .json(items);
   });
 
 module.exports = router;
