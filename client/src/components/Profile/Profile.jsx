@@ -51,7 +51,7 @@ function Profile(props) {
         (<div className='container' >
           <h3>Личная информация</h3>
           <div>Имя: </div>
-          <div>{user.userId}</div>
+          <div>{user.userName}</div>
           <div>E-mail: </div>
           <div>{user.userEmail}</div>
           <br />

@@ -39,12 +39,16 @@ router
         user_password: await bcrypt.hash(user_password, 10),
       });
       req.session.userId = newUser.id;
+      req.session.userEmail = newUser.user_email;
+      req.session.userName = newUser.user_name;
       res
         .status(200)
         .json({
           loggedIn: true,
           message: 'Регистрация успешна.',
           userId: req.session.userId,
+          userEmail: req.session.userEmail,
+          userName: req.session.userName,
         });
     }
   });
