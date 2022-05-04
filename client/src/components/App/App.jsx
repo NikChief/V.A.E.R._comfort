@@ -9,26 +9,32 @@ import Registration from '../Registration/Registration';
 import Error404 from '../Error404/Error404';
 import Profile from "../Profile/Profile";
 import TypeList from "../TypeList/TypeList";
+import CategoryType from "../CategoryType/CategoryType";
+import BasketList from '../BasketList/BasketList'
+import OrderForm from "../OrderForm/OrderForm";
+import Item from "../Item/Item"
+import PatternList from "../PatternList/PatternList";
+
 
 
 function App() {
   return ( 
     <>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Nav />
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/typelist" element={<TypeList />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-
-      </BrowserRouter>
-    </Provider>
+      <Nav />
+      <TypeList />
+      {/* <Item /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/catalogue/:type/:categoryType/:patternId" element={<Item />} />
+        <Route path="/catalogue/:type" element={<CategoryType />} />
+        <Route path="/catalogue/:type/:categoryType" element={<PatternList />} />
+        <Route path="/basket/orderform" element={<OrderForm />} />
+        <Route path="/basket" element={<BasketList />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </>
   );
 }
