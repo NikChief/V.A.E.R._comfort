@@ -1,4 +1,4 @@
-import { INIT_COLORS } from "../actionTypes/colorAT"
+import { INIT_COLORS } from "../actionTypes/colorsAT"
 
 const initialState = { colors: [] }
 
@@ -6,11 +6,6 @@ const initialState = { colors: [] }
 export function colorsReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_COLORS:
-      const abc = {
-        ...state, colors: action.payload
-      }
-      console.log('colors', abc)
-      // {colors:}
       return {
         ...state, colors: action.payload
       };
