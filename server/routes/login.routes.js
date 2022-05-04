@@ -13,9 +13,8 @@ router
         .json({
           loggedIn: true,
           userId: req.session.userId,
-          //
+          userName: req.session.userName,
           userEmail: req.session.userEmail,
-          //
         });
     } else {
       res
@@ -38,18 +37,16 @@ router
       });
       if (user && await bcrypt.compare(user_password, user.user_password)) {
         req.session.userId = user.id;
-        //начало
         req.session.userEmail = user.user_email;
-        //конец
+        req.session.userName = user.user_name;
         res
           .status(200)
           .json({
             loggedIn: true,
             message: 'Вход на сайт успешен.',
             userId: req.session.userId,
-            //начало
             userEmail: req.session.userEmail,
-            //конец
+            userName: req.session.userName,
           });
       } else {
         res
