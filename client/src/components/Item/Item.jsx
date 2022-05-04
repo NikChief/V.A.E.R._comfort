@@ -38,16 +38,19 @@ function Item(props) {
             {(currentItem.color_count === 3)
             ?
             <>
-              <ColorChoiceForm/>
-              <ColorChoiceForm/>
-              <ColorChoiceForm/>
+              <ColorChoiceForm colorType={'основной цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет 2'}/>
             </>
             :
-            (currentItem.color_count === 1) 
+            (currentItem.color_count === 2) 
             ?
-              <ColorChoiceForm/>
+            <>
+              <ColorChoiceForm colorType={'основной цвет'}/>
+              <ColorChoiceForm colorType={'дополнительный цвет'}/>
+            </>
             :
-            <></>
+              <ColorChoiceForm colorType={'основной цвет'}/>
             }
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
