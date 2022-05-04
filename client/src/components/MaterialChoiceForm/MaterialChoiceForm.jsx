@@ -18,7 +18,7 @@ function MaterialChoiceForm(props) {
   return (
     <div>
       <select className='form-select' id='material_id'>
-        <option selected>Выбери материал</option>
+        <option defaultValue>Выбери материал</option>
         {materials.map(material => <option key={material.id} value={material.id}>{material.type}</option>)}
       </select>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { addItemToBasketAC } from '../../redux/actionCreators/basketAC';
 // import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
@@ -15,21 +16,39 @@ function Item(props) {
 
   const patternId = 1001;
   const { currentItem } = useSelector(state => state.itemState);
-  const dispatch = useDispatch();
+  const { basket } = useSelector(state => state.basketState);
 
-  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
       // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
 
-  // const getSize = (e) => {
-  //   e.preventDefault();
-  //   const body = {
+  const getInput = (e) => {
+    e.preventDefault();
+    const body = {
+      pattern_name: currentItem.name,
+      patter_image: currentItem.image,
+      base_size: e.target.base_size.value,
+      bust: e.target.bust.value,
+      hip_girth: e.target.hip_girth.value,
+      waistline: e.target.waistline.value,
+      pants_length_inseam: e.target.pants_length_inseam.value,
+      groin_to_bone: e.target.groin_to_bone.value,
+      main_color_id: e.target.bust.value,
+      extra_color1_id: e.target.bust.value,
+      extra_color2_id: e.target.bust.value,
+      material_id: e.target.material_id.value,
+      count: e.target.count.value,
+    }
+    console.log('body', body)
+    dispatch(addItemToBasketAC(body));
+  }
 
-  //   }
-  // }
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify(basket));
+  }, [basket]);
 
   return (
     <div className={styles.itemContainer}>
@@ -39,7 +58,7 @@ function Item(props) {
         <img src={currentItem.image} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
       </div>
       <div id='inputFromClientFormBlock'>
-        <form id='inputFromClientForm' className={styles.itemFormContainer}> 
+        <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
         <div className={styles.colorsChoiceForm}>
           <div id='colorsChoiceForm'>
               <h5 className='card-title'>Выберите цвета:</h5>
@@ -65,6 +84,22 @@ function Item(props) {
             <h5 className='card-title'>Выберите материал:</h5>
               <MaterialChoiceForm />
             </div>
+            <div id='countForm' className={styles.materialChoiceFormContainer}>
+              <label htmlFor='count' className='form-label'>Количество</label>
+              <select className='form-select' id='count'>
+                <option defaultValue>Выбери количество</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+                <option value='6'>6</option>
+                <option value='7'>7</option>
+                <option value='8'>8</option>
+                <option value='9'>9</option>
+                <option value='10'>10</option>
+              </select>
+            </div>
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
             <h5>Укажите размеры:</h5>
@@ -72,8 +107,8 @@ function Item(props) {
             &&
             <div className='mb-3'>
               <label htmlFor='base_size' className='form-label'>Базовый размер</label>
-              <select class='form-select' id='base_size'>
-                <option selected>Выбери базовый размер</option>
+              <select className='form-select' id='base_size'>
+                <option defaultValue>Выбери базовый размер</option>
                 <option value='S'>S</option>
                 <option value='M'>M</option>
                 <option value='L'>L</option>
@@ -97,8 +132,8 @@ function Item(props) {
               <input type='text' className='form-control' id='waistline'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='pants_length-inseam' className='form-label'>Длина брюк по внутреннему шву</label>
-              <input type='text' className='form-control' id='pants_length-inseam'></input>
+              <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву</label>
+              <input type='text' className='form-control' id='pants_length_inseam'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге</label>
@@ -111,8 +146,8 @@ function Item(props) {
             &&
             <div className='mb-3'>
               <label htmlFor='base_size' className='form-label'>Рост ребенка</label>
-              <select class='form-select' id='base_size'>
-                <option selected>Выбери рост</option>
+              <select className='form-select' id='base_size'>
+                <option defaultValue>Выбери рост</option>
                 <option value='110'>110</option>
                 <option value='120'>120</option>
                 <option value='130'>130</option>
