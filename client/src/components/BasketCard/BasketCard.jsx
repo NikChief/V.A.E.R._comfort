@@ -32,7 +32,7 @@ function Basketcard({ orderItem }) {
           </div>
         </div>
         <div>
-         <button type="button" class="btn btn-primary btn-sm">Удалить</button>
+         <button type="button" className="btn btn-primary btn-sm">Удалить</button>
         </div>
       </div>
     </div>

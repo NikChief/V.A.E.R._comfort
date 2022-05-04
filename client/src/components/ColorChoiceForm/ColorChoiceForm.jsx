@@ -17,18 +17,7 @@ function ColorChoiceForm(props) {
   
   return (
     <div>
-      <form action="handler.php">
-        <p>Укажите цвет фона: 
-          {/* <input type="color" name="bg" value="#ff0000"></input> */}
-          <select>
-            <option className={styles.background}>
-              {/* <div className={styles.background} alt="Submit"></div> */}
-            </option>
-          </select>
-          {/* <input type="submit" value="Выбрать"></input> */}
-
-        </p>
-      </form>
+      colors
     </div>
   );
 }

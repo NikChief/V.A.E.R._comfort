@@ -6,11 +6,16 @@ const initialState = { colors: [] }
 export function colorsReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_COLORS:
-      return {
+      const abc = {
         ...state, colors: action.payload
       }
+      console.log('colors', abc)
+      // {colors:}
+      return {
+        ...state, colors: action.payload
+      };
 
     default:
-      return state
+      return state;
   }
 }
