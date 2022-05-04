@@ -14,6 +14,7 @@ import BasketList from '../BasketList/BasketList'
 import OrderForm from "../OrderForm/OrderForm";
 import Footer from "../Footer/Footer";
 import Item from "../Item/Item"
+import PatternList from "../PatternList/PatternList"
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Nav />
       <TypeList />
       <Item />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
@@ -35,6 +37,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/catalogue/:type/:categoryType/:patternId" element={<Item />} />
         <Route path="/catalogue/:type" element={<CategoryType />} />
+        <Route path="/catalogue/:type/:categoryType" element={<PatternList />} />
         <Route path="/basket/orderform" element={<OrderForm />} />
         <Route path="/basket" element={<BasketList />} />
         <Route path="*" element={<Error404 />} />
