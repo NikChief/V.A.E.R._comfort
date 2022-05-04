@@ -27,7 +27,7 @@ function App() {
     <>
       <Nav />
       <TypeList />
-      {/* <Item /> */}
+      <Item />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />

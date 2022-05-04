@@ -17,10 +17,18 @@ function ColorChoiceForm(props) {
   
   return (
     <div>
-      <select className="form-select" aria-label="Default select example">
-        <option selected>Выбрать цвет</option>
-        {colors.map(color => <option value={color.name}><img src={color.image} alt='colorImg'></img></option>)}
-      </select>
+      <form action="handler.php">
+        <p>Укажите цвет фона: 
+          {/* <input type="color" name="bg" value="#ff0000"></input> */}
+          <select>
+            <option className={styles.background}>
+              {/* <div className={styles.background} alt="Submit"></div> */}
+            </option>
+          </select>
+          {/* <input type="submit" value="Выбрать"></input> */}
+
+        </p>
+      </form>
     </div>
   );
 }

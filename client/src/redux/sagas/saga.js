@@ -1,9 +1,12 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorAC';
+import { initCurrentItemAC } from '../actionCreators/itemAC';
 import { initOrdersAC } from '../actionCreators/ordersAC';
 import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
 import { SAGA_INIT_COLORS } from '../actionTypes/colorAT';
+import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
+import { ERR_LOGGEDIN_USER, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
 import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 
 async function fetchData({url, headers, method, body}) {
@@ -87,7 +90,6 @@ function* fetchLoggedOutUser() {
   }
 }
 
-
 function* fetchIsUserAuthorized() {
   try {
     const data = yield call(
@@ -107,7 +109,7 @@ function* fetchIsUserAuthorized() {
   }
 }
 
-function* fetchInitColorsAC() {
+function* fetchInitColors() {
   try {
     const data = yield call(
       fetchData, {
@@ -127,11 +129,32 @@ function* fetchInitColorsAC() {
   }
 }
 
+function* fetchInitCurrentItem(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: `/patterns/${action.payload}`,
+      }
+    );
+    
+    yield put(initCurrentItemAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
 export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGGEDIN_USER, fetchLoggedInUser)
   yield takeEvery(SAGA_REGISTER_USER, fetchRegisterInUser)
   yield takeEvery(SAGA_LOGOUT_USER, fetchLoggedOutUser)
-  yield takeEvery(SAGA_INIT_COLORS, fetchInitColorsAC)
+  yield takeEvery(SAGA_INIT_COLORS, fetchInitColors)
+  yield takeEvery(SAGA_INIT_CURRENT_ITEM, fetchInitCurrentItem)
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
   yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
+
 }
