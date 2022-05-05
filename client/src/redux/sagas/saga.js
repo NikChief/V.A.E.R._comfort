@@ -9,6 +9,8 @@ import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
 import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
+import { SAGA_GET_ITEMS_INFO } from '../actionTypes/basketAT';
+import { getItemsInfoAC } from '../actionCreators/basketAC';
 
 async function fetchData({url, headers, method, body}) {
   const response = await fetch(url, {method, headers, body});
@@ -169,6 +171,25 @@ function* fetchInitCurrentItem(action) {
   }
 }
 
+function* fetchItemsInfo(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: `/items/${action.payload.patternId}/${action.payload.materialId}`,
+      }
+    );
+    
+    yield put(getItemsInfoAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
 export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGGEDIN_USER, fetchLoggedInUser)
   yield takeEvery(SAGA_REGISTER_USER, fetchRegisterInUser)
@@ -178,5 +199,6 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
   yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
   yield takeEvery(SAGA_INIT_MATERIALS, fetchInitMaterials)
+  yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
 
 }
