@@ -6,12 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { initBasketTotalAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketList.module.css'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function BasketList(props) {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basket } = useSelector(state => state.basketState);
@@ -20,17 +19,13 @@ function BasketList(props) {
   useEffect(() => {
     let totalAmount = 0;
     for (let i = 0; i < basket.length; i += 1) {
-      // totalAmount = totalAmount + Number(basket[i].count)
       totalAmount = totalAmount + Number(basket[i].count) * Number(itemsInfoFromDb[i]?.price)
     }
     dispatch(initBasketTotalAC(totalAmount))
   },[basket, itemsInfoFromDb, dispatch])
- 
-  const goToOrdering = () => {
-    navigate('/basket/orderform')
-  }
 
   return (
+    // {}
     <div className={styles.basketContainer}>
       <div id='basket items' className={styles.basketInnerContainer}>
         {basket.map(item => <Basketcard key={uuidv4()} orderItem={item} />)}
@@ -42,7 +37,7 @@ function BasketList(props) {
         <p className="card-text">
         {basketTotal + ' руб.'}
         </p>
-        <button onClick={goToOrdering} type='button' className='btn btn-primary'>Перейти к оформлению</button>
+        <Link to='/orderForm' className='btn btn-primary'>Перейти к оформлению</Link>
       </div>
       }
     </div>
