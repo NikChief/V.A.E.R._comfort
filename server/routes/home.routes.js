@@ -1,6 +1,8 @@
 const router = require('express').Router();
-// const { Color } = require('../db/models');
-const { Material } = require('../db/models');
+
+const {
+  Material, Color, Type, CategoryType, Category,
+} = require('../db/models');
 // const { Item } = require('../db/models');
 
 // router
@@ -15,9 +17,6 @@ const { Material } = require('../db/models');
 //     req.session.destroy();
 //     res.redirect('/');
 //   });
-const {
-  Material, Color, Type, CategoryType, Category,
-} = require('../db/models');
 // const { Item } = require('../db/models');
 
 router
