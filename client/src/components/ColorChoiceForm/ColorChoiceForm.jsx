@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import Color from '../Color/Color';
-import styles from './ColorChoiceForm.module.css'
+import style from './ColorChoiceForm.module.css'
 
 
-function ColorChoiceForm({colorType}) {
+function ColorChoiceForm({colorType, stateName, actionType}) {
 
   const dispatch = useDispatch()
+  console.log('STATENAME', stateName);
+  const idModal = colorType.split(' ').join('')
+  const state = useSelector(state => state.colorsState);
+  const { colors } = state;
+  const currentColor = state[stateName];
 
-  const { colors } = useSelector(state => state.colorsState);
+
+  // const [currentColor, setCurrentColor] = useState({id: null, image: 'pngwing.com.png'})
 
   const hardCodeColors = [
     {
@@ -56,37 +61,54 @@ function ColorChoiceForm({colorType}) {
     },
   ]
 
-  useEffect(() => {
-    dispatch(fetchInitColorsAC())
-  },[dispatch])
+  function changeHandler(event) {
+    event.preventDefault()
+
+    console.log('TARGET ===>', event.target.value);
+    const newColor = colors.find(el => el.name === event.target.value);
+    console.log('newColor ===>', newColor);
+    console.log('ACTION_TYPE', actionType);
+    dispatch({type: actionType, payload: newColor})
+    // setCurrentColor(newColor);
+
+    console.log('currentColor ===>', currentColor);
+
+  }
+
   
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
-      <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <div className={style.choiseForm}>
+
+      <button type="button" className="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
        {colorType}
       </button>
+      <img src={`http://localhost:4000/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
+
+      </div>
 
       {/* <!-- Modal --> */}
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Выберите цвет</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id={`${idModal}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <form onChange={changeHandler} className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Выберите цвет</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
 
               <div className='d-flex flex-wrap'>
-                {hardCodeColors.map(color => <Color color={color}/>)}
+                {colors.map(color => <Color color={color} key={colors.id}/>)}
               </div>
 
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-              <button type="button" class="btn btn-primary">ОК</button>
+            <div className="modal-footer">
+              {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+              <button type="button" className="btn btn-primary">ОК</button> */}
+               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Ок</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

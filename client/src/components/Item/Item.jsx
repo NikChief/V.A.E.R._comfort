@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addItemToBasketAC, getItemsInfoFromDbAC } from '../../redux/actionCreators/basketAC';
 // import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
+import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
 import styles from './Item.module.css'
@@ -26,6 +27,11 @@ function Item(props) {
     dispatch(fetchInitCurrentItemAC(patternId))
       // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
+
+  
+  useEffect(() => {
+    dispatch(fetchInitColorsAC())
+  },[dispatch])
 
   const getInput = (e) => {
     e.preventDefault();
@@ -80,20 +86,20 @@ function Item(props) {
               {(currentItem.color_count === 3)
               ?
               <>
-              <ColorChoiceForm colorType={'основной цвет'}/>
-              <ColorChoiceForm colorType={'дополнительный цвет'}/>
-              <ColorChoiceForm colorType={'дополнительный цвет 2'}/>
+              <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+              <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
+              <ColorChoiceForm colorType={'дополнительный цвет 2'} actionType={'PIC_EXTRA2'} stateName={'colorChosenExtra2'} />
               </>
             :
             (currentItem.color_count === 2) 
             ?
             <>
-              <ColorChoiceForm colorType={'основной цвет'}/>
-              <ColorChoiceForm colorType={'дополнительный цвет'}/>
+              <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+              <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
             </>
             :
-              <ColorChoiceForm colorType={'основной цвет'}/>
-              }
+            <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+          }
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
             <h5 className='card-title'>Выберите материал:</h5>
