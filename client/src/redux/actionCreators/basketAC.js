@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_BASKET, GET_ITEMS_INFO_FROM_DB, INIT_BASKET_TOTAL } from "../actionTypes/basketAT";
+import { ADD_ITEM_TO_BASKET, GET_ITEMS_INFO, INIT_BASKET_TOTAL, SAGA_GET_ITEMS_INFO } from "../actionTypes/basketAT";
 
 export function addItemToBasketAC(payload) {
   return {
@@ -7,9 +7,16 @@ export function addItemToBasketAC(payload) {
   }
 }
 
-export function getItemsInfoFromDbAC(payload) {
+export function getItemsInfoAC(payload) {
   return {
-    type: GET_ITEMS_INFO_FROM_DB,
+    type: GET_ITEMS_INFO,
+    payload
+  }
+}
+
+export function fetchItemsInfoAC(payload) {
+  return {
+    type: SAGA_GET_ITEMS_INFO,
     payload
   }
 }

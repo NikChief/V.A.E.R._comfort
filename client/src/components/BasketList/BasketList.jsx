@@ -9,8 +9,8 @@ import styles from './BasketList.module.css'
 
 function BasketList(props) {
 
-  const { basket } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  const { basket } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
 
   const dispatch = useDispatch()
@@ -18,7 +18,8 @@ function BasketList(props) {
   useEffect(() => {
     let totalAmount = 0;
     for (let i = 0; i < basket.length; i += 1) {
-      totalAmount = totalAmount + Number(basket[i].count) * Number(itemsInfoFromDb[i].price)
+      // totalAmount = totalAmount + Number(basket[i].count)
+      totalAmount = totalAmount + Number(basket[i].count) * Number(itemsInfoFromDb[i]?.price)
     }
     dispatch(initBasketTotalAC(totalAmount))
   },[basket, itemsInfoFromDb, dispatch])
