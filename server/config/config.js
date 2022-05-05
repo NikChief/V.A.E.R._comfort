@@ -17,6 +17,7 @@ const sessionConfig = {
   cookie: {
     maxAge: 1000 * 60 * 60 * 12, // Срок истечения годности куки в миллисекундах
     httpOnly: true, // Серверная установка и удаление куки, по умолчанию true
+    // path: '/orderForm',    
   },
 };
 

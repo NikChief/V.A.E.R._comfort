@@ -4,7 +4,6 @@ const { Order } = require('../db/models');
 router
   .route('/')
   .get((req, res) => {
-    console.log('servers');
     const ordersHardcode = [{
       id: 1,
       sum: 55,
@@ -32,7 +31,6 @@ router
     }];
 
     try {
-      console.log('hi');
       res.json({
         orders: [...ordersHardcode],
       });
@@ -44,18 +42,19 @@ router
   })
   .post(async (req, res) => {
     try {
+      // eslint-disable-next-line prefer-destructuring
       const body = req.body;
-      console.log(body, '48')
 
       if (body.user_id === null) {
-        console.log('hi')
-        const order = await Order.create({ 
+        // eslint-disable-next-line no-unused-vars
+        const order = await Order.create({
           status: body.status,
           address: body.address,
           phone: Number(body.phone),
         });
       } else {
-        const order2 = await Order.create({ body });
+        // eslint-disable-next-line no-unused-vars
+        const order2 = await Order.create(body);
       }
 
       res
@@ -69,7 +68,7 @@ router
         .status(400)
         .json({
           orderStatus: false,
-          message: `Что-то пошло не так, \n ${error.message}`,
+          message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
         });
     }
   });

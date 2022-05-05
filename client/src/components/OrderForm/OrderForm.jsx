@@ -1,9 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { initOrderMessageAC } from '../../redux/actionCreators/ordersAC';
-import Login from '../Login/Login';
 import styles from './OrderForm.module.css'
 
 function OrderForm(props) {
@@ -11,6 +10,7 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
+  // console.log('user', user)
   const { orderMessage } = useSelector(state => state.ordersState);
 
   const proceedOrder = (e) => {
@@ -23,7 +23,7 @@ function OrderForm(props) {
       phone: e.target.phone.value,
       // name: e.target.name.value,
     }
-
+    console.log('body', body)
     fetch('/profile', {
       method: 'POST',
       headers: {
@@ -31,9 +31,12 @@ function OrderForm(props) {
       },
       body: JSON.stringify(body),
     })
-     .then(res => res.json())
-     .then(data => dispatch(initOrderMessageAC(data)))
-     localStorage.clear()
+    .then(res => res.json())
+    .then(data => {
+      dispatch(initOrderMessageAC(data))
+      dispatch(clearBasketAC())
+    })
+    localStorage.clear()
     //  .then(data => console.log(data, 'data'))
   }
 
@@ -44,6 +47,7 @@ function OrderForm(props) {
           Доставка
         </h5>
         <form onSubmit={proceedOrder}>
+        {/* <form> */}
           <div className='mb-3'>
             <label for='address' className='form-label'>Адрес (указать город, индекс, адрес)</label>
             <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)'></input>
@@ -62,15 +66,7 @@ function OrderForm(props) {
           <button type='submit' className='btn btn-primary'>Оформить заказ</button>
         </form>
       </div>
-      <div className={styles.orderInnerContainer}>
-        <h5>
-          Войдите в систему
-        </h5>
-        <Login />
-        <Link to='/registration'>Зарегистрироваться</Link>
-      </div>
     </div>
-    
   );
 }
 

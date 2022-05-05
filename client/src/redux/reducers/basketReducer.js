@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_BASKET, GET_ITEMS_INFO, INIT_BASKET_TOTAL } from '../actionTypes/basketAT'
+import { ADD_ITEM_TO_BASKET, CLEAR_BASKET, GET_ITEMS_INFO, INIT_BASKET_TOTAL } from '../actionTypes/basketAT'
 
 const initialState = {
   basket: JSON.parse(localStorage.getItem('basket'))?.basket ?? [],
@@ -20,6 +20,11 @@ export function basketReducer(state = initialState, action) {
       // console.log(action.payload, 'action.payload')
       return {
         ...state, basketTotal: Number(action.payload)
+      }
+
+    case CLEAR_BASKET:
+      return {
+        ...state, basket: []
       }
     default:
       return state
