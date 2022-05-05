@@ -9,6 +9,10 @@ import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
 import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
+import { SAGA_INIT_TYPES } from '../actionTypes/typesAT';
+import { initTypesAC } from '../actionCreators/typesAC';
+import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
+import { SAGA_INIT_CATEGORY_TYPES } from '../actionTypes/categoryTypesAT'
 import { SAGA_GET_ITEMS_INFO } from '../actionTypes/basketAT';
 import { getItemsInfoAC } from '../actionCreators/basketAC';
 
@@ -171,6 +175,45 @@ function* fetchInitCurrentItem(action) {
   }
 }
 
+function* fetchInitTypes(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url:'/types',
+      }
+    );
+    
+    yield put(initTypesAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
+function* fetchInitCategoryTypes(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url:`/catalogue/${action.payload}`,
+      }
+    );
+    
+    yield put(initCategoryTypesAC(data));
+    } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+    
+
 function* fetchItemsInfo(action) {
   try {
     const data = yield call(
@@ -199,6 +242,8 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
   yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
   yield takeEvery(SAGA_INIT_MATERIALS, fetchInitMaterials)
+  yield takeEvery(SAGA_INIT_TYPES, fetchInitTypes)
+  yield takeEvery(SAGA_INIT_CATEGORY_TYPES, fetchInitCategoryTypes)
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
-
+  
 }
