@@ -6,14 +6,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { initBasketTotalAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketList.module.css'
+import { useNavigate } from 'react-router-dom';
 
 function BasketList(props) {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basket } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
-
-  const dispatch = useDispatch()
   
   useEffect(() => {
     let totalAmount = 0;
@@ -23,19 +25,26 @@ function BasketList(props) {
     }
     dispatch(initBasketTotalAC(totalAmount))
   },[basket, itemsInfoFromDb, dispatch])
-  
+ 
+  const goToOrdering = () => {
+    navigate('/')
+  }
 
   return (
     <div className={styles.basketContainer}>
       <div id='basket items' className={styles.basketInnerContainer}>
         {basket.map(item => <Basketcard key={uuidv4()} orderItem={item} />)}
       </div>
+      {(basket.length !== 0)
+      &&
       <div id='basket info' className={styles.basketInnerContainer}>
         <h5 className="card-title">Общая стоимость:</h5>
         <p className="card-text">
         {basketTotal + ' руб.'}
         </p>
+        <button onClick={goToOrdering} type='button' className='btn btn-primary'>Перейти к оформлению</button>
       </div>
+      }
     </div>
   );
 }
