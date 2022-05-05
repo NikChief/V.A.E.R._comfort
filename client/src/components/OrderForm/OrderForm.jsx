@@ -33,6 +33,7 @@ function OrderForm(props) {
     })
      .then(res => res.json())
      .then(data => dispatch(initOrderMessageAC(data)))
+     localStorage.clear()
     //  .then(data => console.log(data, 'data'))
   }
 
