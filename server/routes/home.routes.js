@@ -1,4 +1,7 @@
 const router = require('express').Router();
+// const { Color } = require('../db/models');
+const { Material } = require('../db/models');
+// const { Item } = require('../db/models');
 
 // router
 //   .route('/')
@@ -103,6 +106,7 @@ router
       },
     ];
     console.log('items', items);
+
     res
       .status(200)
       .json(items);

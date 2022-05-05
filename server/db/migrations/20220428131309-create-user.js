@@ -8,18 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_name: {
+      name: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      user_email: {
+      email: {
         type: Sequelize.TEXT,
         allowNull: false,
         unique: true,
       },
-      user_password: {
+      password: {
         type: Sequelize.TEXT,
         allowNull: false,
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

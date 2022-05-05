@@ -18,8 +18,8 @@ function Login(props) {
   const loginFunction = (event) => {
     event.preventDefault();
     const body = {
-      user_email: event.target.email.value,
-      user_password: event.target.password.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
     }
     dispatch(fetchLoggedInUserAC(body))
   }
