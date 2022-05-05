@@ -33,11 +33,11 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/catalogue/:type/:categoryType/:patternId" element={<Item />} />
         <Route path="/catalogue/:type" element={<CategoryType />} />
         <Route path="/catalogue/:type/:categoryType" element={<PatternList />} />
-        <Route path="/basket/orderform" element={<OrderForm />} />
+        <Route path="/catalogue/:type/:categoryType/:patternId" element={<Item />} />
         <Route path="/basket" element={<BasketList />} />
+        <Route path="/basket/orderform" element={<OrderForm />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer/>

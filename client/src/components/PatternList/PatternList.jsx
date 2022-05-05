@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Pattern from '../Pattern/Pattern';
 
 const patterns = [
@@ -29,6 +30,14 @@ const patterns = [
 ];
 
 function PatternList(props) {
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch()
+  //   fetchInitPatternsAC()
+  // })
+
+
   return (
     <div className='container d-flex flex-wrap justify-content-around'>
       {patterns.map(pattern => <Pattern key={pattern.name} pattern={pattern} />)}
