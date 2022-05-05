@@ -27,7 +27,7 @@ function BasketList(props) {
   },[basket, itemsInfoFromDb, dispatch])
  
   const goToOrdering = () => {
-    navigate('/')
+    navigate('/basket/orderform')
   }
 
   return (
