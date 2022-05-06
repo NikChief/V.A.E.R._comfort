@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
@@ -15,27 +15,26 @@ import { v4 as uuidv4 } from 'uuid';
 function Item(props) {
 
   const { patternId } = useParams()
-  console.log('18', patternId)
-  //например, путь women/costumes/1001
 
   const { currentItem } = useSelector(state => state.itemState);
-  const { basket } = useSelector(state => state.basketState);
+  const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch(`/patterns/${patternId}`)
-    //   .then
     dispatch(fetchInitCurrentItemAC(patternId))
-      // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
 
   
   useEffect(() => {
     dispatch(fetchInitColorsAC())
   },[dispatch])
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
+  }, [basketItems, itemsInfoFromDb]);
 
   const getInput = (e) => {
     e.preventDefault();
@@ -45,26 +44,23 @@ function Item(props) {
       pattern_name: currentItem.name,
       pattern_image: currentItem.image,
       base_size: e.target.base_size.value,
-      bust: e.target.bust.value,
-      hip_girth: e.target.hip_girth.value,
-      waistline: e.target.waistline.value,
-      pants_length_inseam: e.target.pants_length_inseam.value,
-      groin_to_bone: e.target.groin_to_bone.value,
-      main_color_id: e.target.bust.value,
-      extra_color1_id: e.target.bust.value,
-      extra_color2_id: e.target.bust.value,
+      bust: e.target.bust?.value,
+      hip_girth: e.target.hip_girth?.value,
+      waistline: e.target.waistline?.value,
+      pants_length_inseam: e.target.pants_length_inseam?.value,
+      groin_to_bone: e.target.groin_to_bone?.value,
+      main_color_id: e.target.bust?.value,
+      extra_color1_id: e.target.bust?.value,
+      extra_color2_id: e.target.bust?.value,
       material_id: JSON.parse(e.target.material.value).id,
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
-    console.log('body', body)
+   
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
+    navigate('/')
   }
-
-  useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
-  }, [basket, itemsInfoFromDb]);
 
   return (
     <div className={styles.itemContainer}>
@@ -136,23 +132,23 @@ function Item(props) {
             <>
                        
             <div className='mb-3'>
-              <label htmlFor='bust' className='form-label'>Обхват груди</label>
+              <label htmlFor='bust' className='form-label'>Обхват груди, см</label>
               <input required type='text' className='form-control' id='bust' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='hip_girth' className='form-label'>Обхват бедер</label>
+              <label htmlFor='hip_girth' className='form-label'>Обхват бедер, см</label>
               <input required type='text' className='form-control' id='hip_girth' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='waistline' className='form-label'>Обхват талии</label>
+              <label htmlFor='waistline' className='form-label'>Обхват талии, см</label>
               <input required type='text' className='form-control' id='waistline' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву</label>
+              <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву, см</label>
               <input required type='text' className='form-control' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге</label>
+              <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге, см</label>
               <input required type='text' className='form-control' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>

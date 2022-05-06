@@ -15,8 +15,14 @@
   justify-content: center;
 }
 
+.basketCardImageBox {
+  display: flexbox;
+  width: 13vw;
+  /* border: 2px solid black; */
+}
+
 .basketCardImage {
-  margin: 2vh;
+  /* margin: 2vh; */
   height: 28vh;
   /* border: 2px solid black; */
 }
@@ -50,3 +56,4 @@
 .sizeText {
   font-weight: normal;
 }
+

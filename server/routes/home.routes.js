@@ -117,15 +117,6 @@ router
 
       const itemWithBaskeId = { ...item, basket_id };
 
-      // const item = {
-      //   id: 1,
-      //   pattern_id: 11111,
-      //   material_id: 22222,
-      //   price: 1000,
-      //   old_price: 2000,
-      //   basket_id,
-      // };
-
       res
         .status(200)
         .json(itemWithBaskeId);

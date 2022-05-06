@@ -12,24 +12,24 @@ function BasketList(props) {
   const dispatch = useDispatch()
 
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  const { basket } = useSelector(state => state.basketState);
+  const { basketItems } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
   
   useEffect(() => {
     let totalAmount = 0;
-    for (let i = 0; i < basket.length; i += 1) {
-      totalAmount = totalAmount + Number(basket[i].count) * Number(itemsInfoFromDb[i]?.price)
+    for (let i = 0; i < basketItems.length; i += 1) {
+      totalAmount = totalAmount + Number(basketItems[i].count) * Number(itemsInfoFromDb[i]?.price)
     }
     dispatch(initBasketTotalAC(totalAmount))
-  },[basket, itemsInfoFromDb, dispatch])
+  },[basketItems, itemsInfoFromDb, dispatch])
 
   return (
     // {}
     <div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
-        {basket.map(item => <Basketcard key={item.id} basketItem={item} />)}
+        {basketItems.map(item => <Basketcard key={item.id} basketItem={item} />)}
       </div>
-      {(basket.length !== 0)
+      {(basketItems.length !== 0)
       &&
       <div id='basket_info' className={styles.basketInnerContainer}>
         <h5 className="card-title">Общая стоимость:</h5>

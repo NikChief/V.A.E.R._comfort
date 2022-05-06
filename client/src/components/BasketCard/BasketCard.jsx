@@ -7,7 +7,7 @@ import styles from './BasketCard.module.css'
 
 function Basketcard({ basketItem }) {
 
-  const { basket } = useSelector(state => state.basketState);
+  const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   const dispatch = useDispatch();
@@ -17,13 +17,13 @@ function Basketcard({ basketItem }) {
   }
 
   useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
-  }, [basket, itemsInfoFromDb]);
+    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
+  }, [basketItems, itemsInfoFromDb]);
 
   return (
     <div className={`${styles.basketCardOuterBox}`}>
       <div className={`card ${styles.basketCardBox}`}>
-        <div>
+        <div className={`${styles.basketCardImageBox}`}>
           <img src={`http://localhost:4000/${basketItem.pattern_image}`} className={`card-img-top ${styles.basketCardImage}`} alt="..."></img>  
         </div>
         <div className={`${styles.basketCardInfo}`}>
