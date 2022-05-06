@@ -2,7 +2,7 @@
 const router = require('express').Router();
 
 const {
-  Material, Color, Type, CategoryType, Category, Pattern,
+  Material, Color, Type, CategoryType, Category, Pattern, Item,
 } = require('../db/models');
 // const { Item } = require('../db/models');
 
@@ -64,12 +64,16 @@ router
   .get(async (req, res) => {
     try {
       const category_type_id = +req.query.category_type_id;
-      console.log('CAT_TYPE_ID ==>', category_type_id);
+
       const patterns = await Pattern.findAll({
         where: { category_type_id },
-      });
-      console.log(patterns);
 
+        include: {
+          model: Item,
+        },
+      });
+
+      console.log(patterns);
       res
         .status(200)
         .json(patterns);
