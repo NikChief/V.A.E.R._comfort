@@ -2,23 +2,8 @@
 const router = require('express').Router();
 
 const {
-  Material, Color, Type, CategoryType, Category, Pattern,
+  Material, Color, Type, CategoryType, Category, Pattern, Item,
 } = require('../db/models');
-// const { Item } = require('../db/models');
-
-// router
-//   .route('/')
-//   .get((req, res) => {
-//     res.render('home');
-//   });
-
-// router
-//   .route('/logout')
-//   .get((req, res) => {
-//     req.session.destroy();
-//     res.redirect('/');
-//   });
-// const { Item } = require('../db/models');
 
 router
   .route('/colors')
@@ -89,30 +74,40 @@ router
 
 router
   .route('/items/:basket_id/:pattern_id/:material_id')
-  .get((req, res) => {
-    // async выше надо добавить
-    const { basket_id, pattern_id, material_id } = req.params;
+  .get(async (req, res) => {
+    try {
+      const { basket_id, pattern_id, material_id } = req.params;
 
-    // const { basket_id } = req.params;
-    const item = await Item.findOne({
-      where: {
-        pattern_id,
-        material_id,
-      }
-    });
+      const item = await Item.findOne({
+        where: {
+          pattern_id: Number(pattern_id),
+          material_id: Number(material_id),
+        },
+        raw: true,
+      });
 
-    // const item = {
-    //   id: 1,
-    //   pattern_id: 11111,
-    //   material_id: 22222,
-    //   price: 1000,
-    //   old_price: 2000,
-    //   basket_id,
-    // };
+      const itemWithBaskeId = { ...item, basket_id };
 
-    res
-      .status(200)
-      .json(item);
+      // const item = {
+      //   id: 1,
+      //   pattern_id: 11111,
+      //   material_id: 22222,
+      //   price: 1000,
+      //   old_price: 2000,
+      //   basket_id,
+      // };
+
+      res
+        .status(200)
+        .json(itemWithBaskeId);
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          loggedIn: false,
+          message: `Ошибка получения данных из баззы данных. Описание ошибки: ${error.message}`,
+        });
+    }
   });
 
 module.exports = router;

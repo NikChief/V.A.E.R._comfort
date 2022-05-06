@@ -17,7 +17,7 @@ function Item(props) {
   // const { patternId } = useParams()
   //например, путь women/costumes/1001
 
-  const patternId = 1001;
+  const patternId = 1;
   const { currentItem } = useSelector(state => state.itemState);
   const { basket } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
