@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { clearBasketAC } from '../../redux/actionCreators/basketAC';
-import { initOrderMessageAC } from '../../redux/actionCreators/ordersAC';
+import { fetchInitOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
 function OrderForm(props) {
@@ -13,10 +13,12 @@ function OrderForm(props) {
 
   const { orderMessage } = useSelector(state => state.ordersState);
 
+  const { basketItems } = useSelector(state => state.basketState);
+
   const proceedOrder = (e) => {
     e.preventDefault(proceedOrder);
 
-    const body = {
+    const newOrder = {
       user_id: user.userId ? user.userId : null,
       status: 'В обработке',
       address: e.target.address.value,
@@ -24,30 +26,31 @@ function OrderForm(props) {
       // name: e.target.name.value,
     }
 
-    fetch('/profile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
-    .then(res => res.json())
-    .then(data => {
-      dispatch(initOrderMessageAC(data))
-      dispatch(clearBasketAC())
-    })
+    dispatch(fetchInitOrderAC(newOrder))
+    dispatch(clearBasketAC())
     localStorage.clear()
     
   }
 
   return (
-    <div className={styles.orderOuterContainer}>
+    <>
+    { 
+    (orderMessage !== '')
+    ?
+    <div className={`card ${styles.successPurchaseContainer}`}>
+      <div className='card-body'>
+        <h5 className='card-title'>{orderMessage.message}</h5>
+      </div>
+    </div>
+    :
+    (basketItems.length !== 0)
+    &&
+    (<div className={styles.orderOuterContainer}>
       <div className={styles.orderInnerContainer}>
         <h5>
           Доставка
         </h5>
         <form onSubmit={proceedOrder}>
-        {/* <form> */}
           <div className='mb-3'>
             <label for='address' className='form-label'>Адрес (указать город, индекс, адрес)</label>
             <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)'></input>
@@ -60,14 +63,13 @@ function OrderForm(props) {
             <label for='name' className='form-label'>Имя</label>
             <input required type='text' className='form-control' id='name' placeholder='Введите имя'></input>
           </div> */}
-          <div>
-            {orderMessage.message}
-          </div>
           <button type='submit' className='btn btn-primary'>Оформить заказ</button>
         </form>
       </div>
-    </div>
-  );
-}
+    </div>)
+    }
+    </>
+  )
+};
 
 export default OrderForm;

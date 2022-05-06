@@ -1,4 +1,4 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, INIT_ORDER_MESSAGE, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_ORDER } from '../actionTypes/ordersAT'
 
 const initialState = { orders: [], orderMessage: '' }
 
@@ -42,9 +42,7 @@ export function ordersReducer(state = initialState, action) {
       }
 
 
-
-
-    case INIT_ORDER_MESSAGE:
+    case INIT_ORDER:
       return {
         ...state, orderMessage: action.payload
       }
