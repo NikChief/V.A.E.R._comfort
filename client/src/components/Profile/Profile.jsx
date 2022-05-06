@@ -19,13 +19,6 @@ function Profile(props) {
   useEffect(()=>{
     dispatch(fetchInitOrdersAC())
   }, [dispatch])
-  // useEffect(() => {
-  //   fetch('/profile')
-  //     .then(res => res.json())
-  //     .then(data => dispatch(initOrdersAC(data.orders)))
-  //     // .then(data => console.log(data.orders)))
-  //     .catch(err => console.log(err.message))
-  // }, [dispatch])
 
   function changeOrdersState(event) {
     if (event.target.value === 'Все') {
@@ -79,6 +72,7 @@ function Profile(props) {
                 <th scope="col">Номер заказа</th>
                 <th scope="col">Дата создания</th>
                 <th scope="col">Статус заказа</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
