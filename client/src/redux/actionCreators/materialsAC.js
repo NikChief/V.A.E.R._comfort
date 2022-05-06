@@ -7,8 +7,9 @@ export function initMaterialsAC(payload) {
   }
 }
 
-export function fetchInitMaterialsAC() {
+export function fetchInitMaterialsAC(payload) {
   return {
     type: SAGA_INIT_MATERIALS,
+    payload
   }
 }

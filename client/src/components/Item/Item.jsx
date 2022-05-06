@@ -2,30 +2,32 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addItemToBasketAC, fetchItemsInfoAC, getItemsInfoAC } from '../../redux/actionCreators/basketAC';
-// import { useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
+import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
-import styles from './Item.module.css'
+import styles from './Item.module.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function Item(props) {
 
-  // const { patternId } = useParams()
+  const { patternId } = useParams()
+  console.log('18', patternId)
   //например, путь women/costumes/1001
 
-  const patternId = 1001;
   const { currentItem } = useSelector(state => state.itemState);
   const { basket } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  console.log('itemsInfoFromDb', itemsInfoFromDb)
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
+    // fetch(`/patterns/${patternId}`)
+    //   .then
     dispatch(fetchInitCurrentItemAC(patternId))
       // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
@@ -38,9 +40,10 @@ function Item(props) {
   const getInput = (e) => {
     e.preventDefault();
     const body = {
+      id: uuidv4(),
       pattern_id: patternId,
       pattern_name: currentItem.name,
-      patter_image: currentItem.image,
+      pattern_image: currentItem.image,
       base_size: e.target.base_size.value,
       bust: e.target.bust.value,
       hip_girth: e.target.hip_girth.value,
@@ -50,27 +53,17 @@ function Item(props) {
       main_color_id: e.target.bust.value,
       extra_color1_id: e.target.bust.value,
       extra_color2_id: e.target.bust.value,
-      material_id: e.target.material_id.value,
+      material_id: JSON.parse(e.target.material.value).id,
+      material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
     console.log('body', body)
     dispatch(addItemToBasketAC(body));
+    dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
   }
 
   useEffect(() => {
-    for (let item of basket) {
-      // fetch(`/items/${item.pattern_id}/${item.material_id}`)
-      //   .then(res=>res.json())
-      //   .then(data=>dispatch(getItemsInfoAC(data)))
-      dispatch(fetchItemsInfoAC({ patternId: item.pattern_id, materialId: item.material_id }))
-    }
-  }, [basket, dispatch])
-
-  useEffect(() => {
     localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
-    // localStorage.setItem('basket', JSON.stringify(basket));
-    // localStorage.setItem('itemsInfoFromDb', JSON.stringify(itemsInfoFromDb));
-    // console.log('hi')
   }, [basket, itemsInfoFromDb]);
 
   return (
@@ -78,7 +71,7 @@ function Item(props) {
       <div id='patternInfo' className={styles.patternInfoContainer}>
         <h5 className='card-title'>Модель:</h5>
         <p className='card-text'>{currentItem.name}</p>
-        <img src={currentItem.image} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        <img src={`http://localhost:4000/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
       </div>
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
@@ -105,7 +98,7 @@ function Item(props) {
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
             <h5 className='card-title'>Выберите материал:</h5>
-              <MaterialChoiceForm />
+              <MaterialChoiceForm patternId={patternId} />
             </div>
             <div id='countForm' className={styles.materialChoiceFormContainer}>
               <label htmlFor='count' className='form-label'>Количество</label>
@@ -144,23 +137,23 @@ function Item(props) {
                        
             <div className='mb-3'>
               <label htmlFor='bust' className='form-label'>Обхват груди</label>
-              <input required type='text' className='form-control' id='bust'></input>
+              <input required type='text' className='form-control' id='bust' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='hip_girth' className='form-label'>Обхват бедер</label>
-              <input required type='text' className='form-control' id='hip_girth'></input>
+              <input required type='text' className='form-control' id='hip_girth' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='waistline' className='form-label'>Обхват талии</label>
-              <input required type='text' className='form-control' id='waistline'></input>
+              <input required type='text' className='form-control' id='waistline' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву</label>
-              <input required type='text' className='form-control' id='pants_length_inseam'></input>
+              <input required type='text' className='form-control' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге</label>
-              <input required type='text' className='form-control' id='groin_to_bone'></input>
+              <input required type='text' className='form-control' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>
 

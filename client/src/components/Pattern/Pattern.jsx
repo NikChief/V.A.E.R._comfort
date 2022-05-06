@@ -8,9 +8,9 @@ function Pattrn({pattern}) {
   
   return (
     <div className="card m-3" style={{"width": "20rem"}}>
-      <img src={pattern.url} className={`card-img-top ${style.cardImg}`} alt="..."/>
+      <img src={`http://localhost:4000/${pattern.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
       <div className="card-body d-flex justify-content-center">
-      <Link to={`/catalogue/${params.type}/${params.categoryType}/${pattern.name}`} className="btn btn-primary"> {pattern.name} </Link>
+      <Link to={`/catalogue/${params.type}/${params.categoryType}/${pattern.id}`} className="btn btn-primary"> {pattern.name} </Link>
       </div>
     </div>
   );

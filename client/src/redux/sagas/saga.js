@@ -3,20 +3,23 @@ import { initColorsAC } from '../actionCreators/colorsAC';
 import { initCurrentItemAC } from '../actionCreators/itemAC';
 import { initOrdersAC } from '../actionCreators/ordersAC';
 import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
-import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
-import { SAGA_INIT_COLORS } from '../actionTypes/colorsAT';
-import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
-import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
-import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
-import { SAGA_INIT_TYPES } from '../actionTypes/typesAT';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
+import { getItemsInfoAC } from '../actionCreators/basketAC';
+import { initPatternsAC } from '../actionCreators/patternsAC'
+import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
+import { ERR_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
+import { SAGA_INIT_COLORS } from '../actionTypes/colorsAT';
+import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
+import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
+import { SAGA_INIT_TYPES } from '../actionTypes/typesAT';
 import { SAGA_INIT_CATEGORY_TYPES } from '../actionTypes/categoryTypesAT'
 import { SAGA_GET_ITEMS_INFO } from '../actionTypes/basketAT';
-import { getItemsInfoAC } from '../actionCreators/basketAC';
 import { SAGA_INIT_ORDER_DETAILS } from '../actionTypes/orderDetailsAT';
 import { fetchInitOrderDetailsAC, initOrderDetailsAC } from '../actionCreators/orderDetailsAC';
+import { SAGA_INIT_PATTERNS } from '../actionTypes/patternsAT';
+
 
 async function fetchData({url, headers, method, body}) {
   const response = await fetch(url, {method, headers, body});
@@ -148,11 +151,11 @@ function* fetchInitColors() {
   }
 }
 
-function* fetchInitMaterials() {
+function* fetchInitMaterials(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: '/materials',
+        url: `/materials/${action.payload}`,
       }
     );
     
@@ -224,13 +227,13 @@ function* fetchInitCategoryTypes(action) {
     );
   }
 }
-    
+
 
 function* fetchItemsInfo(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: `/items/${action.payload.patternId}/${action.payload.materialId}`,
+        url: `/items/${action.payload.basketId}/${action.payload.patternId}/${action.payload.materialId}`,
       }
     );
     
@@ -245,6 +248,28 @@ function* fetchItemsInfo(action) {
   }
 }
 
+function* fetchInitPatterns(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: `/catalogue?category_type_id=${action.payload}`
+        // url:`/catalogue/${action.payload.type}/${action.payload.categoryType}`,
+      }
+    );
+    
+    yield put(initPatternsAC(data));
+    } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
+
+
 export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGGEDIN_USER, fetchLoggedInUser)
   yield takeEvery(SAGA_REGISTER_USER, fetchRegisterInUser)
@@ -258,4 +283,5 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_CATEGORY_TYPES, fetchInitCategoryTypes)
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
   yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
+  yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
 }

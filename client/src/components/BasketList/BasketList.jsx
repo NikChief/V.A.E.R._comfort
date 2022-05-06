@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Basketcard from '../BasketCard/BasketCard';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { initBasketTotalAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketList.module.css'
@@ -27,12 +26,12 @@ function BasketList(props) {
   return (
     // {}
     <div className={styles.basketContainer}>
-      <div id='basket items' className={styles.basketInnerContainer}>
-        {basket.map(item => <Basketcard key={uuidv4()} orderItem={item} />)}
+      <div id='basket_items' className={styles.basketInnerContainer}>
+        {basket.map(item => <Basketcard key={item.id} basketItem={item} />)}
       </div>
       {(basket.length !== 0)
       &&
-      <div id='basket info' className={styles.basketInnerContainer}>
+      <div id='basket_info' className={styles.basketInnerContainer}>
         <h5 className="card-title">Общая стоимость:</h5>
         <p className="card-text">
         {basketTotal + ' руб.'}

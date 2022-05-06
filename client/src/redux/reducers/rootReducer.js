@@ -8,6 +8,8 @@ import { materialsReducer } from "./materialsReducer";
 import { typesReducer } from "./typesReducer";
 import { categoryTypesReducer } from "./categoryTypesReducer";
 import { ordersDetailsReducer } from "./ordersDetailsReducer";
+import { patternReducer } from "./patternReducer";
+
 
 
 export const rootReducer = combineReducers({
@@ -20,4 +22,5 @@ export const rootReducer = combineReducers({
   materialsState: materialsReducer,
   typesState: typesReducer,
   categoryTypesState: categoryTypesReducer,
+  patternState: patternReducer,
 })
