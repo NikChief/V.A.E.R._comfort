@@ -1,7 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteItemFromBasketAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketCard.module.css'
 
-function Basketcard({ orderItem }) {
+function Basketcard({ basketItem }) {
+
+  const dispatch = useDispatch();
+
+  const deleteItemFromBasket = () => {
+    dispatch(deleteItemFromBasketAC(basketItem.id))
+  }
 
   return (
     <div className={`${styles.basketCardOuterBox}`}>
@@ -32,7 +40,7 @@ function Basketcard({ orderItem }) {
           </div>
         </div>
         <div>
-         <button type="button" className="btn btn-primary btn-sm">Удалить</button>
+         <button onClick={deleteItemFromBasket} type="button" className="btn btn-primary btn-sm">Удалить</button>
         </div>
       </div>
     </div>
