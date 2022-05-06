@@ -5,5 +5,6 @@ export const REJECTED_ORDERS = 'REJECTED_ORDERS';
 export const PAYED_ORDERS = 'PAYED_ORDERS';
 export const ALL_ORDERS = 'ALL_ORDERS';
 export const ERR_ORDERS = 'ERR_ORDERS';
+export const INIT_ORDER_MESSAGE = 'INIT_ORDER_MESSAGE';
 
 export const SAGA_INIT_ORDERS = 'SAGA_INIT_ORDERS';

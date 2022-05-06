@@ -97,41 +97,24 @@ router
     // async выше надо добавить
     // const { pattern_id, material_id } = req.params;
 
-    // const items = await Item.findAll({
+    // const item = await Item.findOne({
     //   where: {
     //     pattern_id,
     //     material_id,
     //   }
     // });
 
-    const items = [
-      {
-        id: 1,
-        pattern_id: 11111,
-        material_id: 22222,
-        price: 1000,
-        old_price: 2000,
-      },
-      {
-        id: 2,
-        pattern_id: 11112,
-        material_id: 22224,
-        price: 1000,
-        old_price: 2000,
-      },
-      {
-        id: 3,
-        pattern_id: 11113,
-        material_id: 22223,
-        price: 1000,
-        old_price: 2000,
-      },
-    ];
-    console.log('items', items);
+    const item = {
+      id: 1,
+      pattern_id: 11111,
+      material_id: 22222,
+      price: 1000,
+      old_price: 2000,
+    };
 
     res
       .status(200)
-      .json(items);
+      .json(item);
   });
 
 module.exports = router;

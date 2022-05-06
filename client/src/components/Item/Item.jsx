@@ -9,7 +9,8 @@ import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
-import styles from './Item.module.css'
+import styles from './Item.module.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function Item(props) {
 
@@ -38,6 +39,7 @@ function Item(props) {
   const getInput = (e) => {
     e.preventDefault();
     const body = {
+      id: uuidv4(),
       pattern_id: patternId,
       pattern_name: currentItem.name,
       patter_image: currentItem.image,
@@ -53,24 +55,12 @@ function Item(props) {
       material_id: e.target.material_id.value,
       count: e.target.count.value,
     }
-    console.log('body', body)
     dispatch(addItemToBasketAC(body));
+    dispatch(fetchItemsInfoAC({ patternId: body.pattern_id, materialId: body.material_id })) 
   }
 
   useEffect(() => {
-    for (let item of basket) {
-      // fetch(`/items/${item.pattern_id}/${item.material_id}`)
-      //   .then(res=>res.json())
-      //   .then(data=>dispatch(getItemsInfoAC(data)))
-      dispatch(fetchItemsInfoAC({ patternId: item.pattern_id, materialId: item.material_id }))
-    }
-  }, [basket, dispatch])
-
-  useEffect(() => {
     localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
-    // localStorage.setItem('basket', JSON.stringify(basket));
-    // localStorage.setItem('itemsInfoFromDb', JSON.stringify(itemsInfoFromDb));
-    // console.log('hi')
   }, [basket, itemsInfoFromDb]);
 
   return (
