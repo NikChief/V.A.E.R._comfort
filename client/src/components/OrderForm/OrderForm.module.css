@@ -7,3 +7,9 @@
 .orderInnerContainer {
   width: 40vw;
 }
+
+.successPurchaseContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
