@@ -78,7 +78,7 @@ function Profile(props) {
             </thead>
             <tbody>
               {(orders.length) ? (orders.map(order =>
-                < ProfileOrderString key={order.id} order={order} />
+                <ProfileOrderString key={order.id} order={order} />
               )) : (<div>Нет заказов</div>)}
             </tbody>
           </table>

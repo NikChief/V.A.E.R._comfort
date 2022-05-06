@@ -7,11 +7,13 @@ import { itemReducer } from "./itemReducer";
 import { materialsReducer } from "./materialsReducer";
 import { typesReducer } from "./typesReducer";
 import { categoryTypesReducer } from "./categoryTypesReducer";
+import { ordersDetailsReducer } from "./ordersDetailsReducer";
 
 
 export const rootReducer = combineReducers({
   userState: userReducer,
   ordersState: ordersReducer,
+  orderDetails: ordersDetailsReducer,
   basketState: basketReducer,
   itemState: itemReducer,
   colorsState: colorsReducer,

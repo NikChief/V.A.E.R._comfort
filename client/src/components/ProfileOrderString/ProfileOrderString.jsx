@@ -15,7 +15,7 @@ function ProfileOrderString({ order }) {
           {orderViewDetails ? <span>Скрыть информацию</span> : <span>Подробнее о заказе</span> }
         </button></td>
       </tr>
-      {orderViewDetails && <tr><td colSpan={4}><div style={{}}>Состав заказа:</div></td></tr>}
+      {orderViewDetails && <OrderDetails key={order.id} order={order}/>}
     </>
   );
 }
