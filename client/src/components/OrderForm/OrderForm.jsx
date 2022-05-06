@@ -10,7 +10,7 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
-  // console.log('user', user)
+
   const { orderMessage } = useSelector(state => state.ordersState);
 
   const proceedOrder = (e) => {
@@ -37,7 +37,6 @@ function OrderForm(props) {
       dispatch(clearBasketAC())
     })
     localStorage.clear()
-    //  .then(data => console.log(data, 'data'))
   }
 
   return (
