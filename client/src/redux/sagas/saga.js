@@ -139,11 +139,11 @@ function* fetchInitColors() {
   }
 }
 
-function* fetchInitMaterials() {
+function* fetchInitMaterials(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: '/materials',
+        url: `/materials/${action.payload}`,
       }
     );
     

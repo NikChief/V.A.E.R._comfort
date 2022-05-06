@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
@@ -14,10 +14,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Item(props) {
 
-  // const { patternId } = useParams()
+  const { patternId } = useParams()
+  console.log('18', patternId)
   //например, путь women/costumes/1001
 
-  const patternId = 1;
   const { currentItem } = useSelector(state => state.itemState);
   const { basket } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
@@ -26,6 +26,8 @@ function Item(props) {
   // const navigate = useNavigate();
 
   useEffect(() => {
+    // fetch(`/patterns/${patternId}`)
+    //   .then
     dispatch(fetchInitCurrentItemAC(patternId))
       // отправляем в state, {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
   }, [dispatch, patternId])
@@ -41,7 +43,7 @@ function Item(props) {
       id: uuidv4(),
       pattern_id: patternId,
       pattern_name: currentItem.name,
-      patter_image: currentItem.image,
+      pattern_image: currentItem.image,
       base_size: e.target.base_size.value,
       bust: e.target.bust.value,
       hip_girth: e.target.hip_girth.value,
@@ -51,9 +53,11 @@ function Item(props) {
       main_color_id: e.target.bust.value,
       extra_color1_id: e.target.bust.value,
       extra_color2_id: e.target.bust.value,
-      material_id: e.target.material_id.value,
+      material_id: JSON.parse(e.target.material.value).id,
+      material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
+    console.log('body', body)
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
   }
@@ -67,7 +71,7 @@ function Item(props) {
       <div id='patternInfo' className={styles.patternInfoContainer}>
         <h5 className='card-title'>Модель:</h5>
         <p className='card-text'>{currentItem.name}</p>
-        <img src={currentItem.image} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        <img src={`http://localhost:4000/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
       </div>
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
@@ -94,7 +98,7 @@ function Item(props) {
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
             <h5 className='card-title'>Выберите материал:</h5>
-              <MaterialChoiceForm />
+              <MaterialChoiceForm patternId={patternId} />
             </div>
             <div id='countForm' className={styles.materialChoiceFormContainer}>
               <label htmlFor='count' className='form-label'>Количество</label>

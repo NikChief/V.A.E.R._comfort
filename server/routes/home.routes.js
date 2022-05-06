@@ -68,12 +68,37 @@ router
   });
 
 router
-  .route('/materials')
+  .route('/materials/:patternId')
   .get(async (req, res) => {
-    const materials = await Material.findAll();
-    res
-      .status(200)
-      .json(materials);
+    try {
+      const { patternId } = req.params;
+
+      const itemsChosen = await Item.findAll({
+        where: {
+          pattern_id: Number(patternId),
+        },
+        raw: true,
+      });
+
+      const materialIds = itemsChosen.map((item) => item.material_id);
+
+      const materials = await Material.findAll({
+        where: {
+          id: materialIds,
+        },
+        raw: true,
+      });
+
+      res
+        .status(200)
+        .json(materials);
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
+        });
+    }
   });
 
 router
@@ -108,8 +133,7 @@ router
       res
         .status(400)
         .json({
-          loggedIn: false,
-          message: `Ошибка получения данных из баззы данных. Описание ошибки: ${error.message}`,
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
         });
     }
   });
