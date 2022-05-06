@@ -8,11 +8,11 @@ import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 
 function Profile(props) {
   const { user } = useSelector(state => state.userState);
-  console.log(user);
+  // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {orders}  = useSelector(state => state.ordersState);
-  console.log('18', orders);
+  // console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
 

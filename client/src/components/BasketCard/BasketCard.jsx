@@ -1,15 +1,24 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deleteItemFromBasketAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketCard.module.css'
 
 function Basketcard({ basketItem }) {
 
+  const { basket } = useSelector(state => state.basketState);
+  const { itemsInfoFromDb } = useSelector(state => state.basketState);
+
   const dispatch = useDispatch();
 
   const deleteItemFromBasket = () => {
     dispatch(deleteItemFromBasketAC(basketItem.id))
   }
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify({basket, itemsInfoFromDb}));
+  }, [basket, itemsInfoFromDb]);
 
   return (
     <div className={`${styles.basketCardOuterBox}`}>
