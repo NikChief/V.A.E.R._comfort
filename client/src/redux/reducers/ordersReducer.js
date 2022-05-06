@@ -1,6 +1,6 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, INIT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
-const initialState = { orders: [] }
+const initialState = { orders: [], orderMessage: '' }
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
@@ -32,6 +32,15 @@ export function ordersReducer(state = initialState, action) {
     case ALL_ORDERS:
       return {
         ...state, orders: [...state.constOrders]
+      }
+
+    case INIT_ORDER_MESSAGE:
+      const a = {
+        ...state, orderMessage: action.payload
+      }
+      console.log('a', a)
+      return {
+        ...state, orderMessage: action.payload
       }
 
     default:

@@ -3,7 +3,7 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
   try {
     req.session.destroy();
-    // res.clearCookie('user_sid');
+    res.clearCookie('user_sid');
     res.send({
       message: 'Вы вышли из своего профиля',
       successLogout: true,

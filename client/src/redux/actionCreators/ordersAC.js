@@ -1,5 +1,5 @@
 
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, SAGA_INIT_ORDERS, INIT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
 export function initOrdersAC(payload) {
   return {
@@ -41,5 +41,12 @@ export function payedOrdersAC() {
 export function allOrdersAC() {
   return {
     type: ALL_ORDERS,
+  }
+}
+
+export function initOrderMessageAC(payload) {
+  return {
+    type: INIT_ORDER_MESSAGE,
+    payload,
   }
 }

@@ -1,8 +1,25 @@
-.colorImage {
+/* .colorImage {
   height: auto;
   width: auto;
 }
 
 .background {
   background-image: 'https://png.pngtree.com/thumb_back/fw800/background/20200821/pngtree-plain-red-solid-color-background-image_396556.jpg';
+} */
+
+.colorChosenImage {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.choiseForm {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3%;
+  border: 1px;
+  border-color: #ced4da;
+  border-style: solid;
+  margin: 5px;
 }

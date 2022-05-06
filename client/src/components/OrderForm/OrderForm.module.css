@@ -1,0 +1,9 @@
+.orderOuterContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.orderInnerContainer {
+  width: 40vw;
+}

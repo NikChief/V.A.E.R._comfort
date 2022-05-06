@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { clearUserMessageAC, fetchRegisterUserAC } from '../../redux/actionCreators/userAC';
-import style from './Registration.module.css'
 
 function Registration(props) {
 
@@ -34,20 +33,27 @@ function Registration(props) {
   },[user, navigate])
 
   return (
-    <div className={style.registration_form_container}>
-      <form action="/login" method="post" onSubmit={registrationFunction} autoComplete='off'>
-        <div className={style.namefield}><label htmlFor="name">Имя</label></div>
-        <div className={style.input}><input type="text" placeholder="Введите имя" name="name" id="name" required /></div>
-        <div className={style.namefield}><label htmlFor="email">Электронная почта</label></div>
-        <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
-        <div className={style.namefield}><label htmlFor="password">Пароль</label></div>
-        <div className={style.input}><input type="password" placeholder="Введите пароль" name="password" id="password" /></div>
-        <div className={style.namefield}><label htmlFor="repeat_password">Повторите пароль</label></div>
-        <div className={style.input}><input type="password" placeholder="Введите пароль еще раз" name="repeat_password" id="repeat_password" /></div>
-        <div>
-        {!user.loggedIn && user.message}
+    <div>
+      <form action='/login' method='post' onSubmit={registrationFunction} autoComplete='off'>
+        <div className='mb-3'>
+          <label htmlFor='name' className='form-label'>Имя</label>
+          <input type='text' className='form-control' placeholder='Введите имя' name='name' id='name' required />
         </div>
-        <div><input type="submit" value="Зарегистрироваться" /></div>
+        <div className='mb-3'>
+          <label htmlFor='email' className='form-label'>Электронная почта</label>
+          <input type='email' className='form-control' placeholder='Введите электронную почту' name='email' id='email' />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='password' className='form-label'>Пароль</label>
+          <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='repeat_password' className='form-label'>Повторите пароль</label>
+          <input type='password' className='form-control' placeholder='Повторите пароль' name='repeat_password' id='repeat_password' />
+        </div>
+        <div>
+          <input type='submit' className='btn btn-primary' value='Зарегистрироваться' />
+        </div>
       </form>
     </div>
   );

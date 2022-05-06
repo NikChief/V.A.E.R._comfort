@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     status: {
       type: DataTypes.TEXT,
@@ -23,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   }, {
