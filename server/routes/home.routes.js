@@ -69,11 +69,12 @@ router
   });
 
 router
-  .route('/items/:pattern_id/:material_id')
+  .route('/items/:basket_id/:pattern_id/:material_id')
   .get((req, res) => {
     // async выше надо добавить
-    // const { pattern_id, material_id } = req.params;
+    // const { basket_id, pattern_id, material_id } = req.params;
 
+    const { basket_id } = req.params;
     // const item = await Item.findOne({
     //   where: {
     //     pattern_id,
@@ -87,6 +88,7 @@ router
       material_id: 22222,
       price: 1000,
       old_price: 2000,
+      basket_id,
     };
 
     res

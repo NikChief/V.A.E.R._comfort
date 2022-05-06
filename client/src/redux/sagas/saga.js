@@ -218,7 +218,7 @@ function* fetchItemsInfo(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: `/items/${action.payload.patternId}/${action.payload.materialId}`,
+        url: `/items/${action.payload.basketId}/${action.payload.patternId}/${action.payload.materialId}`,
       }
     );
     

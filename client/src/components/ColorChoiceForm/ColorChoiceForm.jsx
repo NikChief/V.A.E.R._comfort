@@ -9,7 +9,7 @@ import style from './ColorChoiceForm.module.css'
 function ColorChoiceForm({colorType, stateName, actionType}) {
 
   const dispatch = useDispatch()
-  console.log('STATENAME', stateName);
+  // console.log('STATENAME', stateName);
   const idModal = colorType.split(' ').join('')
   const state = useSelector(state => state.colorsState);
   const { colors } = state;
@@ -64,14 +64,14 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
   function changeHandler(event) {
     event.preventDefault()
 
-    console.log('TARGET ===>', event.target.value);
+    // console.log('TARGET ===>', event.target.value);
     const newColor = colors.find(el => el.name === event.target.value);
-    console.log('newColor ===>', newColor);
-    console.log('ACTION_TYPE', actionType);
+    // console.log('newColor ===>', newColor);
+    // console.log('ACTION_TYPE', actionType);
     dispatch({type: actionType, payload: newColor})
     // setCurrentColor(newColor);
 
-    console.log('currentColor ===>', currentColor);
+    // console.log('currentColor ===>', currentColor);
 
   }
 
