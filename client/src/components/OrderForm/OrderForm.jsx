@@ -23,7 +23,7 @@ function OrderForm(props) {
       phone: e.target.phone.value,
       // name: e.target.name.value,
     }
-    console.log('body', body)
+
     fetch('/profile', {
       method: 'POST',
       headers: {

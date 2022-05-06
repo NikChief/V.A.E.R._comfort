@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addItemToBasketAC, fetchItemsInfoAC, getItemsInfoAC } from '../../redux/actionCreators/basketAC';
+// import { useNavigate } from 'react-router-dom';
+import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 // import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
@@ -17,14 +17,13 @@ function Item(props) {
   // const { patternId } = useParams()
   //например, путь women/costumes/1001
 
-  const patternId = 1001;
+  const patternId = 1;
   const { currentItem } = useSelector(state => state.itemState);
   const { basket } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  console.log('itemsInfoFromDb', itemsInfoFromDb)
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
@@ -56,7 +55,7 @@ function Item(props) {
       count: e.target.count.value,
     }
     dispatch(addItemToBasketAC(body));
-    dispatch(fetchItemsInfoAC({ patternId: body.pattern_id, materialId: body.material_id })) 
+    dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
   }
 
   useEffect(() => {

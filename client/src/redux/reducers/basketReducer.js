@@ -16,7 +16,7 @@ export function basketReducer(state = initialState, action) {
       }
 
     case GET_ITEMS_INFO:
-      console.log('getItems', action.payload)
+      console.log(action.payload, '19')
       return {
         ...state, itemsInfoFromDb: [...state.itemsInfoFromDb, action.payload]
       }
@@ -28,7 +28,9 @@ export function basketReducer(state = initialState, action) {
 
     case DELETE_ITEM_FROM_BASKET:
       return {
-        ...state, basket: [...state.basket].filter(item => item.id !== action.payload)
+        ...state, 
+        basket: [...state.basket].filter(item => item.id !== action.payload), 
+        itemsInfoFromDb: [...state.itemsInfoFromDb].filter(item => item.basket_id !== action.payload), 
       }
 
     case CLEAR_BASKET:
