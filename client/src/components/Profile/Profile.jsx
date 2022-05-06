@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate } from 'react-router-dom';
-import { allOrdersAC, completedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
+import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 
 function Profile(props) {
@@ -28,20 +28,26 @@ function Profile(props) {
   // }, [dispatch])
 
   function changeOrdersState(event) {
-    if (event.target.value === 'fullfiled') {
-      dispatch(fullfiledOrdersAC())
-    }
-    if (event.target.value === 'all') {
+    if (event.target.value === 'Все') {
       dispatch(allOrdersAC())
     }
-    if (event.target.value === 'completed') {
-      dispatch(completedOrdersAC())
+    if (event.target.value === 'В обработке') {
+      dispatch(inProcessingOrdersAC())
     }
-    if (event.target.value === 'rejected') {
+    if (event.target.value === 'Подтвержден') {
+      dispatch(confirmedOrdersAC())
+    }
+    if (event.target.value === 'Отменен') {
       dispatch(rejectedOrdersAC())
     }
-    if (event.target.value === 'payed') {
-      dispatch(payedOrdersAC())
+    if (event.target.value === 'Оплачен') {
+      dispatch(paidOrdersAC())
+    }
+    if (event.target.value === 'Передан в доставку') {
+      dispatch(onDeliveryOrdersAC())
+    }
+    if (event.target.value === 'Выполнен') {
+      dispatch(completedOrdersAC())
     }
   }
 
@@ -58,18 +64,20 @@ function Profile(props) {
           <h3>История заказов</h3>
           <div>
             <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
-              <option value="all" defaultValue>Все заказы</option>
-              <option value="fullfiled">Подтвержденные заказы</option>
-              <option value="rejected">Отмененные заказы</option>
-              <option value="completed">Выполненные заказы</option>
-              <option value="payed">Оплаченные заказы</option>
+              <option value="Все" defaultValue>Все заказы</option>
+              <option value="В обработке">Заказы в обработке</option>
+              <option value="Подтвержден">Подтвержденные заказы</option>
+              <option value="Отменен">Отмененные заказы</option>
+              <option value="Оплачен">Оплаченные заказы</option>
+              <option value="Передан в доставку">Заказы, переданные в доставку</option>
+              <option value="Выполнен">Выполненные заказы</option>
             </select>
           </div>
           <table className="table">
             <thead>
               <tr>
                 <th scope="col">Номер заказа</th>
-                <th scope="col">Сумма заказа</th>
+                <th scope="col">Дата создания</th>
                 <th scope="col">Статус заказа</th>
               </tr>
             </thead>

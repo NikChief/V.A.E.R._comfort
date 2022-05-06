@@ -3,36 +3,15 @@ const { Order } = require('../db/models');
 
 router
   .route('/')
-  .get((req, res) => {
-    const ordersHardcode = [{
-      id: 1,
-      sum: 55,
-      status: 'fullfiled',
-    },
-    {
-      id: 4,
-      sum: 45,
-      status: 'rejected',
-    },
-    {
-      id: 5,
-      sum: 35,
-      status: 'payed',
-    },
-    {
-      id: 9,
-      sum: 35,
-      status: 'completed',
-    },
-    {
-      id: 8,
-      sum: 55,
-      status: 'fullfiled',
-    }];
-
+  .get(async (req, res) => {
     try {
+      const orders = await Order.findAll({
+        where: {
+          user_id: req.session.userId,
+        },
+      });
       res.json({
-        orders: [...ordersHardcode],
+        orders,
       });
     } catch (error) {
       res.status(400).json({
