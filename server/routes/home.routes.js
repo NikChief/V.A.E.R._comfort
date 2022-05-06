@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 const router = require('express').Router();
 
 const {
-  Material, Color, Type, CategoryType, Category,
+  Material, Color, Type, CategoryType, Category, Pattern,
 } = require('../db/models');
 // const { Item } = require('../db/models');
 
@@ -59,9 +60,27 @@ router
   });
 
 router
+  .route('/catalogue')
+  .get(async (req, res) => {
+    try {
+      const category_type_id = +req.query.category_type_id;
+      console.log('CAT_TYPE_ID ==>', category_type_id);
+      const patterns = await Pattern.findAll({
+        where: { category_type_id },
+      });
+      console.log(patterns);
+
+      res
+        .status(200)
+        .json(patterns);
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+
+router
   .route('/materials')
   .get(async (req, res) => {
-    // async выше надо добавить
     const materials = await Material.findAll();
     res
       .status(200)
