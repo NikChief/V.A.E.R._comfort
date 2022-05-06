@@ -16,6 +16,8 @@ import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
 import { SAGA_INIT_TYPES } from '../actionTypes/typesAT';
 import { SAGA_INIT_CATEGORY_TYPES } from '../actionTypes/categoryTypesAT'
 import { SAGA_GET_ITEMS_INFO } from '../actionTypes/basketAT';
+import { SAGA_INIT_ORDER_DETAILS } from '../actionTypes/orderDetailsAT';
+import { fetchInitOrderDetailsAC, initOrderDetailsAC } from '../actionCreators/orderDetailsAC';
 import { SAGA_INIT_PATTERNS } from '../actionTypes/patternsAT';
 
 
@@ -32,6 +34,16 @@ function* fetchOrdersInit(action) {
     yield put({ type: ERR_ORDERS, message: e.message });
   }
 }
+
+function* fetchInitOrderDetails(action) {
+  try {
+    const data = yield call(fetchData, { url: `/profile/${action.payload}` });
+    yield put(initOrderDetailsAC(data.orderDetails));
+  } catch (e) {
+    yield put({ type: ERR_ORDERS, message: e.message });
+  }
+}
+
 
 function* fetchLoggedInUser(action) {
   try {
@@ -270,5 +282,6 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_TYPES, fetchInitTypes)
   yield takeEvery(SAGA_INIT_CATEGORY_TYPES, fetchInitCategoryTypes)
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
+  yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
   yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
 }

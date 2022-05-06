@@ -1,38 +1,17 @@
 const router = require('express').Router();
-const { Order } = require('../db/models');
+const { Order, OrderItem } = require('../db/models');
 
 router
   .route('/')
-  .get((req, res) => {
-    const ordersHardcode = [{
-      id: 1,
-      sum: 55,
-      status: 'fullfiled',
-    },
-    {
-      id: 4,
-      sum: 45,
-      status: 'rejected',
-    },
-    {
-      id: 5,
-      sum: 35,
-      status: 'payed',
-    },
-    {
-      id: 9,
-      sum: 35,
-      status: 'completed',
-    },
-    {
-      id: 8,
-      sum: 55,
-      status: 'fullfiled',
-    }];
-
+  .get(async (req, res) => {
     try {
+      const orders = await Order.findAll({
+        where: {
+          user_id: req.session.userId,
+        },
+      });
       res.json({
-        orders: [...ordersHardcode],
+        orders,
       });
     } catch (error) {
       res.status(400).json({
@@ -70,6 +49,46 @@ router
           orderStatus: false,
           message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
         });
+    }
+  });
+
+router
+  .route('/:id')
+  .get((req, res) => {
+    try {
+      // const { id } = req.params;
+      // console.log('id=================');
+      // async
+      // const orderDetails = await OrderItem.findAll({
+      //   where: {
+      //     order_id: id,
+      //   },
+      // });
+      const orderDetails = [
+        {
+          item_id: 4,
+          count: 1,
+          order_item_size_id: 4,
+          main_color_id: 3,
+          extra_color1_id: 2,
+          extra_color2_id: 3,
+        },
+        {
+          item_id: 4,
+          count: 1,
+          order_item_size_id: 4,
+          main_color_id: 3,
+          extra_color1_id: 2,
+          extra_color2_id: 3,
+        },
+      ]
+      res.json({
+        orderDetails,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: `Что-то пошло не так, \n ${error.message}`,
+      });
     }
   });
 
