@@ -133,23 +133,23 @@ function Item(props) {
                        
             <div className='mb-3'>
               <label htmlFor='bust' className='form-label'>Обхват груди</label>
-              <input required type='text' className='form-control' id='bust'></input>
+              <input required type='text' className='form-control' id='bust' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='hip_girth' className='form-label'>Обхват бедер</label>
-              <input required type='text' className='form-control' id='hip_girth'></input>
+              <input required type='text' className='form-control' id='hip_girth' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='waistline' className='form-label'>Обхват талии</label>
-              <input required type='text' className='form-control' id='waistline'></input>
+              <input required type='text' className='form-control' id='waistline' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву</label>
-              <input required type='text' className='form-control' id='pants_length_inseam'></input>
+              <input required type='text' className='form-control' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге</label>
-              <input required type='text' className='form-control' id='groin_to_bone'></input>
+              <input required type='text' className='form-control' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>
 

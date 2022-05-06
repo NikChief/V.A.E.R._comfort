@@ -37,6 +37,7 @@ function OrderForm(props) {
       dispatch(clearBasketAC())
     })
     localStorage.clear()
+    
   }
 
   return (
