@@ -1,15 +1,15 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
 import { initCurrentItemAC } from '../actionCreators/itemAC';
-import { initCurrentOrderAC, initOrdersAC } from '../actionCreators/ordersAC';
+import { clearCurrentOrderAC, initCurrentOrderAC, initOrdersAC } from '../actionCreators/ordersAC';
 import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
-import { getItemsInfoAC } from '../actionCreators/basketAC';
+import { clearBasketAC, getItemsInfoAC } from '../actionCreators/basketAC';
 import { initPatternsAC } from '../actionCreators/patternsAC'
 import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
-import { ERR_ORDERS, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
+import { ERR_ORDERS, SAGA_ADD_ORDER_ITEM, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 import { SAGA_INIT_COLORS } from '../actionTypes/colorsAT';
 import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
 import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
@@ -292,6 +292,36 @@ function* fetchInitCurrentOrder(action) {
   }
 }
 
+function* fetchAddOrderItem(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: '/orderItems', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST', 
+        body: JSON.stringify(action.payload)
+      }
+    );
+    
+    if (data.message === 'Данные записаны в базу данных') {
+      yield put(clearCurrentOrderAC())
+      yield put(clearBasketAC())
+    } else {
+      console.log(data.message)
+    }
+    // yield put(loggedInUserAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
 export function* sagaWatcher() {
   yield takeEvery(SAGA_LOGGEDIN_USER, fetchLoggedInUser)
   yield takeEvery(SAGA_REGISTER_USER, fetchRegisterInUser)
@@ -307,4 +337,5 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
   yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
   yield takeEvery(SAGA_INIT_CURRENT_ORDER, fetchInitCurrentOrder)
+  yield takeEvery(SAGA_ADD_ORDER_ITEM, fetchAddOrderItem)
 }
