@@ -3,7 +3,7 @@ import React from 'react';
 function Error404(props) {
   return (
     <div>
-      Ошибка!!!
+      Такой страницы не существует.
     </div>
   );
 }
