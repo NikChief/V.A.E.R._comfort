@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
+import TypeList from '../TypeList/TypeList';
 
 function Nav(props) {
 
@@ -22,9 +23,9 @@ function Nav(props) {
           <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
           </button>
+          <TypeList/>
           <div className='' id='navbarNav'>
             <ul className='navbar-nav'>
-              <li className='nav-item'><Link to='/typelist' className='nav-link'>Одежда</Link></li>
               {user.loggedIn ?
               (<>
                 <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>

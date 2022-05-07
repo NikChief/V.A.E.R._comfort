@@ -27,7 +27,6 @@ function App() {
   return (
     <>
       <Nav />
-      <TypeList />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/orderForm' element={<OrderForm />} />
