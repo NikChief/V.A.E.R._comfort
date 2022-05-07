@@ -18,9 +18,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    measure: {
+    base_size: {
       type: DataTypes.TEXT,
-      allowNull: false,
+    },
+    bust: {
+      type: DataTypes.INTEGER,
+    },
+    hip_girth: {
+      type: DataTypes.INTEGER,
+    },
+    waistline: {
+      type: DataTypes.INTEGER,
+    },
+    pants_length_inseam: {
+      type: DataTypes.INTEGER,
+    },
+    groin_to_bone: {
+      type: DataTypes.INTEGER,
     },
   }, {
     sequelize,

@@ -11,9 +11,13 @@ function OrderForm(props) {
 
   const { user } = useSelector(state => state.userState);
 
-  const { orderMessage } = useSelector(state => state.ordersState);
+  const { currentOrder } = useSelector(state => state.ordersState);
 
   const { basketItems } = useSelector(state => state.basketState);
+  const { itemsInfoFromDb } = useSelector(state => state.basketState);
+
+  console.log(basketItems, 'basketItems')
+  console.log(itemsInfoFromDb, 'itemsInfoFromDb')
 
   const proceedOrder = (e) => {
     e.preventDefault(proceedOrder);
@@ -28,6 +32,25 @@ function OrderForm(props) {
 
     dispatch(fetchInitOrderAC(newOrder))
     dispatch(clearBasketAC())
+
+    // let orderItems = [];
+    // for (let i = 0; i < basketItems.length; i += 1) {
+    //   const obj = {};
+    //   obj.item.id = itemsInfoFromDb[i].id;
+    //   obj.order_id = currentOrder.currentOrder.id,
+    //   // obj.size_id
+    //   obj.base_size = basketItems[i].base_size;
+    //   obj.bust = basketItems[i]?.bust;
+    //   obj.hip_girth = basketItems[i]?.hip_girth;
+    //   obj.waistline = basketItems[i]?.hip_girth;
+    //   obj.pants_length_inseam: 
+    //   obj.groin_to_bone:
+    //   obj.main_color_id
+    //   obj.extra_color1_id
+    //   obj.extra_color2_id = 
+    //   obj.count = basketItems[i].count;
+    // }
+
     localStorage.clear()
     
   }
@@ -35,11 +58,11 @@ function OrderForm(props) {
   return (
     <>
     { 
-    (orderMessage !== '')
+    (currentOrder !== '')
     ?
     <div className={`card ${styles.successPurchaseContainer}`}>
       <div className='card-body'>
-        <h5 className='card-title'>{orderMessage.message}</h5>
+        <h5 className='card-title'>{currentOrder.message}</h5>
       </div>
     </div>
     :

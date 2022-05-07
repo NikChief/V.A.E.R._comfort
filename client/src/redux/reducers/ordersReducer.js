@@ -1,6 +1,6 @@
 import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_ORDER } from '../actionTypes/ordersAT'
 
-const initialState = { orders: [], orderMessage: '' }
+const initialState = { orders: [], currentOrder: '' }
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
@@ -44,7 +44,7 @@ export function ordersReducer(state = initialState, action) {
 
     case INIT_ORDER:
       return {
-        ...state, orderMessage: action.payload
+        ...state, currentOrder: action.payload
       }
 
     default:

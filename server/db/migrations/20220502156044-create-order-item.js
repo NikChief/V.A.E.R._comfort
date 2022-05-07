@@ -45,14 +45,6 @@ module.exports = {
       // groin_to_bone: {
       //   type: Sequelize.INTEGER,
       // },
-      order_item_size_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'OrderItemSizes',
-          key: 'id',
-        },
-      },
       main_color_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -24,16 +24,17 @@ router
       // eslint-disable-next-line prefer-destructuring
       const body = req.body;
 
+      let newOrder = '';
       if (body.user_id === null) {
         // eslint-disable-next-line no-unused-vars
-        const order = await Order.create({
+        newOrder = await Order.create({
           status: body.status,
           address: body.address,
           phone: Number(body.phone),
         });
       } else {
         // eslint-disable-next-line no-unused-vars
-        const order2 = await Order.create(body);
+        newOrder = await Order.create(body);
       }
 
       res
@@ -41,6 +42,7 @@ router
         .json({
           orderStatus: true,
           message: 'Ваш заказ успешно создан. Благодарим за покупку!',
+          currentOrder: newOrder,
         });
     } catch (error) {
       res
