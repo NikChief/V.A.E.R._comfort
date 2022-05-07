@@ -13,7 +13,8 @@ function PatternList(props) {
     console.log(categoryTypeId);
     dispatch(fetchInitPatternsAC(categoryTypeId))
   }, [dispatch, categoryTypeId])
-
+// при обновлении страницы CatTypeID пропадает из стейта
+// нужно положить в локал сторадж
 
   return (
     <div className='container d-flex flex-wrap justify-content-around'>
