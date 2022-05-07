@@ -5,6 +5,8 @@ const {
   Material, Color, Type, CategoryType, Category, Pattern, Item,
 } = require('../db/models');
 
+const { getLowerPrice } = require('../helpers/getPrice');
+
 router
   .route('/colors')
   .get(async (req, res) => {
@@ -55,13 +57,19 @@ router
 
         include: {
           model: Item,
+          attributes: [
+            'price',
+          ],
         },
+        attributes: [
+          'id', 'name', 'image',
+        ],
       });
-
-      console.log(patterns);
+      // const newp = getLowerPrice(patterns);
+      // console.log('items ===>', newp[0]);
       res
         .status(200)
-        .json(patterns);
+        .json(getLowerPrice(patterns));
     } catch (e) {
       console.log(e.message);
     }
