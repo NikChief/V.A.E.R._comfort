@@ -65,13 +65,15 @@ router
           'id', 'name', 'image',
         ],
       });
-      // const newp = getLowerPrice(patterns);
-      // console.log('items ===>', newp[0]);
       res
         .status(200)
         .json(getLowerPrice(patterns));
-    } catch (e) {
-      console.log(e.message);
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
+        });
     }
   });
 
