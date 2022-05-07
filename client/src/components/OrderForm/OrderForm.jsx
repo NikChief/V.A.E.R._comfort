@@ -41,22 +41,6 @@ function OrderForm(props) {
       }
 
       dispatch(fetchAddOrderItemAC(orderItems))
-      // fetch('/orderItems', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(orderItems)
-      // })
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     if (data.message === 'Данные записаны в базу данных') {
-      //       dispatch(clearCurrentOrderAC())
-      //       dispatch(clearBasketAC())
-      //     } else {
-      //       console.log(data.message)
-      //     }
-      //   })
     }
 
   }, [currentOrder, basketItems, itemsInfoFromDb, dispatch])
@@ -71,7 +55,7 @@ function OrderForm(props) {
       phone: e.target.phone.value,
       // name: e.target.name.value,
     }
-    // 
+    
     dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
   }
