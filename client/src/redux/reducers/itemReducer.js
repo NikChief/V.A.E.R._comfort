@@ -1,14 +1,18 @@
-import { INIT_CURRENT_ITEM } from "../actionTypes/itemAT"
+import { INIT_CURRENT_ITEM, UPDATE_CURRENT_ITEM_AMOUNT } from "../actionTypes/itemAT"
 
-const initialState = { currentItem: '' }
+const initialState = { currentItem: '', currentAmount: '' }
 
 
 export function itemReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_CURRENT_ITEM:
-      // action.payload {id: 1001, name: 'Костюм такой-то', image: 'https://...', category_type_id: 1, color_count: 3}
       return {
         ...state, currentItem: action.payload
+      }
+
+    case UPDATE_CURRENT_ITEM_AMOUNT:
+      return {
+        ...state, currentAmount: action.payload
       }
 
     default:

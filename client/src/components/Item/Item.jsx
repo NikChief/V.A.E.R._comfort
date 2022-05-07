@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
@@ -19,9 +19,11 @@ function Item(props) {
   const { currentItem } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  console.log(itemsInfoFromDb, 'itemsInfoFromDb')
+  console.log(currentItem, 'currentItem')
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
@@ -35,6 +37,10 @@ function Item(props) {
   useEffect(() => {
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
+
+  // useEffect(() => {
+  //   dispatch(fetchInitCurrentItemAC(patternId))
+  // }, [itemsInfoFromDb])
 
   const getInput = (e) => {
     e.preventDefault();
@@ -59,7 +65,8 @@ function Item(props) {
    
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
-    navigate('/')
+    // navigate('/')
+    alert('Товар добавлен в корзину.')
   }
 
   return (
@@ -111,6 +118,10 @@ function Item(props) {
                 <option value='9'>9</option>
                 <option value='10'>10</option>
               </select>
+            </div>
+            <div className={styles.materialChoiceFormContainer}>
+              <h5 className='card-title'>Стоимость товара:</h5>
+              <p>1</p>
             </div>
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
