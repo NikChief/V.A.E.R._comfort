@@ -2,8 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 // import { clearBasketAC } from '../../redux/actionCreators/basketAC';
-import { fetchInitOrderAC } from '../../redux/actionCreators/ordersAC';
+import { clearCurrentOrderAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
 function OrderForm(props) {
@@ -11,9 +12,7 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
-
   const { currentOrder } = useSelector(state => state.ordersState);
-
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
@@ -23,7 +22,7 @@ function OrderForm(props) {
 
   useEffect(() => {
     let orderItems = [];
-    console.log('!!!!!', currentOrder !== '')
+    console.log('currentOrder !== ""', currentOrder !== '')
     if (currentOrder !== '') {
       for (let i = 0; i < basketItems.length; i += 1) {
         const obj = {};
@@ -52,10 +51,13 @@ function OrderForm(props) {
         body: JSON.stringify(orderItems)
       })
         .then(res => res.json())
-        .then(data => console.log('hi'))
+        .then(data => {
+          dispatch(clearCurrentOrderAC())
+          dispatch(clearBasketAC())
+        })
     }
 
-  }, [currentOrder, basketItems, itemsInfoFromDb])
+  }, [currentOrder, basketItems, itemsInfoFromDb, dispatch])
 
   const proceedOrder = (e) => {
     e.preventDefault(proceedOrder);
@@ -68,13 +70,9 @@ function OrderForm(props) {
       // name: e.target.name.value,
     }
     // 
-    dispatch(fetchInitOrderAC(newOrder))
-    // dispatch(clearBasketAC())
+    dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
   }
-
-      
-
 
   return (
     <>

@@ -25,12 +25,12 @@ router
         extra_color1_id: item.extra_color1_id ? item.extra_color1_id : null,
         // // eslint-disable-next-line no-dupe-keys
         extra_color2_id: item.extra_color2_id ? item.extra_color2_id : null,
-        base_size: item.base_size ? item.base_size : null,
-        bust: item.bust ? item.bust : null,
-        hip_girth: item.hip_girth ? item.hip_girth : null,
-        waistline: item.hip_girth ? item.hip_girth : null,
-        pants_length_inseam: item.pants_length_inseam ? item.pants_length_inseam : null,
-        groin_to_bone: item.groin_to_bone ? item.groin_to_bone : null,
+        // base_size: item.base_size ? item.base_size : null,
+        // bust: item.bust ? item.bust : null,
+        // hip_girth: item.hip_girth ? item.hip_girth : null,
+        // waistline: item.hip_girth ? item.hip_girth : null,
+        // pants_length_inseam: item.pants_length_inseam ? item.pants_length_inseam : null,
+        // groin_to_bone: item.groin_to_bone ? item.groin_to_bone : null,
       });
     }
 
