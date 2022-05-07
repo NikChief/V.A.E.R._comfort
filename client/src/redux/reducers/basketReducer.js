@@ -33,10 +33,10 @@ export function basketReducer(state = initialState, action) {
         itemsInfoFromDb: [...state.itemsInfoFromDb].filter(item => item.basket_id !== action.payload), 
       }
 
-    case CLEAR_BASKET:
-      return {
-        ...state, basketItems: [], itemsInfoFromDb: []
-      }
+    // case CLEAR_BASKET:
+    //   return {
+    //     ...state, basketItems: [], itemsInfoFromDb: []
+    //   }
 
     default:
       return state

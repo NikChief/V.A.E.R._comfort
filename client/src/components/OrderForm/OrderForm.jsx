@@ -1,7 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { clearBasketAC } from '../../redux/actionCreators/basketAC';
+// import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { fetchInitOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
@@ -18,6 +19,43 @@ function OrderForm(props) {
 
   console.log(basketItems, 'basketItems')
   console.log(itemsInfoFromDb, 'itemsInfoFromDb')
+  console.log(currentOrder, 'currentOrder ')
+
+  useEffect(() => {
+    let orderItems = [];
+    console.log('!!!!!', currentOrder !== '')
+    if (currentOrder !== '') {
+      for (let i = 0; i < basketItems.length; i += 1) {
+        const obj = {};
+        obj.item_id = itemsInfoFromDb[i].id;
+        obj.count = basketItems[i].count;
+        obj.order_id = currentOrder.currentOrder?.id;
+        obj.main_color_id = basketItems[i]?.main_color_id;
+        obj.extra_color1_id = basketItems[i]?.extra_color1_id;
+        obj.extra_color2_id = basketItems[i]?.extra_color2_id;
+        // obj.order_item_id
+        // obj.size_id
+        obj.base_size = basketItems[i].base_size;
+        obj.bust = basketItems[i]?.bust;
+        obj.hip_girth = basketItems[i]?.hip_girth;
+        obj.waistline = basketItems[i]?.hip_girth;
+        obj.pants_length_inseam = basketItems[i]?.pants_length_inseam;
+        obj.groin_to_bone = basketItems[i]?.groin_to_bone;
+        orderItems.push(obj)
+      }
+
+      fetch('/orderItems', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderItems)
+      })
+        .then(res => res.json())
+        .then(data => console.log('hi'))
+    }
+
+  }, [currentOrder, basketItems, itemsInfoFromDb])
 
   const proceedOrder = (e) => {
     e.preventDefault(proceedOrder);
@@ -29,31 +67,14 @@ function OrderForm(props) {
       phone: e.target.phone.value,
       // name: e.target.name.value,
     }
-
+    // 
     dispatch(fetchInitOrderAC(newOrder))
-    dispatch(clearBasketAC())
-
-    // let orderItems = [];
-    // for (let i = 0; i < basketItems.length; i += 1) {
-    //   const obj = {};
-    //   obj.item.id = itemsInfoFromDb[i].id;
-    //   obj.order_id = currentOrder.currentOrder.id,
-    //   // obj.size_id
-    //   obj.base_size = basketItems[i].base_size;
-    //   obj.bust = basketItems[i]?.bust;
-    //   obj.hip_girth = basketItems[i]?.hip_girth;
-    //   obj.waistline = basketItems[i]?.hip_girth;
-    //   obj.pants_length_inseam: 
-    //   obj.groin_to_bone:
-    //   obj.main_color_id
-    //   obj.extra_color1_id
-    //   obj.extra_color2_id = 
-    //   obj.count = basketItems[i].count;
-    // }
-
+    // dispatch(clearBasketAC())
     localStorage.clear()
-    
   }
+
+      
+
 
   return (
     <>

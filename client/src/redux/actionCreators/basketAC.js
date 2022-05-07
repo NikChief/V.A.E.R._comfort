@@ -28,11 +28,11 @@ export function initBasketTotalAC(payload) {
   }
 }
 
-export function clearBasketAC() {
-  return {
-    type: CLEAR_BASKET,
-  }
-}
+// export function clearBasketAC() {
+//   return {
+//     type: CLEAR_BASKET,
+//   }
+// }
 
 export function deleteItemFromBasketAC(payload) {
   return {

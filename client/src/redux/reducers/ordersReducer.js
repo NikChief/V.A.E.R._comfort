@@ -41,7 +41,6 @@ export function ordersReducer(state = initialState, action) {
         ...state, orders: [...state.constOrders.filter(order => order.status === 'completed')]
       }
 
-
     case INIT_ORDER:
       return {
         ...state, currentOrder: action.payload
