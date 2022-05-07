@@ -26,6 +26,7 @@ function App() {
 
   return (
     <>
+      <div style={{'min-height': '92.5vh'}}>
       <Nav />
       <TypeList />
       <Routes>
@@ -40,7 +41,8 @@ function App() {
         <Route path='/basket' element={<BasketList />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
-      <Footer/>
+      </div>
+      <Footer style={{'height': '7.5vh'}}/>
     </>
   );
 }

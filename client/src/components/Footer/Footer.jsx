@@ -3,7 +3,7 @@ import style from './Footer.module.css'
 
 function Footer(props) {
   return (
-    <footer className={style.footer} className="page-footer">
+    <footer className={`page-footer ${style.footer}`} >
       <div className="footer-copyright text-center py-3 bg-dark text-muted">© 2022 BestTeamEver Production
       </div>
     </footer>
