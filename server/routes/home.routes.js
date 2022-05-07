@@ -58,12 +58,12 @@ router
         },
       });
 
-      console.log(patterns);
+      // console.log(patterns);
       res
         .status(200)
         .json(patterns);
     } catch (e) {
-      console.log(e.message);
+      // console.log(e.message);
     }
   });
 
