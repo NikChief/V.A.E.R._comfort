@@ -1,5 +1,7 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
+import { initOrdersAC } from '../actionCreators/ordersAC';
+import { editUserAC, loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { initCurrentItemAC, initCurrentItemPriceAC } from '../actionCreators/itemAC';
 import { clearCurrentOrderAC, initCurrentOrderAC, initCurrentOrderMessageAC, initOrdersAC } from '../actionCreators/ordersAC';
 import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
@@ -8,8 +10,9 @@ import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
 import { clearBasketAC, getItemsInfoAC } from '../actionCreators/basketAC';
 import { initPatternsAC } from '../actionCreators/patternsAC'
-import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
-import { ERR_ORDERS, SAGA_ADD_ORDER_ITEM, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
+
+import { ERR_LOGGEDIN_USER, SAGA_EDIT_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
+import { ERR_ORDERS, SAGA_ADD_ORDER_ITEM, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 import { SAGA_INIT_COLORS } from '../actionTypes/colorsAT';
 import { SAGA_INIT_CURRENT_ITEM, SAGA_INIT_CURRENT_ITEM_PRICE } from '../actionTypes/itemAT';
 import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
@@ -130,6 +133,31 @@ function* fetchIsUserAuthorized() {
     );
   }
 }
+//
+function* fetchEditUser(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+      url: '/editprofile',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(action.payload)
+    }
+    );
+    console.log(data)
+    yield put(editUserAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER,
+        message: e.message
+      }
+    );
+  }
+}
+//
 
 function* fetchInitColors() {
   try {
@@ -362,6 +390,8 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
   yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
   yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
+  // yield takeEvery(SAGA_INIT_ORDER, fetchInitOrder)
+  yield takeEvery(SAGA_EDIT_USER, fetchEditUser)
   yield takeEvery(SAGA_INIT_CURRENT_ORDER, fetchInitCurrentOrder)
   yield takeEvery(SAGA_ADD_ORDER_ITEM, fetchAddOrderItem)
   yield takeEvery(SAGA_INIT_CURRENT_ITEM_PRICE, fetchInitCurrentItemPrice)
