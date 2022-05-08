@@ -1,10 +1,9 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
-import { initOrderAC, initOrdersAC } from '../actionCreators/ordersAC';
+import { initOrdersAC } from '../actionCreators/ordersAC';
 import { editUserAC, loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { initCurrentItemAC, initCurrentItemPriceAC } from '../actionCreators/itemAC';
-import { clearCurrentOrderAC, initCurrentOrderAC, initOrdersAC } from '../actionCreators/ordersAC';
-import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
+import { clearCurrentOrderAC, initCurrentOrderAC} from '../actionCreators/ordersAC';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
@@ -389,7 +388,7 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
   yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
   yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
-  yield takeEvery(SAGA_INIT_ORDER, fetchInitOrder)
+  // yield takeEvery(SAGA_INIT_ORDER, fetchInitOrder)
   yield takeEvery(SAGA_EDIT_USER, fetchEditUser)
   yield takeEvery(SAGA_INIT_CURRENT_ORDER, fetchInitCurrentOrder)
   yield takeEvery(SAGA_ADD_ORDER_ITEM, fetchAddOrderItem)
