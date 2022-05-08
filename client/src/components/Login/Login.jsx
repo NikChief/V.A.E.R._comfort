@@ -34,11 +34,11 @@ function Login(props) {
     <div className={styles.loginOuterContainer}>
       <form className={styles.formContainer} method='post' onSubmit={loginFunction} autoComplete='off'>
         <div className='mb-3'>
-          <label htmlFor='email' className='form-label'>Введите электронную почту</label>
+          <label htmlFor='email' className='form-label'>Электронная почта</label>
           <input type='email' className='form-control' placeholder='Введите электронную почту' name='email' id='email' />
         </div>
         <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>Введите пароль</label>
+          <label htmlFor='password' className='form-label'>Пароль</label>
           <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
         </div>
         <div>
