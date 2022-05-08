@@ -99,9 +99,25 @@ router
         raw: true,
       });
 
+      const materialsSorted = [...materials];
+      materialsSorted.sort((a, b) => Number(a.id) - Number(b.id));
+
+      const itemsChosenSorted = [...itemsChosen];
+      itemsChosenSorted.sort((a, b) => Number(a.material_id) - Number(b.material_id));
+
+      const materialsResult = [];
+      for (let i = 0; i < materialsSorted.length; i += 1) {
+        const obj = {
+          ...materialsSorted[i],
+          price: itemsChosenSorted[i].price,
+          old_price: itemsChosenSorted[i].old_price,
+        };
+        materialsResult.push(obj);
+      }
+
       res
         .status(200)
-        .json(materials);
+        .json(materialsResult);
     } catch (error) {
       res
         .status(400)

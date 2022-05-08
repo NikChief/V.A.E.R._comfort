@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
-import { fetchInitCurrentItemAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
+import { clearCurrentItemCountAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
@@ -16,7 +16,7 @@ function Item(props) {
 
   const { patternId } = useParams()
 
-  const { currentItem, currentItemPrice, currentItemCount } = useSelector(state => state.itemState);
+  const { currentItem, currentItemPrice, currentItemCount, currentItemAmount } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
@@ -31,6 +31,10 @@ function Item(props) {
     const count = e.target.value;
     dispatch(initCurrentItemCountAC(count))
   }
+
+  useEffect(() => {
+    dispatch(initCurrentItemAmountAC( { currentItemPrice, currentItemCount }))
+  }, [dispatch, currentItemPrice, currentItemCount])
 
   useEffect(() => {
     dispatch(fetchInitColorsAC())
@@ -64,6 +68,7 @@ function Item(props) {
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
     // надо стереть current item в конце
+    dispatch(clearCurrentItemCountAC());
     alert('Товар добавлен в корзину.')
   }
 
@@ -104,7 +109,7 @@ function Item(props) {
             <div id='countForm' className={styles.materialChoiceFormContainer}>
               <label htmlFor='count' className='form-label'>Количество</label>
               <select onChange={getCount} required className='form-select' id='count'>
-                <option selected value=''>Выбери количество</option>
+                <option selected disabled value=''>Выбери количество</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
@@ -119,18 +124,17 @@ function Item(props) {
             </div>
             <div className={styles.materialChoiceFormContainer}>
               <h5 className='card-title'>Описание модели:</h5>
-              {/* стили css поправить}
-              {/* <p className='card-text'>{currentItem.description}</p> */}
-              {/* // колонка description будет добавлена в таблицу pattern   */}
+              <p className='card-text'>{currentItem.description}</p>
+              {/* стили css поправить */}
             </div>
-            {
-            (currentItemPrice !== '' && currentItemCount !== '')
-            &&
             <div className={styles.materialChoiceFormContainer}>
               <h5 className='card-title'>Стоимость:</h5>
-              <p className='card-text'>{currentItemPrice * currentItemCount + ' руб.'}</p>
+              {
+              (currentItemAmount !== '')
+              &&
+              <p className='card-text'>{currentItemAmount + ' руб.'}</p>
+              }
             </div>
-            }
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
             <h5>Укажите размеры:</h5>

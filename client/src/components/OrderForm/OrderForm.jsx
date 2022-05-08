@@ -15,13 +15,9 @@ function OrderForm(props) {
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
-  console.log(basketItems, 'basketItems')
-  console.log(itemsInfoFromDb, 'itemsInfoFromDb')
-  console.log(currentOrder, 'currentOrder ')
-
   useEffect(() => {
     let orderItems = [];
-    console.log('currentOrder !== ""', currentOrder !== '')
+
     if (currentOrder !== '') {
       for (let i = 0; i < basketItems.length; i += 1) {
         const obj = {};

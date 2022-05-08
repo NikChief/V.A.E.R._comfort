@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { fetchInitCurrentItemPriceAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
+import { fetchInitCurrentItemPriceAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitMaterialsAC } from '../../redux/actionCreators/materialsAC';
 
 function MaterialChoiceForm({ patternId }) {
@@ -17,15 +17,14 @@ function MaterialChoiceForm({ patternId }) {
 
   const getMaterial = (e) => {
     const materialId = JSON.parse(e.target.value).id;
-    dispatch(initCurrentItemCountAC(materialId));
     dispatch(fetchInitCurrentItemPriceAC({ patternId, materialId }));
   }
 
   return (
     <div>
       <select onChange={getMaterial} required className='form-select' id='material'>
-        <option selected value=''>Выбери материал</option>
-        {materials.map(material => <option key={material.id} value={JSON.stringify(material)}>{material.type}</option>)}
+        <option selected disabled value=''>Выбери материал</option>
+        {materials.map(material => <option key={material.id} value={JSON.stringify(material)}>{material.type + ' - ' + material.price + ' руб.'}</option>)}
       </select>
     </div>
   );
