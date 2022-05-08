@@ -19,12 +19,16 @@ function Item(props) {
   const { currentItem } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  const { colorChosenMain, colorChosenExtra1, colorChosenExtra2 } = useSelector(state => state.colorsState);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
+    return () => {
+      dispatch({type: 'CLEAR_CHOISEN_COLORS'})
+    }
   }, [dispatch, patternId])
 
   
@@ -49,9 +53,9 @@ function Item(props) {
       waistline: e.target.waistline?.value,
       pants_length_inseam: e.target.pants_length_inseam?.value,
       groin_to_bone: e.target.groin_to_bone?.value,
-      main_color_id: e.target.bust?.value,
-      extra_color1_id: e.target.bust?.value,
-      extra_color2_id: e.target.bust?.value,
+      main_color_id: colorChosenMain,
+      extra_color1_id: colorChosenExtra1,
+      extra_color2_id: colorChosenExtra2,
       material_id: JSON.parse(e.target.material.value).id,
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
