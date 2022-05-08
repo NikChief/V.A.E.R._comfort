@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pattern from '../Pattern/Pattern';
 import { fetchInitPatternsAC } from '../../redux/actionCreators/patternsAC'
 import { useParams } from 'react-router-dom';
+import EmptyComponent from '../EmptyComponent/EmptyComponent';
 
 function PatternList(props) {
 
@@ -17,9 +18,15 @@ function PatternList(props) {
 // нужно положить в локал сторадж
 
   return (
-    <div className='container d-flex flex-wrap justify-content-around'>
-      {patterns.map(pattern => <Pattern key={pattern.id} pattern={pattern} />)}
-    </div>
+    <>
+      {
+      patterns.length ?
+        <div className='container d-flex flex-wrap justify-content-around'>
+          {patterns.map(pattern => <Pattern key={pattern.id} pattern={pattern} />)}
+        </div> :
+        <EmptyComponent />
+      }
+    </>
   );
 }
 
