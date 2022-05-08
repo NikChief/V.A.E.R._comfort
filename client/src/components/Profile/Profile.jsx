@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
+import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
 
 function Profile(props) {
   const { user } = useSelector(state => state.userState);
@@ -45,7 +46,14 @@ function Profile(props) {
     }
   }
 
-  
+  const editProfileFunction = (event) => {
+    event.preventDefault();
+    const body = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+    }
+    dispatch(fetchEditUserAC(body))
+  }
 
   return (
     <div>
@@ -69,14 +77,14 @@ function Profile(props) {
                   <h5 class="modal-title" id="staticBackdropLabel">Окно изменения личной информации</h5>
                 </div>
                 <div class="modal-body">
-                  <form action='/editprofile' method='post' autoComplete='off'>
+                  <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
                     <div className='mb-3'>
                       <label htmlFor='name' className='form-label'>Новое имя</label>
                       <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required />
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='email' className='form-label'>Новая электронная почта</label>
-                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' />
+                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required/>
                     </div>
                     <div>
                       <input type='submit' className='btn btn-primary' value='Сохранить изменения' />

@@ -19,7 +19,7 @@ function Login(props) {
     const body = {
       email: event.target.email.value,
       password: event.target.password.value,
-    }
+    } 
     dispatch(fetchLoggedInUserAC(body))
   }
 
