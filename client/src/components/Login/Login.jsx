@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { clearUserMessageAC, fetchLoggedInUserAC } from '../../redux/actionCreators/userAC';
+import styles from './Login.module.css'
 
 function Login(props) {
 
@@ -30,8 +31,8 @@ function Login(props) {
   },[user, navigate])
 
   return (
-    <div>
-      <form action='/login' method='post' onSubmit={loginFunction} autoComplete='off'>
+    <div className={styles.loginOuterContainer}>
+      <form className={styles.formContainer} method='post' onSubmit={loginFunction} autoComplete='off'>
         <div className='mb-3'>
           <label htmlFor='email' className='form-label'>Введите электронную почту</label>
           <input type='email' className='form-control' placeholder='Введите электронную почту' name='email' id='email' />
@@ -43,7 +44,7 @@ function Login(props) {
         <div>
           {!user.loggedIn && user.message}
         </div>
-        <div><input type='submit' className='btn btn-primary' value='Войти' /></div>
+        <div className={styles.button}><input type='submit' className='btn btn-primary' value='Войти' /></div>
       </form>
     </div>
   );

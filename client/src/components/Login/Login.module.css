@@ -1,0 +1,23 @@
+.loginOuterContainer {
+  display: flex;
+  /* border: 2px solid black; */
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.formContainer {
+  /* border: 2px solid black; */
+  padding-top: 5em;
+  width: 30vw
+  /* justify-content: center; */
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid black; */
+  width: 30vw
+  /* justify-content: center; */
+}
