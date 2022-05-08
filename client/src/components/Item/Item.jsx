@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { clearCurrentItemCountAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
@@ -21,7 +21,7 @@ function Item(props) {
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
@@ -70,6 +70,7 @@ function Item(props) {
     // надо стереть current item в конце
     dispatch(clearCurrentItemCountAC());
     alert('Товар добавлен в корзину.')
+    navigate('/')
   }
 
   return (

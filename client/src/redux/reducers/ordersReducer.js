@@ -1,6 +1,6 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, INIT_CURRENT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
-const initialState = { orders: [], currentOrder: '' }
+const initialState = { orders: [], currentOrder: '', currentOrderMessage: '' }
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
@@ -42,8 +42,14 @@ export function ordersReducer(state = initialState, action) {
       }
 
     case INIT_CURRENT_ORDER:
+      console.log('=====', action.payload )
       return {
         ...state, currentOrder: action.payload
+      }
+    
+    case INIT_CURRENT_ORDER_MESSAGE:
+      return {
+        ...state, currentOrderMessage: action.payload
       }
 
     case CLEAR_CURRENT_ORDER:
