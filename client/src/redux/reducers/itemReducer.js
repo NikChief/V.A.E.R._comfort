@@ -1,4 +1,4 @@
-import { CLEAR_INIT_CURRENT_ITEM, INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE } from "../actionTypes/itemAT"
+import { INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE, CLEAR_CURRENT_ITEM } from "../actionTypes/itemAT"
 
 const initialState = { currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: '' }
 
@@ -38,6 +38,11 @@ export function itemReducer(state = initialState, action) {
       return {
         ...state, currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: ''
       } 
+
+    case CLEAR_CURRENT_ITEM:
+      // при размонтировании компонента всё почистится и на новом итеме будет красивенько
+      return initialState;
+    
 
     default:
       return state

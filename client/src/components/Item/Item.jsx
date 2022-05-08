@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
-import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
+import { clearCurrentItemAC, clearCurrentItemCountAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
@@ -38,6 +38,7 @@ function Item(props) {
 
   useEffect(() => {
     dispatch(initCurrentItemAmountAC( { currentItemPrice, currentItemCount }))
+
   }, [dispatch, currentItemPrice, currentItemCount])
 
   useEffect(() => {
@@ -47,6 +48,12 @@ function Item(props) {
   useEffect(() => {
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearCurrentItemAC())
+    }
+  }, [dispatch])
 
   const getInput = (e) => {
     e.preventDefault();
