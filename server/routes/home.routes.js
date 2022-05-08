@@ -5,6 +5,8 @@ const {
   Material, Color, Type, CategoryType, Category, Pattern, Item,
 } = require('../db/models');
 
+const { getLowerPrice } = require('../helpers/getPrice');
+
 router
   .route('/colors')
   .get(async (req, res) => {
@@ -55,15 +57,23 @@ router
 
         include: {
           model: Item,
+          attributes: [
+            'price',
+          ],
         },
+        attributes: [
+          'id', 'name', 'image',
+        ],
       });
-
-      console.log(patterns);
       res
         .status(200)
-        .json(patterns);
-    } catch (e) {
-      console.log(e.message);
+        .json(getLowerPrice(patterns));
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
+        });
     }
   });
 
@@ -89,9 +99,25 @@ router
         raw: true,
       });
 
+      const materialsSorted = [...materials];
+      materialsSorted.sort((a, b) => Number(a.id) - Number(b.id));
+
+      const itemsChosenSorted = [...itemsChosen];
+      itemsChosenSorted.sort((a, b) => Number(a.material_id) - Number(b.material_id));
+
+      const materialsResult = [];
+      for (let i = 0; i < materialsSorted.length; i += 1) {
+        const obj = {
+          ...materialsSorted[i],
+          price: itemsChosenSorted[i].price,
+          old_price: itemsChosenSorted[i].old_price,
+        };
+        materialsResult.push(obj);
+      }
+
       res
         .status(200)
-        .json(materials);
+        .json(materialsResult);
     } catch (error) {
       res
         .status(400)
@@ -115,11 +141,37 @@ router
         raw: true,
       });
 
-      const itemWithBaskeId = { ...item, basket_id };
+      const itemWithBasketId = { ...item, basket_id };
 
       res
         .status(200)
-        .json(itemWithBaskeId);
+        .json(itemWithBasketId);
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
+        });
+    }
+  });
+
+  router
+  .route('/items/:pattern_id/:material_id')
+  .get(async (req, res) => {
+    try {
+      const { pattern_id, material_id } = req.params;
+
+      const item = await Item.findOne({
+        where: {
+          pattern_id: Number(pattern_id),
+          material_id: Number(material_id),
+        },
+        raw: true,
+      });
+
+      res
+        .status(200)
+        .json(item);
     } catch (error) {
       res
         .status(400)

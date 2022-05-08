@@ -27,31 +27,23 @@ module.exports = {
           key: 'id',
         },
       },
-      // base_size: {
-      //   type: Sequelize.TEXT,
-      // },
-      // bust: {
-      //   type: Sequelize.INTEGER,
-      // },
-      // hip_girth: {
-      //   type: Sequelize.INTEGER,
-      // },
-      // waistline: {
-      //   type: Sequelize.INTEGER,
-      // },
-      // pants_length_inseam: {
-      //   type: Sequelize.INTEGER,
-      // },
-      // groin_to_bone: {
-      //   type: Sequelize.INTEGER,
-      // },
-      order_item_size_id: {
+      base_size: {
+        type: Sequelize.TEXT,
+      },
+      bust: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'OrderItemSizes',
-          key: 'id',
-        },
+      },
+      hip_girth: {
+        type: Sequelize.INTEGER,
+      },
+      waistline: {
+        type: Sequelize.INTEGER,
+      },
+      pants_length_inseam: {
+        type: Sequelize.INTEGER,
+      },
+      groin_to_bone: {
+        type: Sequelize.INTEGER,
       },
       main_color_id: {
         type: Sequelize.INTEGER,

@@ -1,4 +1,4 @@
-import { SAGA_INIT_CATEGORY_TYPES, INIT_CATEGORY_TYPES, GET_CATEGORY_TYPE_ID } from "../actionTypes/categoryTypesAT";
+import { SAGA_INIT_CATEGORY_TYPES, INIT_CATEGORY_TYPES, GET_CATEGORY_TYPE_ID, CLEAR_CATEGORY_TYPES } from "../actionTypes/categoryTypesAT";
 
 export function initCategoryTypesAC(payload) {
   return {
@@ -18,5 +18,11 @@ export function fetchInitCategoryTypesAC(payload) {
   return {
     type: SAGA_INIT_CATEGORY_TYPES,
     payload
+  }
+}
+
+export function clearCategoryTypesAC() {
+  return {
+    type: CLEAR_CATEGORY_TYPES,
   }
 }

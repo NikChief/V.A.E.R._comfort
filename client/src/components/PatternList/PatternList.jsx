@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Pattern from '../Pattern/Pattern';
-import { fetchInitPatternsAC } from '../../redux/actionCreators/patternsAC'
+import { clearPatternsAC, fetchInitPatternsAC } from '../../redux/actionCreators/patternsAC'
 import { useParams } from 'react-router-dom';
+import EmptyComponent from '../EmptyComponent/EmptyComponent';
 
 function PatternList(props) {
 
@@ -12,13 +13,20 @@ function PatternList(props) {
   useEffect(() => {
     console.log(categoryTypeId);
     dispatch(fetchInitPatternsAC(categoryTypeId))
+
+    return () => dispatch(clearPatternsAC())
   }, [dispatch, categoryTypeId])
 
-
   return (
-    <div className='container d-flex flex-wrap justify-content-around'>
-      {patterns.map(pattern => <Pattern key={pattern.id} pattern={pattern} />)}
-    </div>
+    <>
+      {
+      patterns.length ?
+        <div className='container d-flex flex-wrap justify-content-around'>
+          {patterns.map(pattern => <Pattern key={pattern.id} pattern={pattern} />)}
+        </div> :
+        <EmptyComponent />
+      }
+    </>
   );
 }
 
