@@ -1,0 +1,23 @@
+.container {
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 500px;
+}
+
+.card {
+  background-image: url('http://localhost:3000/images/empty.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: rgb(241, 245, 245);
+  font-size:xx-large;
+}
+
+
