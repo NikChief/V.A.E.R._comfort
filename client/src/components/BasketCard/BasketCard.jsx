@@ -54,15 +54,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
             <h5 className="card-title">Размеры:</h5>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Базовый размер:</h6>
-                </div>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.base_size}</h6>
-                </div>
-              </div>
-              <div className={`${styles.sizesOuterBox}`}>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват груди:</h6>
+                  <h6>Обхват груди, см:</h6>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
                   <h6 className={`${styles.sizeText}`}>{basketItem.bust}</h6>
@@ -70,7 +62,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват бедер:</h6>
+                  <h6>Обхват бедер, см:</h6>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
                   <h6 className={`${styles.sizeText}`}>{basketItem.hip_girth}</h6>
@@ -78,7 +70,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват талии:</h6>
+                  <h6>Обхват талии, см:</h6>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
                   <h6 className={`${styles.sizeText}`}>{basketItem.waistline}</h6>
@@ -86,7 +78,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Длина брюк по внутреннему шву:</h6>
+                  <h6>Длина брюк по внутреннему шву, см:</h6>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
                   <h6 className={`${styles.sizeText}`}>{basketItem.pants_length_inseam}</h6>
@@ -94,17 +86,26 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Длина от мотни до косточки на ноге:</h6>
+                  <h6>Длина от мотни до косточки на ноге, см:</h6>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
                   <h6 className={`${styles.sizeText}`}>{basketItem.groin_to_bone}</h6>
                 </div>
               </div>
+              <div className={`${styles.sizesOuterBox}`}>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <h6>Размер (для костюмов данная информация справочно):</h6>
+                </div>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <h6 className={`${styles.sizeText}`}>{basketItem.base_size}</h6>
+                </div>
+              </div>
           </div>
         </div>
-        <div>
-          <h5 className="card-title">Стоимость:</h5>
+        <div className={styles.rightBox}>
+          <h5 className="card-title">Стоимость*:</h5>
           <h6>{Number(basketItem.count) * Number(itemInfoFromDb.price) + ' руб.'}</h6>
+          <p>* на большие размеры цена может быть увеличена</p>
           <button onClick={deleteItemFromBasket} type="button" className="btn btn-primary btn-sm">Удалить</button>
         </div>
       </div>
