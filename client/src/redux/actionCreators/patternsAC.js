@@ -1,4 +1,4 @@
-import { INIT_PATTERNS, SAGA_INIT_PATTERNS } from "../actionTypes/patternsAT";
+import { INIT_PATTERNS, SAGA_INIT_PATTERNS, CLEAR_PATTERNS} from "../actionTypes/patternsAT";
 
 export function initPatternsAC(payload) {
   return {
@@ -13,3 +13,13 @@ export function fetchInitPatternsAC(payload) {
     payload
   }
 }
+
+export function clearPatternsAC() {
+  return {
+    type: CLEAR_PATTERNS,
+  }
+}
+
+
+
+

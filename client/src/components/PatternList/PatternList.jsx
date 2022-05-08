@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Pattern from '../Pattern/Pattern';
-import { fetchInitPatternsAC } from '../../redux/actionCreators/patternsAC'
+import { clearPatternsAC, fetchInitPatternsAC } from '../../redux/actionCreators/patternsAC'
 import { useParams } from 'react-router-dom';
 
 function PatternList(props) {
@@ -12,9 +12,9 @@ function PatternList(props) {
   useEffect(() => {
     console.log(categoryTypeId);
     dispatch(fetchInitPatternsAC(categoryTypeId))
+
+    return () => dispatch(clearPatternsAC())
   }, [dispatch, categoryTypeId])
-// при обновлении страницы CatTypeID пропадает из стейта
-// нужно положить в локал сторадж
 
   return (
     <div className='container d-flex flex-wrap justify-content-around'>

@@ -3,7 +3,6 @@ import style from './Carousel.module.css'
 
 function Carousel(props) {
   return (
-    <div style={{"height": "50px"}}>
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
@@ -30,7 +29,6 @@ function Carousel(props) {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
-    </div>
     </div>
   );
 }

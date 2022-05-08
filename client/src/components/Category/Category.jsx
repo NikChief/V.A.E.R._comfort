@@ -10,6 +10,7 @@ function Category({category}) {
   const dispatch = useDispatch();
 
   function getCategoryTypeId() {
+    localStorage.setItem('category_type_id', category.id);
     dispatch(getCategoryTypeIdAC(category.id))
   }
 

@@ -1,7 +1,11 @@
 import { INIT_PATTERNS } from "../actionTypes/patternsAT";
 import { GET_CATEGORY_TYPE_ID } from "../actionTypes/categoryTypesAT"
+import { CLEAR_PATTERNS } from "../actionTypes/patternsAT"
 
-const initialState = { patterns: [], categoryTypeId: null }
+const lsCategoryTypeId = localStorage.getItem('category_type_id')
+
+
+const initialState = { patterns: [], categoryTypeId: lsCategoryTypeId }
 
 export function patternReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +17,10 @@ export function patternReducer(state = initialState, action) {
       return {
         ...state, categoryTypeId: action.payload
       };
+      case CLEAR_PATTERNS:
+        return {
+          ...state, patterns: []
+        };
     default:
       return state;
   }
