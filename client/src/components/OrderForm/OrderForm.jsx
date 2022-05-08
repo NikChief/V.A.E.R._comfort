@@ -11,8 +11,11 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
-  const { currentOrder } = useSelector(state => state.ordersState);
+  const { currentOrder, currentOrderMessage } = useSelector(state => state.ordersState);
+  console.log(currentOrder, 'currentOrder')
+  console.log(currentOrder, 'currentOrderMessage')
   const { basketItems } = useSelector(state => state.basketState);
+  console.log(basketItems.length !== 0, 'basketItems')
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   useEffect(() => {
@@ -59,11 +62,11 @@ function OrderForm(props) {
   return (
     <>
     { 
-    (currentOrder !== '')
+    (currentOrderMessage !== '')
     ?
     <div className={`card ${styles.successPurchaseContainer}`}>
       <div className='card-body'>
-        <h5 className='card-title'>{currentOrder.message}</h5>
+        <h5 className='card-title'>{currentOrderMessage}</h5>
       </div>
     </div>
     :

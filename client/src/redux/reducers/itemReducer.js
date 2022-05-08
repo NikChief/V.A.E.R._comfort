@@ -1,4 +1,4 @@
-import { INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE } from "../actionTypes/itemAT"
+import { CLEAR_INIT_CURRENT_ITEM, INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE } from "../actionTypes/itemAT"
 
 const initialState = { currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: '' }
 
@@ -30,6 +30,13 @@ export function itemReducer(state = initialState, action) {
       console.log('amount', action.payload)
       return {
         ...state, currentItemAmount: Number(action.payload.currentItemCount) * Number(action.payload.currentItemPrice)
+      } 
+    
+    case CLEAR_INIT_CURRENT_ITEM:
+      // данные о кол-ве текущего item записываются в стейт
+      console.log('amount', action.payload)
+      return {
+        ...state, currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: ''
       } 
 
     default:

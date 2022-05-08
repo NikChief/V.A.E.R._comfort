@@ -5,10 +5,11 @@ import { useDispatch } from 'react-redux';
 import { deleteItemFromBasketAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketCard.module.css'
 
-function Basketcard({ basketItem }) {
+function Basketcard({ basketItem, itemInfoFromDb }) {
 
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  console.log(basketItem, itemInfoFromDb, 'basketItem, itemInfoFromDb')
 
   const dispatch = useDispatch();
 
@@ -102,7 +103,9 @@ function Basketcard({ basketItem }) {
           </div>
         </div>
         <div>
-         <button onClick={deleteItemFromBasket} type="button" className="btn btn-primary btn-sm">Удалить</button>
+          <h5 className="card-title">Стоимость:</h5>
+          <h6>{Number(basketItem.count) * Number(itemInfoFromDb.price) + ' руб.'}</h6>
+          <button onClick={deleteItemFromBasket} type="button" className="btn btn-primary btn-sm">Удалить</button>
         </div>
       </div>
     </div>
