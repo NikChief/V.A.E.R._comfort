@@ -25,7 +25,14 @@ export function colorsReducer(state = initialState, action) {
     case 'PIC_EXTRA2':
       return {
         ...state, colorChosenExtra2: action.payload
-      };    
+      };
+    case 'CLEAR_CHOISEN_COLORS':
+      return {
+        ...state,
+        colorChosenMain: initialState.colorChosenMain,
+        colorChosenExtra1: initialState.colorChosenExtra1,
+        colorChosenExtra2: initialState.colorChosenExtra2,
+      };      
     default:
       return state;
   }

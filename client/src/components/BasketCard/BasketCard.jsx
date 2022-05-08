@@ -35,9 +35,9 @@ function Basketcard({ basketItem }) {
             <div>
               <h5 className="card-title">Цвета:</h5>
               <div>
-                <img src="..." className="card-img-top" alt="..."></img>
-                <img src="..." className="card-img-top" alt="..."></img>  
-                <img src="..." className="card-img-top" alt="..."></img>    
+                <img src={`http://localhost:4000/${basketItem.main_color_id.image}`} className={styles.colorChosenImage} alt="..."></img>
+                {basketItem.extra_color1_id.id && <img src={`http://localhost:4000/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {basketItem.extra_color2_id.id && <img src={`http://localhost:4000/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
             <div>
