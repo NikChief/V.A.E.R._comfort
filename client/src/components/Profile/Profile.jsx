@@ -68,6 +68,7 @@ function Profile(props) {
             Изменить данные профиля
           </button>
           <br />
+          {!user.loggedIn && user.message}
           <br />
           {/* <!-- Modal --> */}
           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -87,7 +88,7 @@ function Profile(props) {
                       <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required/>
                     </div>
                     <div>
-                      <input type='submit' className='btn btn-primary' value='Сохранить изменения' />
+                      <input type='submit' className='btn btn-primary' data-bs-dismiss="modal" value='Сохранить изменения' />
                     </div>
                   </form>
                   <hr />
