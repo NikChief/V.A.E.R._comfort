@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
-import { clearCurrentItemCountAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
+import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
@@ -72,7 +72,7 @@ function Item(props) {
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
     // надо стереть current item в конце
-    dispatch(clearCurrentItemCountAC());
+    dispatch(clearCurrentItemAC());
     alert('Товар добавлен в корзину.')
     navigate('/')
   }
@@ -142,7 +142,7 @@ function Item(props) {
             </div>
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
-            <h5>Укажите размеры:</h5>
+            <h5>Укажите размеры*:</h5>
             {(currentItem.size_type_id === 1)
             &&
             <>
@@ -185,13 +185,16 @@ function Item(props) {
             {(currentItem.size_type_id === 1 || currentItem.size_type_id === 2)
             &&
             <div className='mb-3'>
-              <label htmlFor='base_size' className='form-label'>Какой размер вы обычно носите</label>
+              <label htmlFor='base_size' className='form-label'>Размер (для костюмов данная информация справочно)</label>
               <select required className='form-select' id='base_size'>
-                <option selected value=''>Выбери базовый размер</option>
+                <option selected disabled value=''>Выбери размер</option>
+                <option value='XS'>XS</option>
                 <option value='S'>S</option>
                 <option value='M'>M</option>
                 <option value='L'>L</option>
+                <option value='XL'>XL</option>
               </select>
+              <p>* на большие размеры цена может быть увеличена</p>
             </div>
             }
             <button type='submit' className='btn btn-primary'>Добавить в корзину</button>

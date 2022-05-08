@@ -42,7 +42,7 @@ export function initCurrentItemAmountAC(payload) {
   }
 }
 
-export function clearCurrentItemCountAC() {
+export function clearCurrentItemAC() {
   return {
     type: CLEAR_INIT_CURRENT_ITEM,
   }
