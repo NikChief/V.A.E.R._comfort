@@ -37,3 +37,16 @@
   /* border: 2px solid black; */
   width: 35em;
 }
+
+.sizeInstructionColor {
+  color:rgb(87, 93, 215);
+  text-decoration: underline;
+}
+
+.sizeInstructionHeaders {
+  font-size: smaller;
+}
+
+.sizeInstructionText {
+  font-size: smaller;
+}

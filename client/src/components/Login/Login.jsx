@@ -41,7 +41,7 @@ function Login(props) {
           <label htmlFor='password' className='form-label'>Пароль</label>
           <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
         </div>
-        <div>
+        <div className={styles.errorStatusBox}>
           {!user.loggedIn && user.message}
         </div>
         <div className={styles.button}><input type='submit' className='btn btn-primary' value='Войти' /></div>
