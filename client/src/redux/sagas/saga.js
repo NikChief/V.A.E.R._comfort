@@ -1,9 +1,8 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
-import { initOrdersAC } from '../actionCreators/ordersAC';
 import { editUserAC, loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { initCurrentItemAC, initCurrentItemPriceAC } from '../actionCreators/itemAC';
-import { clearCurrentOrderAC, initCurrentOrderAC} from '../actionCreators/ordersAC';
+import { clearCurrentOrderAC, initCurrentOrderAC, initCurrentOrderMessageAC, initOrdersAC } from '../actionCreators/ordersAC';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
@@ -312,6 +311,7 @@ function* fetchInitCurrentOrder(action) {
     );
     
     yield put(initCurrentOrderAC(data));
+    yield put(initCurrentOrderMessageAC(data.message));
   } catch (e) {
     yield put(
       {

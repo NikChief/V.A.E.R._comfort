@@ -1,7 +1,7 @@
 .basketCardBox {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   /* border: 2px solid black; */
   width: 75vw;
@@ -36,7 +36,7 @@
 
 .basketCardInfoInnerBox {
   /* border: 2px solid black; */
-  width: 20vw;
+  width: 17vw;
 }
 
 .sizesOuterBox {
@@ -58,9 +58,15 @@
 }
 
 .colorChosenImage {
-  width: 75px !important;
-  height: 75px;
+  width: 2vw !important;
+  /* height: 75px; */
   border-radius: 50% !important;
-  margin: 5px;
+  /* margin-bottom: 5px; */
 }
 
+.rightBox {
+  /* border: 2px solid black;
+  width: 15vw; */
+  font-size: smaller;
+  margin: 2vh;
+}

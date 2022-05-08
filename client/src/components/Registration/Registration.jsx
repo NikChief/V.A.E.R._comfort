@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { clearUserMessageAC, fetchRegisterUserAC } from '../../redux/actionCreators/userAC';
+import styles from './Registration.module.css'
 
 function Registration(props) {
 
@@ -33,8 +34,8 @@ function Registration(props) {
   },[user, navigate])
 
   return (
-    <div>
-      <form action='/login' method='post' onSubmit={registrationFunction} autoComplete='off'>
+    <div className={styles.registrationOuterContainer}>
+      <form className={styles.formContainer} method='post' onSubmit={registrationFunction} autoComplete='off'>
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Имя</label>
           <input type='text' className='form-control' placeholder='Введите имя' name='name' id='name' required />
@@ -51,7 +52,7 @@ function Registration(props) {
           <label htmlFor='repeat_password' className='form-label'>Повторите пароль</label>
           <input type='password' className='form-control' placeholder='Повторите пароль' name='repeat_password' id='repeat_password' />
         </div>
-        <div>
+        <div className={styles.button}>
           <input type='submit' className='btn btn-primary' value='Зарегистрироваться' />
         </div>
       </form>

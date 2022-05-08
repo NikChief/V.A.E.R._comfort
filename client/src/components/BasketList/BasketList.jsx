@@ -27,7 +27,7 @@ function BasketList(props) {
     // {}
     <div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
-        {basketItems.map(item => <Basketcard key={item.id} basketItem={item} />)}
+        {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
       </div>
       {(basketItems.length !== 0)
       &&

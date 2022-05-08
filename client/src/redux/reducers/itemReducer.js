@@ -31,6 +31,13 @@ export function itemReducer(state = initialState, action) {
       return {
         ...state, currentItemAmount: Number(action.payload.currentItemCount) * Number(action.payload.currentItemPrice)
       } 
+    
+    case CLEAR_INIT_CURRENT_ITEM:
+      // данные о кол-ве текущего item записываются в стейт
+      console.log('amount', action.payload)
+      return {
+        ...state, currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: ''
+      } 
 
     case CLEAR_CURRENT_ITEM:
       // при размонтировании компонента всё почистится и на новом итеме будет красивенько
