@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 function Type({type}) {
   return (
-    <div className="m-2 d-flex justify-content-center">
-      <Link to={`/catalogue/${type.link_name}`} className="nav-item"> <h3> {type.name} </h3> </Link>
-    </div>
+    <>
+      {/* <Link to={`/catalogue/${type.link_name}`} className="nav-item"> <h3> {type.name} </h3> </Link> */}
+      <li className='nav-item'><Link to={`/catalogue/${type.link_name}`} className='nav-link'>{type.name}</Link></li>
+    </>
   );
 }
 

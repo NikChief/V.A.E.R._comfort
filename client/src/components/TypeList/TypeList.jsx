@@ -14,9 +14,9 @@ function TypeList(props) {
   }, [dispatch])
 
   return (
-    <div className={style.typeList}>
-    {types && types.map(type => <Type key={type.id} type={type} />)}
-    </div>
+      <ul className={`navbar-nav ${style.typeList}`}>
+        {types && types.map(type => <Type key={type.id} type={type} />)}
+      </ul>
   );
 }
 
