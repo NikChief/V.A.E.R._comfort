@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
 import TypeList from '../TypeList/TypeList';
+import style from './Nav.module.css'
 
 function Nav(props) {
 
@@ -16,7 +17,7 @@ function Nav(props) {
   }
 
   return (
-    <div>
+    <div className={style.main}>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid'>
           <Link className='navbar-brand' to='/'><img src="images/logo.png" alt="logo" style={{height: "70px"}}/></Link>
