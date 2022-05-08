@@ -19,16 +19,21 @@
   justify-content: space-around;
 }
 
+.materialChoiceFormContainer {
+  /* border: 2px solid black; */
+  margin-top: 40px;
+}
+
 .patternPicture {
   /* border: 2px solid black; */
 }
 
 .colorsChoiceForm {
   /* border: 2px solid black; */
-  width: 15em;
+  width: 18em;
 }
 
 .sizeForm{
   /* border: 2px solid black; */
-  width: 40em;
+  width: 35em;
 }

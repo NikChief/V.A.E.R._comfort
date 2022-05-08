@@ -1,17 +1,39 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, INIT_CURRENT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
-const initialState = { orders: [] }
+const initialState = { orders: [], currentOrder: '', currentOrderMessage: '' }
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
-      console.log('8=>',state.orders);
       return {
         ...state, orders: action.payload, constOrders: action.payload
       }
-    case FULLFILED_ORDERS:
+    case ALL_ORDERS:
       return {
-        ...state, orders: [...state.constOrders.filter(order => order.status === 'fullfiled')]
+        ...state, orders: [...state.constOrders]
+      }
+    case IN_PROCESSING_ORDERS:
+      return {
+        ...state, orders: [...state.constOrders.filter(order => order.status === 'В обработке')]
+      }
+    case CONFIRMED_ORDERS:
+      return {
+        ...state, orders: [...state.constOrders.filter(order => order.status === 'Подтвержден')]
+      }
+
+    case REJECTED_ORDERS:
+      return {
+        ...state, orders: [...state.constOrders.filter(order => order.status === 'Отменен')]
+      }
+
+    case PAID_ORDERS:
+      return {
+        ...state, orders: [...state.constOrders.filter(order => order.status === 'Оплачен')]
+      }
+
+    case ON_DELIVERY_ORDERS:
+      return {
+        ...state, orders: [...state.constOrders.filter(order => order.status === 'Передан в доставку')]
       }
 
     case COMPLETED_ORDERS:
@@ -19,19 +41,20 @@ export function ordersReducer(state = initialState, action) {
         ...state, orders: [...state.constOrders.filter(order => order.status === 'completed')]
       }
 
-    case REJECTED_ORDERS:
+    case INIT_CURRENT_ORDER:
+      console.log('=====', action.payload )
       return {
-        ...state, orders: [...state.constOrders.filter(order => order.status === 'rejected')]
+        ...state, currentOrder: action.payload
+      }
+    
+    case INIT_CURRENT_ORDER_MESSAGE:
+      return {
+        ...state, currentOrderMessage: action.payload
       }
 
-    case PAYED_ORDERS:
+    case CLEAR_CURRENT_ORDER:
       return {
-        ...state, orders: [...state.constOrders.filter(order => order.status === 'payed')]
-      }
-
-    case ALL_ORDERS:
-      return {
-        ...state, orders: [...state.constOrders]
+        ...state, currentOrder: ''
       }
 
     default:

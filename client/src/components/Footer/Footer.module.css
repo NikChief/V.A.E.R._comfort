@@ -1,7 +1,15 @@
-.footer {
+/* .footer {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 80px;
+} */
+
+.footerText {
+  display: flex !important;
+  margin: 0% !important;
+  align-items: center !important;
+  font-size: 18px;
+
 }

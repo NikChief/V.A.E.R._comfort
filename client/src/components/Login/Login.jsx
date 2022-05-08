@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { clearUserMessageAC, fetchLoggedInUserAC } from '../../redux/actionCreators/userAC';
-import style from './Login.module.css'
+import styles from './Login.module.css'
 
 function Login(props) {
 
@@ -18,9 +18,9 @@ function Login(props) {
   const loginFunction = (event) => {
     event.preventDefault();
     const body = {
-      user_email: event.target.email.value,
-      user_password: event.target.password.value,
-    }
+      email: event.target.email.value,
+      password: event.target.password.value,
+    } 
     dispatch(fetchLoggedInUserAC(body))
   }
 
@@ -31,16 +31,20 @@ function Login(props) {
   },[user, navigate])
 
   return (
-    <div className={style.login_form_container}>
-      <form action="/login" method="post" onSubmit={loginFunction} autoComplete='off'>
-        <div className={style.namefield}><label htmlFor="email">Введите e-mail</label></div>
-        <div className={style.input}><input type="email" placeholder="Введите ваш e-mail" name="email" id="email" /></div>
-        <div className={style.namefield}><label htmlFor="password">Введите пароль</label></div>
-        <div className={style.input}><input type="password" placeholder="Введите пароль" name="password" id="password" /></div>
+    <div className={styles.loginOuterContainer}>
+      <form className={styles.formContainer} method='post' onSubmit={loginFunction} autoComplete='off'>
+        <div className='mb-3'>
+          <label htmlFor='email' className='form-label'>Электронная почта</label>
+          <input type='email' className='form-control' placeholder='Введите электронную почту' name='email' id='email' />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='password' className='form-label'>Пароль</label>
+          <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
+        </div>
         <div>
           {!user.loggedIn && user.message}
         </div>
-        <div><input type="submit" value="Войти" /></div>
+        <div className={styles.button}><input type='submit' className='btn btn-primary' value='Войти' /></div>
       </form>
     </div>
   );

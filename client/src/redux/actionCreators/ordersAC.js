@@ -1,5 +1,5 @@
 
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAID_ORDERS, ALL_ORDERS, SAGA_INIT_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, SAGA_INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, SAGA_ADD_ORDER_ITEM, INIT_CURRENT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
 export function initOrdersAC(payload) {
   return {
@@ -14,15 +14,20 @@ export function fetchInitOrdersAC() {
   }
 }
 
-export function fullfiledOrdersAC() {
+export function allOrdersAC() {
   return {
-    type: FULLFILED_ORDERS,
+    type: ALL_ORDERS,
+  }
+}
+export function inProcessingOrdersAC() {
+  return {
+    type: IN_PROCESSING_ORDERS,
   }
 }
 
-export function completedOrdersAC() {
+export function confirmedOrdersAC() {
   return {
-    type: COMPLETED_ORDERS,
+    type: CONFIRMED_ORDERS,
   }
 }
 
@@ -32,14 +37,55 @@ export function rejectedOrdersAC() {
   }
 }
 
-export function payedOrdersAC() {
+export function paidOrdersAC() {
   return {
-    type: PAYED_ORDERS,
+    type: PAID_ORDERS,
   }
 }
 
-export function allOrdersAC() {
+export function onDeliveryOrdersAC() {
   return {
-    type: ALL_ORDERS,
+    type: ON_DELIVERY_ORDERS,
+  }
+}
+
+export function completedOrdersAC() {
+  return {
+    type: COMPLETED_ORDERS,
+  }
+}
+
+
+export function initCurrentOrderAC(payload) {
+  return {
+    type: INIT_CURRENT_ORDER,
+    payload,
+  }
+}
+
+export function initCurrentOrderMessageAC(payload) {
+  return {
+    type: INIT_CURRENT_ORDER_MESSAGE,
+    payload,
+  }
+}
+
+export function fetchInitCurrentOrderAC(payload) {
+  return {
+    type: SAGA_INIT_CURRENT_ORDER,
+    payload,
+  }
+}
+
+export function clearCurrentOrderAC() {
+  return {
+    type: CLEAR_CURRENT_ORDER,
+  }
+}
+
+export function fetchAddOrderItemAC(payload) {
+  return {
+    type: SAGA_ADD_ORDER_ITEM,
+    payload,
   }
 }

@@ -1,25 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Type from '../Type/Type';
+import { fetchInitTypesAC } from '../../redux/actionCreators/typesAC'
 import style from './TypeList.module.css'
 
-const types = [
-  {
-    name:'Для мужчин', 
-    linkname:'men'
-  }, 
-  {name:'Для женщин', 
-   linkname:'women'
-  }, 
-  {name:'Для детей', 
-   linkname:'kids'
-  }
-];
-
 function TypeList(props) {
+
+  const dispatch = useDispatch();
+  const { types } = useSelector(state => state.typesState);
+
+  useEffect(() => {
+    dispatch(fetchInitTypesAC())
+  }, [dispatch])
+
   return (
-    <div className={style.typeList}>
-    {types.map(type => <Type key={type.name} type={type} />)}
-    </div>
+      <ul className={`navbar-nav ${style.typeList}`}>
+        {types && types.map(type => <Type key={type.id} type={type} />)}
+      </ul>
   );
 }
 
