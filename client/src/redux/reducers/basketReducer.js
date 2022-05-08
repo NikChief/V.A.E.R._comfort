@@ -16,7 +16,6 @@ export function basketReducer(state = initialState, action) {
       }
 
     case GET_ITEMS_INFO:
-      console.log(action.payload, '19')
       return {
         ...state, itemsInfoFromDb: [...state.itemsInfoFromDb, action.payload]
       }
