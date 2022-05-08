@@ -1,4 +1,4 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_ORDER } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER } from '../actionTypes/ordersAT'
 
 const initialState = { orders: [], currentOrder: '' }
 
@@ -41,10 +41,14 @@ export function ordersReducer(state = initialState, action) {
         ...state, orders: [...state.constOrders.filter(order => order.status === 'completed')]
       }
 
-
-    case INIT_ORDER:
+    case INIT_CURRENT_ORDER:
       return {
         ...state, currentOrder: action.payload
+      }
+
+    case CLEAR_CURRENT_ORDER:
+      return {
+        ...state, currentOrder: ''
       }
 
     default:
