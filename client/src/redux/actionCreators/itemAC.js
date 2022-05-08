@@ -44,12 +44,6 @@ export function initCurrentItemAmountAC(payload) {
 
 export function clearCurrentItemAC() {
   return {
-    type: CLEAR_INIT_CURRENT_ITEM,
-  }
-}
-
-export function clearCurrentItemAC() {
-  return {
     type: CLEAR_CURRENT_ITEM,
   }
 }
