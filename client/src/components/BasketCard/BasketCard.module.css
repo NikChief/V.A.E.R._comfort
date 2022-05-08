@@ -57,3 +57,10 @@
   font-weight: normal;
 }
 
+.colorChosenImage {
+  width: 75px !important;
+  height: 75px;
+  border-radius: 50% !important;
+  margin: 5px;
+}
+
