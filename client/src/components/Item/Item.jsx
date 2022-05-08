@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
-import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
+import { clearChosenColorsAC, fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
 import styles from './Item.module.css';
@@ -27,7 +27,7 @@ function Item(props) {
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
     return () => {
-      dispatch({type: 'CLEAR_CHOISEN_COLORS'})
+      dispatch(clearChosenColorsAC())
     }
   }, [dispatch, patternId])
 
@@ -204,7 +204,38 @@ function Item(props) {
               <p>* на большие размеры цена может быть увеличена</p>
             </div>
             }
-            <button type='submit' className='btn btn-primary'>Добавить в корзину</button>
+            <div>
+            <p className={styles.sizeInstructionColor} data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Инструкция по размерам
+            </p>
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Инструкция по размерам</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body">
+                    <p className={styles.sizeInstructionText}>При измерениях стойте ровно, выпрямив спину. Попросите кого-нибудь измерить вас, показания будут более точными. Сантиметровая лента должна плотно прилегать к телу, причем измерения лучше проводить, находясь в нижнем белье.</p> 
+                    <h6>Обхват груди</h6>
+                    <p className={styles.sizeInstructionText}>Сантиметровая лента проходит вокруг туловища через выступающие точки груди и нижнюю часть лопаток. При этом метр не нужно сильно стягивать на груди. Измерение делайте на выдохе. Зная свой обхват груди, легко определить свой российский размер - необходимо поделить объем пополам (если ОГ-100см, 100:2=50, значит 50- Ваш российский размер).</p>
+                    <h6>Обхват талии</h6>
+                    <p className={styles.sizeInstructionText}>Сантиметровая лента замыкается вокруг самой узкой части талии. Убедитесь , что лента расположена горизонтально. Живот втягивать не нужно, придерживайтесь своего обычного положения.</p>
+                    <h6>Обхват бедер</h6>
+                    <p className={styles.sizeInstructionText}>При измерении бедер расположите сантиметровую ленту горизонтально, стараясь охватить наиболее выступающие точки. Лента не должна быть слишком натянута или наоборот, ослаблена.</p>
+                    <h6>Стандартные размеры (XS, S, M, L, XL)</h6>
+                    <p className={styles.sizeInstructionText}>Уважаемые покупатели, в таблицах указаны всего лишь усредненные показатели! Размеры одежды на сайте соответствуют российским размерам, поэтому заказывайте именно те размеры, которые Вы сегодня реально носите!</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div>
+              <button type='submit' className='btn btn-primary'>Добавить в корзину</button>
+            </div>
           </div>
         </form>
       </div>

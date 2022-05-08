@@ -65,7 +65,7 @@ function OrderForm(props) {
     (currentOrderMessage !== '')
     ?
     <div className={`card ${styles.successPurchaseContainer}`}>
-      <div className='card-body'>
+      <div>
         <h5 className='card-title'>{currentOrderMessage}</h5>
       </div>
     </div>

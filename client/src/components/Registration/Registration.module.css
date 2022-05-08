@@ -21,3 +21,8 @@
   width: 30vw
   /* justify-content: center; */
 }
+
+.errorStatusBox {
+  /* border: 2px solid black; */
+  margin: 1vh;
+}
