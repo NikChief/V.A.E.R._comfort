@@ -8,14 +8,9 @@ router
     // console.log('hi')
     try {
       const { body } = req;
-      console.log('body', body);
 
       // eslint-disable-next-line no-restricted-syntax
       for (const item of body) {
-        // eslint-disable-next-line no-await-in-loop
-        // eslint-disable-next-line no-unused-vars
-        // eslint-disable-next-line no-await-in-loop
-        console.log(item, 'item');
         // eslint-disable-next-line no-await-in-loop
         const newOrderItem = await OrderItem.create({
           item_id: item.item_id,
