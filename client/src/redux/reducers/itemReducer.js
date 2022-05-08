@@ -13,36 +13,27 @@ export function itemReducer(state = initialState, action) {
     
     case INIT_CURRENT_ITEM_PRICE:
       // данные о цене текущего item записываются в стейт
-      console.log('price', action.payload.price)
       return {
         ...state, currentItemPrice: action.payload.price
       }
     
     case INIT_CURRENT_ITEM_COUNT:
       // данные о кол-ве текущего item записываются в стейт
-      console.log('count', action.payload)
       return {
         ...state, currentItemCount: action.payload
       } 
 
     case INIT_CURRENT_ITEM_AMOUNT:
-      // данные о кол-ве текущего item записываются в стейт
-      console.log('amount', action.payload)
+      // данные о стоимости текущего item записываются в стейт
       return {
         ...state, currentItemAmount: Number(action.payload.currentItemCount) * Number(action.payload.currentItemPrice)
       } 
     
-    case CLEAR_INIT_CURRENT_ITEM:
-      // данные о кол-ве текущего item записываются в стейт
-      console.log('amount', action.payload)
+    case CLEAR_CURRENT_ITEM:
+      // стираем данные о текущем item из стейта
       return {
         ...state, currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: ''
       } 
-
-    case CLEAR_CURRENT_ITEM:
-      // при размонтировании компонента всё почистится и на новом итеме будет красивенько
-      return initialState;
-    
 
     default:
       return state
