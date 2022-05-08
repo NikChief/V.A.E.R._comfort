@@ -2,10 +2,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
-import { fetchInitCurrentItemAC } from '../../redux/actionCreators/itemAC';
+import { fetchInitCurrentItemAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
@@ -16,18 +16,22 @@ function Item(props) {
 
   const { patternId } = useParams()
 
-  const { currentItem } = useSelector(state => state.itemState);
+  const { currentItem, currentItemPrice, currentItemCount } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
   }, [dispatch, patternId])
 
-  
+  const getCount = (e) => {
+    const count = e.target.value;
+    dispatch(initCurrentItemCountAC(count))
+  }
+
   useEffect(() => {
     dispatch(fetchInitColorsAC())
   },[dispatch])
@@ -59,7 +63,8 @@ function Item(props) {
    
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
-    navigate('/')
+    // надо стереть current item в конце
+    alert('Товар добавлен в корзину.')
   }
 
   return (
@@ -81,16 +86,16 @@ function Item(props) {
               <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
               <ColorChoiceForm colorType={'дополнительный цвет 2'} actionType={'PIC_EXTRA2'} stateName={'colorChosenExtra2'} />
               </>
-            :
-            (currentItem.color_count === 2) 
-            ?
-            <>
+              :
+              (currentItem.color_count === 2) 
+              ?
+              <>
+                <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+                <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
+              </>
+              :
               <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
-              <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
-            </>
-            :
-            <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
-          }
+              }
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
             <h5 className='card-title'>Выберите материал:</h5>
@@ -98,7 +103,7 @@ function Item(props) {
             </div>
             <div id='countForm' className={styles.materialChoiceFormContainer}>
               <label htmlFor='count' className='form-label'>Количество</label>
-              <select required className='form-select' id='count'>
+              <select onChange={getCount} required className='form-select' id='count'>
                 <option selected value=''>Выбери количество</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
@@ -112,21 +117,23 @@ function Item(props) {
                 <option value='10'>10</option>
               </select>
             </div>
+            <div className={styles.materialChoiceFormContainer}>
+              <h5 className='card-title'>Описание модели:</h5>
+              {/* стили css поправить}
+              {/* <p className='card-text'>{currentItem.description}</p> */}
+              {/* // колонка description будет добавлена в таблицу pattern   */}
+            </div>
+            {
+            (currentItemPrice !== '' && currentItemCount !== '')
+            &&
+            <div className={styles.materialChoiceFormContainer}>
+              <h5 className='card-title'>Стоимость:</h5>
+              <p className='card-text'>{currentItemPrice * currentItemCount + ' руб.'}</p>
+            </div>
+            }
           </div>
           <div id='sizeForm' className={styles.sizeForm}>
             <h5>Укажите размеры:</h5>
-            {(currentItem.size_type_id === 1 || currentItem.size_type_id === 2)
-            &&
-            <div className='mb-3'>
-              <label htmlFor='base_size' className='form-label'>Базовый размер</label>
-              <select required className='form-select' id='base_size'>
-                <option selected value=''>Выбери базовый размер</option>
-                <option value='S'>S</option>
-                <option value='M'>M</option>
-                <option value='L'>L</option>
-              </select>
-            </div>
-            }
             {(currentItem.size_type_id === 1)
             &&
             <>
@@ -163,6 +170,18 @@ function Item(props) {
                 <option value='110'>110</option>
                 <option value='120'>120</option>
                 <option value='130'>130</option>
+              </select>
+            </div>
+            }
+            {(currentItem.size_type_id === 1 || currentItem.size_type_id === 2)
+            &&
+            <div className='mb-3'>
+              <label htmlFor='base_size' className='form-label'>Какой размер вы обычно носите</label>
+              <select required className='form-select' id='base_size'>
+                <option selected value=''>Выбери базовый размер</option>
+                <option value='S'>S</option>
+                <option value='M'>M</option>
+                <option value='L'>L</option>
               </select>
             </div>
             }
