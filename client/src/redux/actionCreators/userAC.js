@@ -5,7 +5,9 @@ import {
   SAGA_LOGGEDIN_USER, 
   SAGA_LOGOUT_USER, 
   SAGA_REGISTER_USER, 
-  SAGA_IS_USER_AUTHORIZED 
+  SAGA_IS_USER_AUTHORIZED, 
+  EDIT_USER,
+  SAGA_EDIT_USER
 } from '../actionTypes/userAT'
 
 export function loggedInUserAC(payload) {
@@ -50,5 +52,19 @@ export function clearUserMessageAC() {
 export function fetchIsUserAuthorizedAC() {
   return {
     type: SAGA_IS_USER_AUTHORIZED,
+  }
+}
+
+export function editUserAC(payload) {
+  return {
+    type: EDIT_USER,
+    payload
+  }
+}
+
+export function fetchEditUserAC(payload) {
+  return {
+    type: SAGA_EDIT_USER,
+    payload
   }
 }
