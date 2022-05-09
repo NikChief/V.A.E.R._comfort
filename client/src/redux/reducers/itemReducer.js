@@ -35,6 +35,11 @@ export function itemReducer(state = initialState, action) {
         ...state, currentItem: '', currentItemPrice: '', currentItemCount: '', currentItemAmount: ''
       } 
 
+    case UPDATE_CURRENT_ITEM_AMOUNT:
+      return {
+        ...state, currentAmount: action.payload
+      }
+
     default:
       return state
   }

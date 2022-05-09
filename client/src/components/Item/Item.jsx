@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
@@ -23,7 +23,7 @@ function Item(props) {
   const { colorChosenMain, colorChosenExtra1, colorChosenExtra2 } = useSelector(state => state.colorsState);
   // console.log(colorChosenMain, colorChosenExtra1, colorChosenExtra2, 'colorChosenMain, colorChosenExtra1, colorChosenExtra2')
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
@@ -50,9 +50,14 @@ function Item(props) {
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
 
+  // useEffect(() => {
+  //   dispatch(fetchInitCurrentItemAC(patternId))
+  // }, [itemsInfoFromDb])
+
   useEffect(() => {
     dispatch(clearCurrentItemAC())
   }, [dispatch])
+
 
   const getInput = (e) => {
     e.preventDefault();
