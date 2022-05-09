@@ -20,6 +20,7 @@ function Nav(props) {
     e.preventDefault();
     dispatch(fetchLoggedOutUserAC())
     dispatch(clearBasketAC())
+    localStorage.clear()
     navigate('/')
   }
 
