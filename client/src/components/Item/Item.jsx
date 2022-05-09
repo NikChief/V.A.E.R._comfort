@@ -53,9 +53,11 @@ function Item(props) {
   // useEffect(() => {
   //   dispatch(fetchInitCurrentItemAC(patternId))
   // }, [itemsInfoFromDb])
+
   useEffect(() => {
     dispatch(clearCurrentItemAC())
   }, [dispatch])
+
 
   const getInput = (e) => {
     e.preventDefault();
