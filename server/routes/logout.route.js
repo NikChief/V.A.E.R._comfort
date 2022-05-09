@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      message: `Ошибка выхода из профиля, \n ${error.message}`,
+      message: `Ошибка выхода из профиля. Описание ошибки: ${error.message}`,
       successLogout: false,
     });
   }

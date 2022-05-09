@@ -1,23 +1,20 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-// import { clearBasketAC } from '../../redux/actionCreators/basketAC';
-import { clearCurrentOrderAC, fetchAddOrderItemAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
+import { fetchAddOrderItemAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
 function OrderForm(props) {
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const { user } = useSelector(state => state.userState);
   const { currentOrder, currentOrderMessage } = useSelector(state => state.ordersState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
-  console.log(currentOrder, '=======currentOrder')
   useEffect(() => {
     let orderItems = [];
   
@@ -38,13 +35,12 @@ function OrderForm(props) {
         obj.groin_to_bone = basketItems[i]?.groin_to_bone;
         orderItems.push(obj)
       }
-      console.log(orderItems, 'orderItems')
       dispatch(fetchAddOrderItemAC(orderItems))
     }
 
   }, [currentOrder, basketItems, itemsInfoFromDb, dispatch])
 
-  const proceedOrder = (e) => {
+  const proceedOrder = useCallback((e) => {
     e.preventDefault(proceedOrder);
 
     const newOrder = {
@@ -57,15 +53,13 @@ function OrderForm(props) {
     
     dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
-    // alert(currentOrderMessage)
-    // navigate('/')
-  }
+  }, [dispatch, user.userId])
 
   return (
     <>
     {
     (basketItems.length !== 0)
-    &&
+    ?
     (<div className={styles.orderOuterContainer}>
       <div className={styles.orderInnerContainer}>
         <h5>
@@ -88,6 +82,12 @@ function OrderForm(props) {
         </form>
       </div>
     </div>)
+    :
+    <div className={styles.messageContainer}>
+      <div>
+      <h4>{currentOrderMessage}</h4>
+      </div>
+    </div>
     }
     </>
   )

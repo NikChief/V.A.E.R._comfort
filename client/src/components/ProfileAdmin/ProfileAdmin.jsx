@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getOrdersInfoAC, getPersonalInfoAC } from '../../redux/actionCreators/profileAC';
@@ -9,13 +10,13 @@ function ProfileAdmin(props) {
   const dispatch = useDispatch()
   const { personalInfoView } = useSelector(state => state.profileState);
 
-  const getPersonalInfo = () => {
+  const getPersonalInfo = useCallback(() => {
     dispatch(getPersonalInfoAC());
-  }
+  }, [dispatch])
 
-  const getOrdersInfo = () => {
+  const getOrdersInfo = useCallback(() => {
     dispatch(getOrdersInfoAC());
-  }
+  }, [dispatch])
 
   return (
     <div>

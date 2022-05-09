@@ -131,7 +131,7 @@ function* fetchIsUserAuthorized() {
     );
   }
 }
-//
+
 function* fetchEditUser(action) {
   try {
     const data = yield call(
@@ -144,7 +144,7 @@ function* fetchEditUser(action) {
       body: JSON.stringify(action.payload)
     }
     );
-    // console.log(data)
+
     yield put(editUserAC(data));
   } catch (e) {
     yield put(
@@ -336,15 +336,11 @@ function* fetchAddOrderItem(action) {
     );
     
     if (data.message === 'Данные записаны в базу данных') {
-      console.log('data.message', data.message)
-      console.log('helllooo1111')
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
-      console.log('helllooo')
-      console.log(data.message)
     }
-    // yield put(loggedInUserAC(data));
+
   } catch (e) {
     yield put(
       {
@@ -384,7 +380,7 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_COLORS, fetchInitColors)
   yield takeEvery(SAGA_INIT_CURRENT_ITEM, fetchInitCurrentItem)
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
-  yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
+  yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized) //ОК
   yield takeEvery(SAGA_INIT_MATERIALS, fetchInitMaterials)
   yield takeEvery(SAGA_INIT_TYPES, fetchInitTypes)
   yield takeEvery(SAGA_INIT_CATEGORY_TYPES, fetchInitCategoryTypes)

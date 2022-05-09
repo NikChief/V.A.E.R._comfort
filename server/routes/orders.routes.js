@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Order, OrderItem, Item, Color } = require('../db/models');
+const {
+  Order, OrderItem, Item, Color,
+} = require('../db/models');
 
 router
   .route('/')
@@ -53,7 +55,7 @@ router
       });
     } catch (error) {
       res.status(400).json({
-        message: `Что-то пошло не так, \n ${error.message}`,
+        message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
       });
     }
   })
@@ -61,7 +63,6 @@ router
     try {
       // eslint-disable-next-line prefer-destructuring
       const body = req.body;
-      console.log('orderBody', body)
 
       let newOrder = '';
       if (body.user_id === null) {
@@ -76,8 +77,6 @@ router
         // eslint-disable-next-line no-unused-vars
         newOrder = await Order.create(body);
       }
-
-      console.log(newOrder, 'newOrder ===<')
 
       res
         .status(200)
@@ -101,8 +100,6 @@ router
   .get(async (req, res) => {
     try {
       const { id } = req.params;
-      // console.log('id=================', id);
-      // async
       const orderDetails = await OrderItem.findAll({
         where: {
           order_id: id,
@@ -114,7 +111,7 @@ router
       });
     } catch (error) {
       res.status(400).json({
-        message: `Что-то пошло не так, \n ${error.message}`,
+        message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
       });
     }
   });

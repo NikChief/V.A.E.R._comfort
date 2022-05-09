@@ -66,7 +66,6 @@ newOrderItems[i].main_color_id=colors[j].name
       }
 
     case INIT_CURRENT_ORDER:
-      // console.log('=====', action.payload )
       return {
         ...state, currentOrder: action.payload
       }
@@ -78,10 +77,6 @@ newOrderItems[i].main_color_id=colors[j].name
 
     case CLEAR_CURRENT_ORDER:
       // очищаем текущий заказ (стираем массив заказов)
-      const clearCurrentOrder = {
-        ...state, currentOrder: ''
-      }
-      console.log('clearCurrentOrder', clearCurrentOrder)
       return {
         ...state, currentOrder: ''
       }

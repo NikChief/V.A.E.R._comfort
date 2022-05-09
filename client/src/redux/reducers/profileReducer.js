@@ -7,13 +7,11 @@ const initialState = { personalInfoView: true }
 export function profileReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PERSONAL_INFO:
-      // console.log('init order details=>', action.payload);
       return {
         ...state, personalInfoView: true, 
       }
     
     case GET_ORDERS_INFO:
-      // console.log('init order details=>', action.payload);
       return {
         ...state, personalInfoView: false, 
       }

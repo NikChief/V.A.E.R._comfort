@@ -11,6 +11,7 @@ import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
 import styles from './Item.module.css';
 import { v4 as uuidv4 } from 'uuid';
+import { useCallback } from 'react';
 
 function Item(props) {
 
@@ -19,9 +20,7 @@ function Item(props) {
   const { currentItem, currentItemPrice, currentItemCount, currentItemAmount } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  console.log(basketItems, itemsInfoFromDb, 'basketItems, itemsInfoFromDb')
   const { colorChosenMain, colorChosenExtra1, colorChosenExtra2 } = useSelector(state => state.colorsState);
-  // console.log(colorChosenMain, colorChosenExtra1, colorChosenExtra2, 'colorChosenMain, colorChosenExtra1, colorChosenExtra2')
   const dispatch = useDispatch();
   // const navigate = useNavigate();
 
@@ -32,10 +31,10 @@ function Item(props) {
     }
   }, [dispatch, patternId])
 
-  const getCount = (e) => {
+  const getCount = useCallback((e) => {
     const count = e.target.value;
     dispatch(initCurrentItemCountAC(count))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(initCurrentItemAmountAC( { currentItemPrice, currentItemCount }))
@@ -47,19 +46,10 @@ function Item(props) {
   },[dispatch])
 
   useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
-  }, [basketItems, itemsInfoFromDb]);
-
-  // useEffect(() => {
-  //   dispatch(fetchInitCurrentItemAC(patternId))
-  // }, [itemsInfoFromDb])
-
-  useEffect(() => {
     dispatch(clearCurrentItemAC())
   }, [dispatch])
 
-
-  const getInput = (e) => {
+  const getInput = useCallback((e) => {
     e.preventDefault();
     const body = {
       id: uuidv4(),
@@ -79,17 +69,11 @@ function Item(props) {
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
-    // console.log(body.extra_color1_id, 'body.extra_color1_id')
-    // console.log(body.extra_color2_id, 'body.extra_color2_id')
-    console.log(body, 'body')
-
 
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
-    // надо стереть current item в конце
     alert('Товар добавлен в корзину.')
-    // navigate('/')
-  }
+  }, [dispatch, colorChosenExtra1, colorChosenExtra2, colorChosenMain, currentItem.image, currentItem.name, patternId])
 
   return (
     <div className={styles.itemContainer}>

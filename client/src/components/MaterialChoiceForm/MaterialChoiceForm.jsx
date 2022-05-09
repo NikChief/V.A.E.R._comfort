@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -15,10 +16,10 @@ function MaterialChoiceForm({ patternId }) {
     dispatch(fetchInitMaterialsAC(patternId))
   },[dispatch, patternId])
 
-  const getMaterial = (e) => {
+  const getMaterial = useCallback((e) => {
     const materialId = JSON.parse(e.target.value).id;
     dispatch(fetchInitCurrentItemPriceAC({ patternId, materialId }));
-  }
+  }, [dispatch, patternId])
 
   return (
     <div>

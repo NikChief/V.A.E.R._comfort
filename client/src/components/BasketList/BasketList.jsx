@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Basketcard from '../BasketCard/BasketCard';
 import { useDispatch } from 'react-redux';
-import { clearBasketAC, initBasketTotalAC } from '../../redux/actionCreators/basketAC';
+import { initBasketTotalAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketList.module.css'
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,6 @@ function BasketList(props) {
 
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basketItems } = useSelector(state => state.basketState);
-  console.log('basketItems', basketItems)
   const { basketTotal } = useSelector(state => state.basketState);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ function BasketList(props) {
   },[basketItems, itemsInfoFromDb, dispatch])
 
   return (
-    // {}
     <div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
         {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
