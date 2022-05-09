@@ -8,7 +8,7 @@ import style from './Nav.module.css'
 
 function Nav(props) {
 
-  const { user } =useSelector(state => state.userState);
+  const { user } = useSelector(state => state.userState);
   const dispatch = useDispatch();
   
   const logout = (e) => {
@@ -20,10 +20,10 @@ function Nav(props) {
     <div className={style.main}>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid'>
-          <Link className='navbar-brand' to='/'><img src="images/logo.png" alt="logo" style={{height: "70px"}}/></Link>
-          <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+          <Link className='navbar-brand' to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="logo" style={{height: "70px"}}/></Link>
+          {/* <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
-          </button>
+          </button> */}
           <TypeList/>
           <div className='' id='navbarNav'>
             <ul className='navbar-nav'>
