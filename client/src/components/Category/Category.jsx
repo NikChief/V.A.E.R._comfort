@@ -16,7 +16,7 @@ function Category({category}) {
 
   return (
     <div className="card" style={{"width": "20rem"}}>
-      <img src={`http://localhost:4000/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
+      <img src={`${process.env.REACT_APP_BASE_URL}/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
       <div className="card-body d-flex justify-content-center">
       <Link to={`/catalogue/${params.type}/${category.Category.link_name}`} 
             onClick={getCategoryTypeId} 

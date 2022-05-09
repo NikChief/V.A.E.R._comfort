@@ -1,6 +1,8 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, INIT_CURRENT_ORDER_MESSAGE } from '../actionTypes/ordersAT'
 
-const initialState = { orders: [], currentOrder: '', ordersInfo: [] }
+
+const initialState = { orders: [], currentOrder: '', currentOrderMessage: '', ordersInfo: [] }
+
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
@@ -64,11 +66,22 @@ newOrderItems[i].main_color_id=colors[j].name
       }
 
     case INIT_CURRENT_ORDER:
+      // console.log('=====', action.payload )
       return {
         ...state, currentOrder: action.payload
       }
+    
+    case INIT_CURRENT_ORDER_MESSAGE:
+      return {
+        ...state, currentOrderMessage: action.payload
+      }
 
     case CLEAR_CURRENT_ORDER:
+      // очищаем текущий заказ (стираем массив заказов)
+      const clearCurrentOrder = {
+        ...state, currentOrder: ''
+      }
+      console.log('clearCurrentOrder', clearCurrentOrder)
       return {
         ...state, currentOrder: ''
       }

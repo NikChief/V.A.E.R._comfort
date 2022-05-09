@@ -42,6 +42,7 @@ router
       req.session.userId = newUser.id;
       req.session.userEmail = newUser.email;
       req.session.userName = newUser.name;
+      req.session.userIsAdmin = newUser.isAdmin;
 
       res
         .status(200)
@@ -51,6 +52,7 @@ router
           userId: req.session.userId,
           userEmail: req.session.userEmail,
           userName: req.session.userName,
+          userIsAdmin: req.session.userIsAdmin,
         });
     }
   });

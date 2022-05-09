@@ -15,6 +15,7 @@ router
           userId: req.session.userId,
           userName: req.session.userName,
           userEmail: req.session.userEmail,
+          userIsAdmin: req.session.userIsAdmin,
         });
     } else {
       res
@@ -39,6 +40,7 @@ router
         req.session.userId = user.id;
         req.session.userEmail = user.email;
         req.session.userName = user.name;
+        req.session.userIsAdmin = user.isAdmin;
         res
           .status(200)
           .json({
@@ -47,6 +49,7 @@ router
             userId: req.session.userId,
             userEmail: req.session.userEmail,
             userName: req.session.userName,
+            userIsAdmin: req.session.userIsAdmin,
           });
       } else {
         res

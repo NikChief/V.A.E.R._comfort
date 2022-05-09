@@ -2,19 +2,19 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Types', [
       {
-        name: 'Женские',
+        name: 'Для женщин',
         link_name: 'woman',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },
       {
-        name: 'Мужские',
+        name: 'Для мужчин',
         link_name: 'man',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },
       {
-        name: 'Детские',
+        name: 'Для детей',
         link_name: 'child',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),

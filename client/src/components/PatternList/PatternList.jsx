@@ -11,7 +11,7 @@ function PatternList(props) {
   const { patterns, categoryTypeId } = useSelector(state => state.patternState)
 
   useEffect(() => {
-    console.log(categoryTypeId);
+    // console.log(categoryTypeId);
     dispatch(fetchInitPatternsAC(categoryTypeId))
 
     return () => dispatch(clearPatternsAC())

@@ -1,9 +1,8 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
-import { initOrdersAC } from '../actionCreators/ordersAC';
 import { editUserAC, loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
 import { initCurrentItemAC, initCurrentItemPriceAC } from '../actionCreators/itemAC';
-import { clearCurrentOrderAC, initCurrentOrderAC} from '../actionCreators/ordersAC';
+import { clearCurrentOrderAC, initCurrentOrderAC, initCurrentOrderMessageAC, initOrdersAC } from '../actionCreators/ordersAC';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
@@ -145,7 +144,7 @@ function* fetchEditUser(action) {
       body: JSON.stringify(action.payload)
     }
     );
-    console.log(data)
+    // console.log(data)
     yield put(editUserAC(data));
   } catch (e) {
     yield put(
@@ -312,6 +311,7 @@ function* fetchInitCurrentOrder(action) {
     );
     
     yield put(initCurrentOrderAC(data));
+    yield put(initCurrentOrderMessageAC(data.message));
   } catch (e) {
     yield put(
       {
@@ -336,9 +336,11 @@ function* fetchAddOrderItem(action) {
     );
     
     if (data.message === 'Данные записаны в базу данных') {
+      console.log('data.message', data.message)
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
+      console.log('helllooo')
       console.log(data.message)
     }
     // yield put(loggedInUserAC(data));

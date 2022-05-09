@@ -1,0 +1,2 @@
+export const GET_PERSONAL_INFO = 'GET_PERSONAL_INFO';
+export const GET_ORDERS_INFO = 'GET_ORDERS_INFO';

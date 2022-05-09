@@ -1,4 +1,4 @@
-import { CLEAR_INIT_CURRENT_ITEM, INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE, SAGA_INIT_CURRENT_ITEM, SAGA_INIT_CURRENT_ITEM_PRICE } from "../actionTypes/itemAT";
+import { INIT_CURRENT_ITEM, INIT_CURRENT_ITEM_AMOUNT, INIT_CURRENT_ITEM_COUNT, INIT_CURRENT_ITEM_PRICE, SAGA_INIT_CURRENT_ITEM, SAGA_INIT_CURRENT_ITEM_PRICE, CLEAR_CURRENT_ITEM } from "../actionTypes/itemAT";
 
 export function initCurrentItemAC(payload) {
   return {
@@ -42,8 +42,8 @@ export function initCurrentItemAmountAC(payload) {
   }
 }
 
-export function clearCurrentItemCountAC() {
+export function clearCurrentItemAC() {
   return {
-    type: CLEAR_INIT_CURRENT_ITEM,
+    type: CLEAR_CURRENT_ITEM,
   }
 }

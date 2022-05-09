@@ -1,4 +1,4 @@
-import { INIT_COLORS } from "../actionTypes/colorsAT"
+import { CLEAR_CHOSEN_COLORS, INIT_COLORS } from "../actionTypes/colorsAT"
 
 const initialState = { 
   colors: [], 
@@ -25,7 +25,14 @@ export function colorsReducer(state = initialState, action) {
     case 'PIC_EXTRA2':
       return {
         ...state, colorChosenExtra2: action.payload
-      };    
+      };
+    case CLEAR_CHOSEN_COLORS:
+      return {
+        ...state,
+        colorChosenMain: initialState.colorChosenMain,
+        colorChosenExtra1: initialState.colorChosenExtra1,
+        colorChosenExtra2: initialState.colorChosenExtra2,
+      };      
     default:
       return state;
   }
