@@ -6,18 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
+import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
 
 function Profile(props) {
   const { user } = useSelector(state => state.userState);
   // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {orders}  = useSelector(state => state.ordersState);
+  const { orders } = useSelector(state => state.ordersState);
   // console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchInitOrdersAC())
   }, [dispatch])
 
@@ -45,6 +46,15 @@ function Profile(props) {
     }
   }
 
+  const editProfileFunction = (event) => {
+    event.preventDefault();
+    const body = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+    }
+    dispatch(fetchEditUserAC(body))
+  }
+
   return (
     <div>
       {user.loggedIn ?
@@ -54,7 +64,42 @@ function Profile(props) {
           <div>{user.userName}</div>
           <div>E-mail: </div>
           <div>{user.userEmail}</div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Изменить данные профиля
+          </button>
           <br />
+          {!user.loggedIn && user.message}
+          <br />
+          {/* <!-- Modal --> */}
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Окно изменения личной информации</h5>
+                </div>
+                <div class="modal-body">
+                  <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
+                    <div className='mb-3'>
+                      <label htmlFor='name' className='form-label'>Новое имя</label>
+                      <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required />
+                    </div>
+                    <div className='mb-3'>
+                      <label htmlFor='email' className='form-label'>Новая электронная почта</label>
+                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required/>
+                    </div>
+                    <div>
+                      <input type='submit' className='btn btn-primary' data-bs-dismiss="modal" value='Сохранить изменения' />
+                    </div>
+                  </form>
+                  <hr />
+                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" style={{margin: "0 auto"}} data-bs-dismiss="modal">Закрыть без изменений</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <h3>История заказов</h3>
           <div>
             <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
@@ -77,7 +122,7 @@ function Profile(props) {
               </tr>
             </thead>
             <tbody>
-              {(orders.length) ? (orders.map(order =>
+              {(orders?.length) ? (orders.map(order =>
                 <ProfileOrderString key={order.id} order={order} />
               )) : (<div>Нет заказов</div>)}
             </tbody>

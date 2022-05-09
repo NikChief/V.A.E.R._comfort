@@ -1,4 +1,4 @@
-import { INIT_COLORS, SAGA_INIT_COLORS } from "../actionTypes/colorsAT";
+import { INIT_COLORS, SAGA_INIT_COLORS, CLEAR_CHOSEN_COLORS } from "../actionTypes/colorsAT";
 
 export function initColorsAC(payload) {
   return {
@@ -12,3 +12,12 @@ export function fetchInitColorsAC() {
     type: SAGA_INIT_COLORS,
   }
 }
+
+export function clearChosenColorsAC() {
+  return {
+    type: CLEAR_CHOSEN_COLORS,
+  }
+}
+
+
+

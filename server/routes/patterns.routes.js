@@ -7,7 +7,7 @@ router
     try {
       const { id } = req.params;
       const pattern = await Pattern.findByPk(id);
-
+      // колонка description будет добавлена в таблицу pattern
       res
         .status(200)
         .json(pattern);
