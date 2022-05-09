@@ -14,7 +14,7 @@ function Nav(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log(user.loggedIn && user.userIsAdmin, '13')
-  
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(fetchLoggedOutUserAC())
@@ -42,6 +42,7 @@ function Nav(props) {
               <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>
               }
               {user.loggedIn ?
+
               (<>
                 <li className='nav-item' onClick={logout}><p className='nav-link'>Выйти</p></li>
               </>

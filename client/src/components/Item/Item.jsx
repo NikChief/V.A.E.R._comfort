@@ -96,7 +96,7 @@ function Item(props) {
       <div id='patternInfo' className={styles.patternInfoContainer}>
         <h5 className='card-title'>Модель:</h5>
         <p className='card-text'>{currentItem.name}</p>
-        <img src={`http://localhost:4000/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        <img src={`${process.env.REACT_APP_BASE_URL}/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
       </div>
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
