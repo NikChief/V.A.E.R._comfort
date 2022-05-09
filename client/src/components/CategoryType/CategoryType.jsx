@@ -9,7 +9,6 @@ function CategoryType(props) {
   const params = useParams();
   const dispatch = useDispatch();
   const {categoryTypes} = useSelector(state => state.categoryTypesState);
-  // console.log(categoryTypes)
 
   useEffect(() => {
     dispatch(fetchInitCategoryTypesAC(params.type))
