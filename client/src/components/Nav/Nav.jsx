@@ -27,9 +27,15 @@ function Nav(props) {
           <TypeList/>
           <div className='' id='navbarNav'>
             <ul className='navbar-nav'>
+              {
+              (user.loggedIn && user.userIsAdmin)
+              ?
+              <li className='nav-item'><Link to='/profileAdmin' className='nav-link'>Профиль</Link></li>
+              :
+              <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>
+              }
               {user.loggedIn ?
               (<>
-                <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>
                 <li className='nav-item' onClick={logout}><p className='nav-link'>Выйти</p></li>
               </>
               )
