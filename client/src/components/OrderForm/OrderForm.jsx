@@ -62,7 +62,9 @@ function OrderForm(props) {
 
   return (
     <>
-    { 
+    {
+    (user.loggedIn)
+    ?
     (basketItems.length !== 0)
     &&
     (<div className={styles.orderOuterContainer}>
@@ -87,6 +89,11 @@ function OrderForm(props) {
         </form>
       </div>
     </div>)
+    :
+    <div>
+      <p>Пожалуйста войдите в систему или зарегистрируйтесь</p>
+    </div>
+    
     }
     </>
   )

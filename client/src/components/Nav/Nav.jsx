@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
 import TypeList from '../TypeList/TypeList';
@@ -10,10 +12,13 @@ function Nav(props) {
 
   const { user } = useSelector(state => state.userState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log(user.loggedIn && user.userIsAdmin, '13')
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(fetchLoggedOutUserAC())
+    navigate('/')
   }
 
   return (
@@ -32,6 +37,8 @@ function Nav(props) {
               ?
               <li className='nav-item'><Link to='/profileAdmin' className='nav-link'>Профиль</Link></li>
               :
+              (user.loggedIn && !user.userIsAdmin)
+              &&
               <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>
               }
               {user.loggedIn ?
