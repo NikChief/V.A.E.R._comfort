@@ -31,7 +31,7 @@ async function fetchData({url, headers, method, body}) {
 function* fetchOrdersInit(action) {
   try {
     const data = yield call(fetchData, { url: '/profile' });
-    yield put(initOrdersAC(data.orders));
+    yield put(initOrdersAC(data));
   } catch (e) {
     yield put({ type: ERR_ORDERS, message: e.message });
   }

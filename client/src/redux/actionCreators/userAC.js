@@ -57,7 +57,8 @@ export function fetchIsUserAuthorizedAC() {
 
 export function editUserAC(payload) {
   return {
-    type: LOGOUT_USER,
+    type: EDIT_USER,
+    payload,
   }
 }
 

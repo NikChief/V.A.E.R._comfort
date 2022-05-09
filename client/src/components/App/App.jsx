@@ -15,6 +15,7 @@ import OrderForm from '../OrderForm/OrderForm';
 import Footer from '../Footer/Footer';
 import Item from '../Item/Item'
 import PatternList from '../PatternList/PatternList'
+import AdminProfile from '../AdminProfile/AdminProfile';
 
 function App() {
 
@@ -26,22 +27,23 @@ function App() {
 
   return (
     <>
-      <div style={{'min-height': '92.5vh'}}>
-      <Nav />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/orderForm' element={<OrderForm />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
-        <Route path='/catalogue/:type' element={<CategoryType />} />
-        <Route path='/catalogue/:type/:categoryType' element={<PatternList />} />
-        <Route path='/catalogue/:type/:categoryType/:patternId' element={<Item />} />
-        <Route path='/basket' element={<BasketList />} />
-        <Route path='*' element={<Error404 />} />
-      </Routes>
+      <div style={{ 'min-height': '92.5vh' }}>
+        <Nav />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/orderForm' element={<OrderForm />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/adminprofile' element={<AdminProfile />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/catalogue/:type' element={<CategoryType />} />
+          <Route path='/catalogue/:type/:categoryType' element={<PatternList />} />
+          <Route path='/catalogue/:type/:categoryType/:patternId' element={<Item />} />
+          <Route path='/basket' element={<BasketList />} />
+          <Route path='*' element={<Error404 />} />
+        </Routes>
       </div>
-      <Footer style={{'height': '7.5vh'}}/>
+      <Footer style={{ 'height': '7.5vh' }} />
     </>
   );
 }
