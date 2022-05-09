@@ -13,6 +13,7 @@ function BasketList(props) {
 
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basketItems } = useSelector(state => state.basketState);
+  console.log('basketItems', basketItems)
   const { basketTotal } = useSelector(state => state.basketState);
 
   useEffect(() => {

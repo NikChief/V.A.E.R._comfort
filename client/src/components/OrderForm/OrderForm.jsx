@@ -17,9 +17,10 @@ function OrderForm(props) {
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
+  console.log(currentOrder, '=======currentOrder')
   useEffect(() => {
     let orderItems = [];
-
+  
     if (currentOrder !== '') {
       for (let i = 0; i < basketItems.length; i += 1) {
         const obj = {};
@@ -51,7 +52,7 @@ function OrderForm(props) {
       status: 'В обработке',
       address: e.target.address.value,
       phone: e.target.phone.value,
-      // name: e.target.name.value,
+      name: e.target.name.value,
     }
     
     dispatch(fetchInitCurrentOrderAC(newOrder))
@@ -63,8 +64,6 @@ function OrderForm(props) {
   return (
     <>
     {
-    (user.loggedIn)
-    ?
     (basketItems.length !== 0)
     &&
     (<div className={styles.orderOuterContainer}>
@@ -81,19 +80,14 @@ function OrderForm(props) {
             <label for='phone' className='form-label'>Телефон</label>
             <input required type='text' className='form-control' id='phone' placeholder='Введите номер телефона'></input>
           </div>
-          {/* <div className='mb-3'>
+          <div className='mb-3'>
             <label for='name' className='form-label'>Имя</label>
             <input required type='text' className='form-control' id='name' placeholder='Введите имя'></input>
-          </div> */}
+          </div>
           <button type='submit' className='btn btn-primary'>Оформить заказ</button>
         </form>
       </div>
     </div>)
-    :
-    <div>
-      <p>Пожалуйста войдите в систему или зарегистрируйтесь</p>
-    </div>
-    
     }
     </>
   )

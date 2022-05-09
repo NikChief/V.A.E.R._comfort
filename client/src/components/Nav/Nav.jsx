@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
 import TypeList from '../TypeList/TypeList';
 import style from './Nav.module.css'
@@ -18,6 +19,8 @@ function Nav(props) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(fetchLoggedOutUserAC())
+    dispatch(clearBasketAC())
+    localStorage.clear()
     navigate('/')
   }
 

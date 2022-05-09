@@ -29,7 +29,7 @@ async function fetchData({url, headers, method, body}) {
 
 function* fetchOrdersInit(action) {
   try {
-    const data = yield call(fetchData, { url: '/profile' });
+    const data = yield call(fetchData, { url: '/orders' });
     yield put(initOrdersAC(data));
   } catch (e) {
     yield put({ type: ERR_ORDERS, message: e.message });
@@ -38,7 +38,7 @@ function* fetchOrdersInit(action) {
 
 function* fetchInitOrderDetails(action) {
   try {
-    const data = yield call(fetchData, { url: `/profile/${action.payload}` });
+    const data = yield call(fetchData, { url: `/orders/${action.payload}` });
     yield put(initOrderDetailsAC(data.orderDetails));
   } catch (e) {
     yield put({ type: ERR_ORDERS, message: e.message });
@@ -301,7 +301,7 @@ function* fetchInitCurrentOrder(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: '/profile', 
+        url: '/orders', 
         headers: {
           'Content-Type': 'application/json'
         },
@@ -337,6 +337,7 @@ function* fetchAddOrderItem(action) {
     
     if (data.message === 'Данные записаны в базу данных') {
       console.log('data.message', data.message)
+      console.log('helllooo1111')
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
