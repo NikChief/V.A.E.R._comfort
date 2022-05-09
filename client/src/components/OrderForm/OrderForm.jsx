@@ -2,20 +2,19 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // import { clearBasketAC } from '../../redux/actionCreators/basketAC';
-import { fetchAddOrderItemAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
+import { clearCurrentOrderAC, fetchAddOrderItemAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
 function OrderForm(props) {
 
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const { user } = useSelector(state => state.userState);
   const { currentOrder, currentOrderMessage } = useSelector(state => state.ordersState);
-  console.log(currentOrder, 'currentOrder')
-  console.log(currentOrder, 'currentOrderMessage')
   const { basketItems } = useSelector(state => state.basketState);
-  console.log(basketItems.length !== 0, 'basketItems')
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ function OrderForm(props) {
         obj.groin_to_bone = basketItems[i]?.groin_to_bone;
         orderItems.push(obj)
       }
-
+      console.log(orderItems, 'orderItems')
       dispatch(fetchAddOrderItemAC(orderItems))
     }
 
@@ -57,19 +56,13 @@ function OrderForm(props) {
     
     dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
+    // alert(currentOrderMessage)
+    // navigate('/')
   }
 
   return (
     <>
     { 
-    (currentOrderMessage !== '')
-    ?
-    <div className={`card ${styles.successPurchaseContainer}`}>
-      <div className='card-body'>
-        <h5 className='card-title'>{currentOrderMessage}</h5>
-      </div>
-    </div>
-    :
     (basketItems.length !== 0)
     &&
     (<div className={styles.orderOuterContainer}>

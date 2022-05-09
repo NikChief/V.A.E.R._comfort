@@ -52,7 +52,7 @@ function Registration(props) {
           <label htmlFor='repeat_password' className='form-label'>Повторите пароль</label>
           <input type='password' className='form-control' placeholder='Повторите пароль' name='repeat_password' id='repeat_password' />
         </div>
-        <div>
+        <div className={styles.errorStatusBox}>
           {!user.loggedIn && user.message}
         </div>
         <div className={styles.button}>
