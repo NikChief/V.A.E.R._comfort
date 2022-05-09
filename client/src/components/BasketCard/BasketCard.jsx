@@ -25,7 +25,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
     <div className={`${styles.basketCardOuterBox}`}>
       <div className={`card ${styles.basketCardBox}`}>
         <div className={`${styles.basketCardImageBox}`}>
-          <img src={`http://localhost:4000/${basketItem.pattern_image}`} className={`card-img-top ${styles.basketCardImage}`} alt="..."></img>  
+          <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.pattern_image}`} className={`card-img-top ${styles.basketCardImage}`} alt="..."></img>  
         </div>
         <div className={`${styles.basketCardInfo}`}>
           <div className={`${styles.basketCardInfoInnerBox}`}>
@@ -36,9 +36,9 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
             <div>
               <h5 className="card-title">Цвета:</h5>
               <div>
-                <img src={`http://localhost:4000/${basketItem.main_color_id.image}`} className={styles.colorChosenImage} alt="..."></img>
-                {basketItem.extra_color1_id?.id && <img src={`http://localhost:4000/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
-                {basketItem.extra_color2_id?.id && <img src={`http://localhost:4000/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
+                <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_id.image}`} className={styles.colorChosenImage} alt="..."></img>
+                {basketItem.extra_color1_id?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {basketItem.extra_color2_id?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
             <div>

@@ -28,7 +28,7 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
       <button type="button" className="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
        {colorType}
       </button>
-      <img src={`http://localhost:4000/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
+      <img src={`${process.env.REACT_APP_BASE_URL}/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
 
       </div>
       {/* <!-- Modal --> */}
