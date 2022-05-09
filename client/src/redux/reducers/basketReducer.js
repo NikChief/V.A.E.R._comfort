@@ -11,7 +11,6 @@ export function basketReducer(state = initialState, action) {
   switch (action.type) {
     
     case ADD_ITEM_TO_BASKET:
-      console.log(action.payload, '12_action.type')
       return {
         ...state, basketItems: [...state.basketItems, action.payload]
       }
@@ -25,8 +24,9 @@ export function basketReducer(state = initialState, action) {
       return {
         ...state, basketTotal: Number(action.payload)
       }
-
+    
     case DELETE_ITEM_FROM_BASKET:
+      // удаляем item из корзины
       return {
         ...state, 
         basketItems: [...state.basketItems].filter(item => item.id !== action.payload), 
@@ -35,10 +35,6 @@ export function basketReducer(state = initialState, action) {
 
     case CLEAR_BASKET:
       // стираем корзину
-      const clearBasket = {
-        ...state, basketItems: [], itemsInfoFromDb: []
-      }
-      console.log('clearBasket', clearBasket)
       return {
         ...state, basketItems: [], itemsInfoFromDb: []
       }

@@ -1,8 +1,8 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
@@ -14,15 +14,14 @@ function Nav(props) {
   const { user } = useSelector(state => state.userState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user.loggedIn && user.userIsAdmin, '13')
 
-  const logout = (e) => {
+  const logout = useCallback((e) => {
     e.preventDefault();
     dispatch(fetchLoggedOutUserAC())
     dispatch(clearBasketAC())
     localStorage.clear()
     navigate('/')
-  }
+  }, [dispatch, navigate])
 
   return (
     <div className={style.main}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -9,15 +10,14 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
 
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  console.log(basketItems, 'basketItems')
-
   const dispatch = useDispatch();
 
-  const deleteItemFromBasket = () => {
+  const deleteItemFromBasket = useCallback(() => {
     dispatch(deleteItemFromBasketAC(basketItem.id))
-  }
+  }, [dispatch, basketItem.id]);
 
   useEffect(() => {
+    console.log(basketItems, '!!basketItems')
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
 

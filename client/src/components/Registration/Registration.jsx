@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -15,7 +16,7 @@ function Registration(props) {
     dispatch(clearUserMessageAC())
   },[dispatch])
 
-  const registrationFunction = (event) => {
+  const registerUser = useCallback((event) => {
     event.preventDefault();
     const body = {
       name: event.target.name.value,
@@ -25,7 +26,7 @@ function Registration(props) {
     }
     
     dispatch(fetchRegisterUserAC(body))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     if (user.loggedIn === true) {
@@ -35,7 +36,7 @@ function Registration(props) {
 
   return (
     <div className={styles.registrationOuterContainer}>
-      <form className={styles.formContainer} method='post' onSubmit={registrationFunction} autoComplete='off'>
+      <form className={styles.formContainer} method='post' onSubmit={registerUser} autoComplete='off'>
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Имя</label>
           <input type='text' className='form-control' placeholder='Введите имя' name='name' id='name' required />
