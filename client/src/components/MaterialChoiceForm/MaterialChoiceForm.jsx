@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { fetchInitCurrentItemPriceAC } from '../../redux/actionCreators/itemAC';
 import { fetchInitMaterialsAC } from '../../redux/actionCreators/materialsAC';
 
 function MaterialChoiceForm({ patternId }) {
@@ -10,20 +11,20 @@ function MaterialChoiceForm({ patternId }) {
 
   const { materials } = useSelector(state => state.materialsState);
 
-  // useEffect(() => {
-  //   dispatch(fetchInitMaterialsAC())
-  // },[dispatch])
-
   useEffect(() => {
     dispatch(fetchInitMaterialsAC(patternId))
-  },[dispatch])
+  },[dispatch, patternId])
 
+  const getMaterial = (e) => {
+    const materialId = JSON.parse(e.target.value).id;
+    dispatch(fetchInitCurrentItemPriceAC({ patternId, materialId }));
+  }
 
   return (
     <div>
-      <select required className='form-select' id='material'>
-        <option selected value=''>Выбери материал</option>
-        {materials.map(material => <option key={material.id} value={JSON.stringify(material)}>{material.type}</option>)}
+      <select onChange={getMaterial} required className='form-select' id='material'>
+        <option selected disabled value=''>Выбери материал</option>
+        {materials.map(material => <option key={material.id} value={JSON.stringify(material)}>{material.type + ' - ' + material.price + ' руб.'}</option>)}
       </select>
     </div>
   );

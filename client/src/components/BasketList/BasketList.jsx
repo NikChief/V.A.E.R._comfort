@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Basketcard from '../BasketCard/BasketCard';
 import { useDispatch } from 'react-redux';
-import { initBasketTotalAC } from '../../redux/actionCreators/basketAC';
+import { clearBasketAC, initBasketTotalAC } from '../../redux/actionCreators/basketAC';
 import styles from './BasketList.module.css'
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function BasketList(props) {
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basketItems } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
-  
+
   useEffect(() => {
     let totalAmount = 0;
     for (let i = 0; i < basketItems.length; i += 1) {
@@ -27,7 +27,7 @@ function BasketList(props) {
     // {}
     <div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
-        {basketItems.map(item => <Basketcard key={item.id} basketItem={item} />)}
+        {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
       </div>
       {(basketItems.length !== 0)
       &&

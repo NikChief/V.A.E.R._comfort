@@ -24,6 +24,7 @@ module.exports = {
       {
         name: '3',
         image: '3.jpg',
+        description: 'Толстовка с разрезами по нижнему краю',
         category_type_id: 1,
         color_count: 1,
         size_type_id: 1,
@@ -33,6 +34,7 @@ module.exports = {
       {
         name: '4',
         image: '4.jpg',
+        description: 'Нижний край толстовки с разрезами, асиметричный - спереди короче, сзади длиннее. Рукава и штанины на резинке.',
         category_type_id: 1,
         color_count: 1,
         size_type_id: 1,
@@ -50,6 +52,7 @@ module.exports = {
       },
       {
         name: '6',
+        description: 'Нижний край толстовки асиметричный - спереди короче, сзади длиннее. На толстовке втачной карман',
         image: '6.jpg',
         category_type_id: 1,
         color_count: 1,

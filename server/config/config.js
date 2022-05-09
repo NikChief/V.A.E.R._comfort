@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const cors = require('cors');
 const signUpCheck = require('../middleware/signupCheck');
 
 const sessionConfig = {
@@ -17,7 +18,7 @@ const sessionConfig = {
   cookie: {
     maxAge: 1000 * 60 * 60 * 12, // Срок истечения годности куки в миллисекундах
     httpOnly: true, // Серверная установка и удаление куки, по умолчанию true
-    // path: '/orderForm',    
+    // path: '/orderForm',
   },
 };
 
@@ -26,6 +27,7 @@ const config = (app) => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(express.static(path.join(__dirname, '..', 'public')));
+  app.use(cors());
   // Sessions
   app.use(cookieParser());
   app.use(session(sessionConfig));

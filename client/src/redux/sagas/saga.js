@@ -1,17 +1,18 @@
 import {put, call, takeEvery} from 'redux-saga/effects';
 import { initColorsAC } from '../actionCreators/colorsAC';
-import { initCurrentItemAC } from '../actionCreators/itemAC';
-import { clearCurrentOrderAC, initCurrentOrderAC, initOrdersAC } from '../actionCreators/ordersAC';
-import { loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
+import { editUserAC, loggedInUserAC, loggedOutUserAC } from '../actionCreators/userAC';
+import { initCurrentItemAC, initCurrentItemPriceAC } from '../actionCreators/itemAC';
+import { clearCurrentOrderAC, initCurrentOrderAC, initCurrentOrderMessageAC, initOrdersAC } from '../actionCreators/ordersAC';
 import { initMaterialsAC } from '../actionCreators/materialsAC';
 import { initTypesAC } from '../actionCreators/typesAC';
 import { initCategoryTypesAC } from '../actionCreators/categoryTypeAC';
 import { clearBasketAC, getItemsInfoAC } from '../actionCreators/basketAC';
 import { initPatternsAC } from '../actionCreators/patternsAC'
-import { ERR_LOGGEDIN_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
-import { ERR_ORDERS, SAGA_ADD_ORDER_ITEM, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
+
+import { ERR_LOGGEDIN_USER, SAGA_EDIT_USER, SAGA_IS_USER_AUTHORIZED, SAGA_LOGGEDIN_USER, SAGA_LOGOUT_USER, SAGA_REGISTER_USER } from '../actionTypes/userAT';
+import { ERR_ORDERS, SAGA_ADD_ORDER_ITEM, SAGA_INIT_CURRENT_ORDER, SAGA_INIT_ORDER, SAGA_INIT_ORDERS } from '../actionTypes/ordersAT';
 import { SAGA_INIT_COLORS } from '../actionTypes/colorsAT';
-import { SAGA_INIT_CURRENT_ITEM } from '../actionTypes/itemAT';
+import { SAGA_INIT_CURRENT_ITEM, SAGA_INIT_CURRENT_ITEM_PRICE } from '../actionTypes/itemAT';
 import { SAGA_INIT_MATERIALS } from '../actionTypes/materialsAT';
 import { SAGA_INIT_TYPES } from '../actionTypes/typesAT';
 import { SAGA_INIT_CATEGORY_TYPES } from '../actionTypes/categoryTypesAT'
@@ -130,6 +131,31 @@ function* fetchIsUserAuthorized() {
     );
   }
 }
+//
+function* fetchEditUser(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+      url: '/editprofile',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(action.payload)
+    }
+    );
+    // console.log(data)
+    yield put(editUserAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER,
+        message: e.message
+      }
+    );
+  }
+}
+//
 
 function* fetchInitColors() {
   try {
@@ -238,6 +264,9 @@ function* fetchItemsInfo(action) {
     );
     
     yield put(getItemsInfoAC(data));
+    // yield put(getItemsInfoAC(data.price));
+    // yield put(getItemsInfoAC(data.price));
+
   } catch (e) {
     yield put(
       {
@@ -282,6 +311,7 @@ function* fetchInitCurrentOrder(action) {
     );
     
     yield put(initCurrentOrderAC(data));
+    yield put(initCurrentOrderMessageAC(data.message));
   } catch (e) {
     yield put(
       {
@@ -306,12 +336,36 @@ function* fetchAddOrderItem(action) {
     );
     
     if (data.message === 'Данные записаны в базу данных') {
+      console.log('data.message', data.message)
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
+      console.log('helllooo')
       console.log(data.message)
     }
     // yield put(loggedInUserAC(data));
+  } catch (e) {
+    yield put(
+      {
+        type: ERR_LOGGEDIN_USER, 
+        message: e.message
+      }
+    );
+  }
+}
+
+function* fetchInitCurrentItemPrice(action) {
+  try {
+    const data = yield call(
+      fetchData, {
+        url: `/items/${action.payload.patternId}/${action.payload.materialId}`,
+      }
+    );
+    
+    yield put(initCurrentItemPriceAC(data));
+    // yield put(getItemsInfoAC(data.price));
+    // yield put(getItemsInfoAC(data.price));
+
   } catch (e) {
     yield put(
       {
@@ -336,6 +390,9 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_GET_ITEMS_INFO, fetchItemsInfo)
   yield takeEvery(SAGA_INIT_ORDER_DETAILS, fetchInitOrderDetails)
   yield takeEvery(SAGA_INIT_PATTERNS, fetchInitPatterns)
+  // yield takeEvery(SAGA_INIT_ORDER, fetchInitOrder)
+  yield takeEvery(SAGA_EDIT_USER, fetchEditUser)
   yield takeEvery(SAGA_INIT_CURRENT_ORDER, fetchInitCurrentOrder)
   yield takeEvery(SAGA_ADD_ORDER_ITEM, fetchAddOrderItem)
+  yield takeEvery(SAGA_INIT_CURRENT_ITEM_PRICE, fetchInitCurrentItemPrice)
 }
