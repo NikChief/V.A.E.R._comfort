@@ -19,8 +19,9 @@ function Item(props) {
   const { currentItem, currentItemPrice, currentItemCount, currentItemAmount } = useSelector(state => state.itemState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
+  console.log(basketItems, itemsInfoFromDb, 'basketItems, itemsInfoFromDb')
   const { colorChosenMain, colorChosenExtra1, colorChosenExtra2 } = useSelector(state => state.colorsState);
-
+  // console.log(colorChosenMain, colorChosenExtra1, colorChosenExtra2, 'colorChosenMain, colorChosenExtra1, colorChosenExtra2')
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -50,9 +51,7 @@ function Item(props) {
   }, [basketItems, itemsInfoFromDb]);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearCurrentItemAC())
-    }
+    dispatch(clearCurrentItemAC())
   }, [dispatch])
 
   const getInput = (e) => {
@@ -68,20 +67,23 @@ function Item(props) {
       waistline: e.target.waistline?.value,
       pants_length_inseam: e.target.pants_length_inseam?.value,
       groin_to_bone: e.target.groin_to_bone?.value,
-      main_color_id: colorChosenMain,
-      extra_color1_id: colorChosenExtra1,
-      extra_color2_id: colorChosenExtra2,
+      main_color_id: colorChosenMain.id,
+      extra_color1_id: colorChosenExtra1.id,
+      extra_color2_id: colorChosenExtra2.id,
       material_id: JSON.parse(e.target.material.value).id,
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
-   
+    // console.log(body.extra_color1_id, 'body.extra_color1_id')
+    // console.log(body.extra_color2_id, 'body.extra_color2_id')
+    console.log(body, 'body')
+
+
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
     // надо стереть current item в конце
-    dispatch(clearCurrentItemAC());
     alert('Товар добавлен в корзину.')
-    navigate('/')
+    // navigate('/')
   }
 
   return (

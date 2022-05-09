@@ -9,7 +9,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
 
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
-  console.log(basketItem, itemInfoFromDb, 'basketItem, itemInfoFromDb')
+  console.log(basketItems, 'basketItems')
 
   const dispatch = useDispatch();
 
@@ -37,8 +37,8 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               <h5 className="card-title">Цвета:</h5>
               <div>
                 <img src={`http://localhost:4000/${basketItem.main_color_id.image}`} className={styles.colorChosenImage} alt="..."></img>
-                {basketItem.extra_color1_id.id && <img src={`http://localhost:4000/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
-                {basketItem.extra_color2_id.id && <img src={`http://localhost:4000/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
+                {basketItem.extra_color1_id?.id && <img src={`http://localhost:4000/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {basketItem.extra_color2_id?.id && <img src={`http://localhost:4000/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
             <div>

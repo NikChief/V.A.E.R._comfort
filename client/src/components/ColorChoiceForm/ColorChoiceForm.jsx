@@ -9,7 +9,7 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
 
   const dispatch = useDispatch()
   const idModal = colorType.split(' ').join('')
-  console.log('idModal', idModal);
+  // console.log('idModal', idModal);
   const state = useSelector(state => state.colorsState);
   const { colors } = state;
   const currentColor = state[stateName];

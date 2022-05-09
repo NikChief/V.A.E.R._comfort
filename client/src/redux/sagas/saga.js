@@ -144,7 +144,7 @@ function* fetchEditUser(action) {
       body: JSON.stringify(action.payload)
     }
     );
-    console.log(data)
+    // console.log(data)
     yield put(editUserAC(data));
   } catch (e) {
     yield put(
@@ -336,9 +336,11 @@ function* fetchAddOrderItem(action) {
     );
     
     if (data.message === 'Данные записаны в базу данных') {
+      console.log('data.message', data.message)
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
+      console.log('helllooo')
       console.log(data.message)
     }
     // yield put(loggedInUserAC(data));
