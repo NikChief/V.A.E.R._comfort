@@ -16,10 +16,14 @@ import Footer from '../Footer/Footer';
 import Item from '../Item/Item'
 import PatternList from '../PatternList/PatternList'
 import ProfileAdmin from '../ProfileAdmin/ProfileAdmin';
+import { useSelector } from 'react-redux';
 
 function App() {
 
   const dispatch = useDispatch();
+
+  const { user } =useSelector(state => state.userState);
+  console.log(user, 'user')
 
   useEffect(() => {
     dispatch(fetchIsUserAuthorizedAC())
@@ -32,8 +36,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/orderForm' element={<OrderForm />} />
-        <Route path='/profile' element={<Profile />} />
+        { 
+          (user && user.userIsAdmin)
+        ?
         <Route path='/profileAdmin' element={<ProfileAdmin />} />
+        :
+        <Route path='/profile' element={<Profile />} />
+        }
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/catalogue/:type' element={<CategoryType />} />
