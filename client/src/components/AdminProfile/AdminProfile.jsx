@@ -8,12 +8,12 @@ import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
 
-function Profile(props) {
+function AdminProfile(props) {
   const { user } = useSelector(state => state.userState);
   // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { orders, ordersInfo } = useSelector(state => state.ordersState);
+  const { orders } = useSelector(state => state.ordersState);
   // console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
@@ -86,7 +86,7 @@ function Profile(props) {
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='email' className='form-label'>Новая электронная почта</label>
-                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required/>
+                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='name' className='form-label'>Новый пароль</label>
@@ -97,10 +97,10 @@ function Profile(props) {
                     </div>
                   </form>
                   <hr />
-                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>  
+                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style={{margin: "0 auto"}} data-bs-dismiss="modal">Закрыть без изменений</button>
+                  <button type="button" class="btn btn-secondary" style={{ margin: "0 auto" }} data-bs-dismiss="modal">Закрыть без изменений</button>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ function Profile(props) {
               </tr>
             </thead>
             <tbody>
-              {(ordersInfo?.length) ? (ordersInfo.map(order =>
+              {(orders?.length) ? (orders.map(order =>
                 <ProfileOrderString key={order.id} order={order} />
               )) : (<div>Нет заказов</div>)}
             </tbody>
@@ -138,5 +138,5 @@ function Profile(props) {
   );
 }
 
-export default Profile;
+export default AdminProfile;
 //

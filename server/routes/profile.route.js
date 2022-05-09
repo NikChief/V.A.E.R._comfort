@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, OrderItem } = require('../db/models');
+const { Order, OrderItem, Item, Color } = require('../db/models');
 
 router
   .route('/')
@@ -10,8 +10,46 @@ router
           user_id: req.session.userId,
         },
       });
+
+      const orderItems = await OrderItem.findAll(
+        {
+          include: [{
+            model: Item,
+
+          },
+          {
+            model: Order,
+          },
+        ]
+        },
+      );
+
+      const colors = await Color.findAll();
+
+      const newOrderItems = [];
+      for (let i = 0; i < orderItems.length; i++) {
+        for (let j = 0; j < orders.length; j++) {
+
+          if (orderItems[i].order_id === orders[j].dataValues.id) {
+            newOrderItems.push(orderItems[i]);
+          }
+        }
+      }
+
+      
+      // newOrderItems.map((element) => {
+      //   colors.map((color) => {
+      //     console.log(element.dataValues)
+      //     if (element.dataValues.main_color_id === color.id) {
+      //       return { key: 'value' }
+      //       // return { ...element.dataValues, main_color_id: color.name };
+      //     }
+      //   });
+      // });
       res.json({
         orders,
+        colors,
+        newOrderItems,
       });
     } catch (error) {
       res.status(400).json({
@@ -56,34 +94,17 @@ router
 
 router
   .route('/:id')
-  .get((req, res) => {
+  .get(async (req, res) => {
     try {
-      // const { id } = req.params;
-      // console.log('id=================');
+      const { id } = req.params;
+      // console.log('id=================', id);
       // async
-      // const orderDetails = await OrderItem.findAll({
-      //   where: {
-      //     order_id: id,
-      //   },
-      // });
-      const orderDetails = [
-        {
-          item_id: 4,
-          count: 1,
-          order_item_size_id: 4,
-          main_color_id: 3,
-          extra_color1_id: 2,
-          extra_color2_id: 3,
+      const orderDetails = await OrderItem.findAll({
+        where: {
+          order_id: id,
         },
-        {
-          item_id: 4,
-          count: 1,
-          order_item_size_id: 4,
-          main_color_id: 3,
-          extra_color1_id: 2,
-          extra_color2_id: 3,
-        },
-      ]
+      });
+      console.log(orderDetails);
       res.json({
         orderDetails,
       });
