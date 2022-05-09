@@ -42,7 +42,7 @@ export function ordersReducer(state = initialState, action) {
       }
 
     case INIT_CURRENT_ORDER:
-      console.log('=====', action.payload )
+      // console.log('=====', action.payload )
       return {
         ...state, currentOrder: action.payload
       }
@@ -53,6 +53,11 @@ export function ordersReducer(state = initialState, action) {
       }
 
     case CLEAR_CURRENT_ORDER:
+      // очищаем текущий заказ (стираем массив заказов)
+      const clearCurrentOrder = {
+        ...state, currentOrder: ''
+      }
+      console.log('clearCurrentOrder', clearCurrentOrder)
       return {
         ...state, currentOrder: ''
       }
