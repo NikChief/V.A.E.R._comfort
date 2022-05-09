@@ -15,6 +15,7 @@ import OrderForm from '../OrderForm/OrderForm';
 import Footer from '../Footer/Footer';
 import Item from '../Item/Item'
 import PatternList from '../PatternList/PatternList'
+import ProfileAdmin from '../ProfileAdmin/ProfileAdmin';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/orderForm' element={<OrderForm />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/profileAdmin' element={<ProfileAdmin />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/catalogue/:type' element={<CategoryType />} />
