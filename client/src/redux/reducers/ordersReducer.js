@@ -8,13 +8,13 @@ export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
       const colorNames = [];
-     let  colors=action.payload.colors
+      let colors = action.payload.colors
       let newOrderItems = action.payload.newOrderItems
       for (let i = 0; i < newOrderItems.length; i++) {
         for (let j = 0; j < colors.length; j++) {
           if (newOrderItems[i].main_color_id === colors[j].id) {
-newOrderItems[i].main_color_id=colors[j].name
-            
+            newOrderItems[i].main_color_id = colors[j].name
+
           }
           if (newOrderItems[i].extra_color2_id === colors[j].id) {
             newOrderItems[i].extra_color2_id = colors[j].name
@@ -24,13 +24,13 @@ newOrderItems[i].main_color_id=colors[j].name
             newOrderItems[i].extra_color1_id = colors[j].name
 
           }
-          
+
         }
         colorNames.push(newOrderItems[i])
       }
-     console.log(colorNames)
+      console.log(colorNames)
       return {
-        ...state, orders:colorNames, constOrders: colorNames, ordersInfo: action.payload.orders
+        ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders
       }
     case ALL_ORDERS:
       return {
@@ -69,7 +69,7 @@ newOrderItems[i].main_color_id=colors[j].name
       return {
         ...state, currentOrder: action.payload
       }
-    
+
     case INIT_CURRENT_ORDER_MESSAGE:
       return {
         ...state, currentOrderMessage: action.payload
