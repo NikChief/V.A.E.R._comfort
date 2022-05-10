@@ -21,13 +21,11 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
   
   return (
     <div>
-      <div className={style.choiseForm}>
-
-      <button type="button" className="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
-       {colorType}
-      </button>
-      <img src={`${process.env.REACT_APP_BASE_URL}/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
-
+      <div className={style.choiceForm}>
+        <button type="button" className={`btn m-3 ${style.choiceButton}`} data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
+          {colorType}
+        </button>
+        <img src={`${process.env.REACT_APP_BASE_URL}/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
       </div>
       
       <div className="modal fade" id={`${idModal}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

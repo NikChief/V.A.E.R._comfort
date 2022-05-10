@@ -85,60 +85,59 @@ function Item(props) {
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
         <div className={styles.leftInputContainer}>
-          <div id='colorsChoiceForm'>
-              <h6 className='card-title'>Выберите цвета:</h6>
-              {(currentItem.color_count === 3)
-              ?
-              <>
+          <div id='colorsChoiceForm' className={styles.colorsChoiceForm}>
+            <h6 className='card-title'>Выберите цвета:</h6>
+            {(currentItem.color_count === 3)
+            ?
+            <>
+            <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+            <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
+            <ColorChoiceForm colorType={'дополнительный цвет 2'} actionType={'PIC_EXTRA2'} stateName={'colorChosenExtra2'} />
+            </>
+            :
+            (currentItem.color_count === 2) 
+            ?
+            <>
               <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
               <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
-              <ColorChoiceForm colorType={'дополнительный цвет 2'} actionType={'PIC_EXTRA2'} stateName={'colorChosenExtra2'} />
-              </>
-              :
-              (currentItem.color_count === 2) 
-              ?
-              <>
-                <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
-                <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
-              </>
-              :
-              <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
-              }
-            </div>
-            <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
+            </>
+            :
+            <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
+            }
+          </div>
+          <div id='materialChoiceForm' className={styles.choiceInnerForm}>
             <h6 className='card-title'>Выберите материал:</h6>
               <MaterialChoiceForm patternId={patternId} />
-            </div>
-            <div id='countForm' className={styles.materialChoiceFormContainer}>
-              <label htmlFor='count' className={styles.labelStyle}><h6>Количество</h6></label>
-              <select onChange={getCount} required className={`${styles.inputStyle} ${styles.textStyle} form-select`} id='count'>
-                <option selected disabled value=''>Выбери количество</option>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-                <option value='6'>6</option>
-                <option value='7'>7</option>
-                <option value='8'>8</option>
-                <option value='9'>9</option>
-                <option value='10'>10</option>
-              </select>
-            </div>
-            <div className={styles.materialChoiceFormContainer}>
-              <h6 className='card-title'>Описание модели:</h6>
-              <p className='card-text'>{currentItem.description}</p>
-              {/* стили css поправить */}
-            </div>
-            <div className={styles.materialChoiceFormContainer}>
-              <h6 className='card-title'>Стоимость:</h6>
-              {
-              (currentItemAmount !== '')
-              &&
-              <p className='card-text'>{currentItemAmount + ' руб.'}</p>
-              }
-            </div>
           </div>
+          <div id='countForm' className={styles.choiceInnerForm}>
+            <label htmlFor='count' className={styles.labelStyle}><h6>Количество</h6></label>
+            <select onChange={getCount} required className={`${styles.inputStyle} ${styles.textStyle} form-select`} id='count'>
+              <option selected disabled value=''>Выбери количество</option>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+              <option value='9'>9</option>
+              <option value='10'>10</option>
+            </select>
+          </div>
+          <div className={styles.choiceInnerForm}>
+            <h6 className='card-title'>Описание модели:</h6>
+            <p className={styles.patternDescriptionText}>{currentItem.description}</p>
+          </div>
+          <div className={styles.choiceInnerForm}>
+            <h6 className='card-title'>Стоимость:</h6>
+            {
+            (currentItemAmount !== '')
+            &&
+            <p className='card-text'>{currentItemAmount + ' руб.'}</p>
+            }
+          </div>
+        </div>
         <div id='sizeForm' className={styles.rightInputContainer}>
             <h5>Укажите размеры*:</h5>
             {(currentItem.size_type_id === 1)
@@ -162,7 +161,7 @@ function Item(props) {
               <input className={`${styles.inputStyle} form-control`} required type='text' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='groin_to_bone' className={styles.labelStyle}><h6>Длина от мотни до косточки на ноге, см</h6></label>
+              <label htmlFor='groin_to_bone'><h6 className={styles.labelStyle}>Длина от мотни до косточки на ноге, см</h6></label>
               <input className={`${styles.inputStyle} form-control`} required type='text' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>
@@ -182,7 +181,7 @@ function Item(props) {
             }
             {(currentItem.size_type_id === 1 || currentItem.size_type_id === 2)
             &&
-            <div className='mb-3'>
+            <div>
               <label htmlFor='base_size' className={styles.labelStyle}><h6>Размер (для костюмов данная информация справочно)</h6></label>
               <select required className={`${styles.inputStyle} ${styles.textStyle} form-select`} id='base_size'>
                 <option selected disabled value=''><span>Выбери размер</span></option>
@@ -195,7 +194,7 @@ function Item(props) {
               <p className={styles.comment}>* на большие размеры цена может быть увеличена</p>
             </div>
             }
-            <div>
+            <div className={styles.sizeInstructionColorDiv}>
             <p className={styles.sizeInstructionColor} data-bs-toggle="modal" data-bs-target="#exampleModal">
               Инструкция по размерам
             </p>
@@ -225,7 +224,7 @@ function Item(props) {
             </div>
             </div>
             <div>
-              <button type='submit' className='btn btn-primary btn-sm'>Добавить в корзину</button>
+              <button type='submit' className={`btn btn-sm ${styles.addToBasketButton}`}>Добавить в корзину</button>
             </div>
         </div>
         </form>

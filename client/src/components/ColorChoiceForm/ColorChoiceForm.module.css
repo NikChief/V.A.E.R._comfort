@@ -8,18 +8,33 @@
 } */
 
 .colorChosenImage {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin: 5px;
 }
 
-.choiseForm {
+.choiceForm {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   border-radius: 3%;
   border: 1px;
   border-color: #ced4da;
   border-style: solid;
-  margin: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* margin: 4px; */
+  /* border: 2px solid black; */
 }
+
+.choiceButton {
+  /* border: 2px solid black; */
+  /* display: flex; */
+  background-color: rgb(128, 192, 205);
+  color:azure;
+  font-size: smaller;
+  height: 100%;
+  width: 15vw;
+}
+
