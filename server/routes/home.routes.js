@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 const router = require('express').Router();
-const twilio = require('twilio');
 
 const {
   Color, Type, CategoryType, Category, Pattern, Item,
