@@ -4,17 +4,18 @@ import style from './Footer.module.css'
 function Footer(props) {
   return (
     <footer className={`page-footer ${style.footer}`} >
-      <div className="footer-copyright text-center py-3 bg-dark text-muted d-flex justify-content-around">
+      <div className="footer-copyright text-center py-3 bg-dark text-muted d-flex justify-content-between">
         <p className={style.footerText}>© 2022 V.A.E.R._comfort </p>
-        <div className="footer-social">
+        <div className={style.footerSocial}>
 
-        <a href="https://vk.com/vaer_komfort" target='_blank' rel='noreferrer noopener'>
+        <a className={style.icons} href="https://vk.com/vaer_komfort" target='_blank' rel='noreferrer noopener'>
           <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32" 
           height="32" 
           viewBox="0 0 24 24" 
-          fill="currentColor"
+          fill="rgb(229,239,241)"
+          // fill="rgba(0,0,0,.55)"
           className="bi bi-vkontakte m-2"
           version="1.1" 
           >
@@ -22,12 +23,13 @@ function Footer(props) {
           </svg>
           </a>
 
-          <a href="https://t.me/+37yZTQlJ0eBiODli" target='_blank' rel='noreferrer noopener'>
+          <a className={style.icons} href="https://t.me/+37yZTQlJ0eBiODli" target='_blank' rel='noreferrer noopener'>
           <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
-                fill="currentColor"
+                fill="rgb(229,239,241)"
+                // fill="rgba(0,0,0,.55)"
                 className="bi bi-telegram m-2"
                 viewBox="0 0 16 16"
               >
@@ -35,12 +37,13 @@ function Footer(props) {
           </svg>
           </a>
 
-          <a href="https://www.instagram.com/v.a.e.r._komfort/" target='_blank' rel='noreferrer noopener'>
+          <a className={style.icons} href="https://www.instagram.com/v.a.e.r._komfort/" target='_blank' rel='noreferrer noopener'>
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            fill="currentColor"
+            fill="rgb(229,239,241)"
+            // fill="rgba(0,0,0,.55)"
             className="bi bi-instagram m-2"
             viewBox="0 0 16 16"
           >
@@ -48,12 +51,13 @@ function Footer(props) {
           </svg>
           </a>
 
-          <a href="https://wa.me/79139022525" target='_blank' rel='noreferrer noopener'>
+          <a className={style.icons} href="https://wa.me/79139022525" target='_blank' rel='noreferrer noopener'>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            fill="currentColor"
+            fill="rgb(229,239,241)"
+            // fill="rgba(0,0,0,.55)"
             className="bi bi-whatsapp m-2"
             viewBox="0 0 16 16"
           >
