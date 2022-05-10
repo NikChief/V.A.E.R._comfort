@@ -2,7 +2,16 @@
 /* eslint-disable camelcase */
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const PasswordValidator = require('password-validator');
 const { User } = require('../db/models');
+
+const schema = new PasswordValidator();
+schema.is().min(8);
+schema.has().uppercase();
+schema.has().lowercase();
+schema.has().digits(1);
+schema.has().not().spaces();
+schema.has().symbols(1);
 
 router
   .route('/')
@@ -33,12 +42,12 @@ router
             loggedIn: false,
             message: 'Пароли не совпадают.',
           });
-      } else if (password.length < 8) {
+      } else if (!schema.validate(password)) {
         res
           .status(400)
           .json({
             loggedIn: false,
-            message: 'Пароль содержит меньше 8 символов.',
+            message: 'Пароль не соответствует требованиям безопасности.',
           });
       } else {
         const newUser = await User.create({
