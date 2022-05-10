@@ -53,6 +53,7 @@ function OrderForm(props) {
     
     dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
+    e.target.reset()
   }, [dispatch, user.userId])
 
   return (
@@ -68,16 +69,16 @@ function OrderForm(props) {
         <form onSubmit={proceedOrder}>
           <div className='mb-3'>
             <label for='address' className='form-label'>Адрес (указать город, индекс, адрес)</label>
-            <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)'></input>
+            <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)' autoComplete='off'></input>
           </div>
           <div className='mb-3'>
             <label for='phone' className='form-label'>Телефон (в формате +79000000000)</label>
-            <input required type='text' className='form-control' id='phone' placeholder='Введите номер телефона'></input>
+            <input required type='text' className='form-control' id='phone' placeholder='Введите номер телефона' autoComplete='off'></input>
             <p className={styles.pwValidationError}>{currentOrderValidationMessage}</p>
           </div>
           <div className='mb-3'>
             <label for='name' className='form-label'>Имя</label>
-            <input required type='text' className='form-control' id='name' placeholder='Введите имя'></input>
+            <input required type='text' className='form-control' id='name' placeholder='Введите имя' autoComplete='off'></input>
           </div>
           <button type='submit' className='btn btn-primary'>Оформить заказ</button>
         </form>
