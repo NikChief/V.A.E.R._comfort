@@ -311,7 +311,7 @@ function* fetchInitCurrentOrder(action) {
     );
     
     yield put(initCurrentOrderAC(data));
-    yield put(initCurrentOrderMessageAC(data.message));
+    yield put(initCurrentOrderMessageAC({ message: data.message, validationMessage: data.validationMessage }));
   } catch (e) {
     yield put(
       {
@@ -339,6 +339,7 @@ function* fetchAddOrderItem(action) {
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
+      console.log('Ошибка, данные не записаны в базу данных.')
     }
 
   } catch (e) {

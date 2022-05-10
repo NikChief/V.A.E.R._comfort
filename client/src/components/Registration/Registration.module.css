@@ -31,3 +31,8 @@
   margin-top: 1vh;
   font-size: x-small;
 }
+
+.validationError {
+  font-size: smaller;
+  color: red;
+}

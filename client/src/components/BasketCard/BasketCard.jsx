@@ -17,7 +17,6 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
   }, [dispatch, basketItem.id]);
 
   useEffect(() => {
-    console.log(basketItems, '!!basketItems')
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
 
