@@ -48,6 +48,7 @@ function Registration(props) {
         <div className='mb-3'>
           <label htmlFor='password' className='form-label'>Пароль</label>
           <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
+          <p className={styles.pwText}>* Пароль должен содержать минимум 8 символов, заглавные буквы, строчные буквы, цифры, специальные символы, не должен содержать пробелов.</p>
         </div>
         <div className='mb-3'>
           <label htmlFor='repeat_password' className='form-label'>Повторите пароль</label>
