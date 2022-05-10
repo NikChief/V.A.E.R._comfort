@@ -5,14 +5,11 @@ const { OrderItem } = require('../db/models');
 router
   .route('/')
   .post(async (req, res) => {
-    // console.log('hi')
     try {
       const { body } = req;
-      console.log('hello')
-      console.log(body, 'body')
+
       // eslint-disable-next-line no-restricted-syntax
       for (const item of body) {
-        console.log('====>', item)
         // eslint-disable-next-line no-await-in-loop
         const newOrderItem = await OrderItem.create({
           item_id: item.item_id,

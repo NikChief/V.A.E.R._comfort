@@ -63,28 +63,39 @@ router
     try {
       // eslint-disable-next-line prefer-destructuring
       const body = req.body;
+      const re = /^((\+7)+([0-9]){10})$/;
 
-      let newOrder = '';
-      if (body.user_id === null) {
-        // eslint-disable-next-line no-unused-vars
-        newOrder = await Order.create({
-          status: body.status,
-          address: body.address,
-          name: body.name,
-          phone: Number(body.phone),
-        });
+      if (!re.test(body.phone)) {
+        res
+          .status(400)
+          .json({
+            orderStatus: false,
+            message: 'Что-то пошло не так.',
+            validationMessage: 'Номер телефона не соответствует формату.',
+          });
       } else {
-        // eslint-disable-next-line no-unused-vars
-        newOrder = await Order.create(body);
-      }
+        let newOrder = '';
+        if (body.user_id === null) {
+          // eslint-disable-next-line no-unused-vars
+          newOrder = await Order.create({
+            status: body.status,
+            address: body.address,
+            name: body.name,
+            phone: Number(body.phone),
+          });
+        } else {
+          // eslint-disable-next-line no-unused-vars
+          newOrder = await Order.create(body);
+        }
 
-      res
-        .status(200)
-        .json({
-          orderStatus: true,
-          message: 'Ваш заказ успешно создан. Благодарим за покупку!',
-          currentOrder: newOrder,
-        });
+        res
+          .status(200)
+          .json({
+            orderStatus: true,
+            message: 'Ваш заказ успешно создан. Благодарим за покупку!',
+            currentOrder: newOrder,
+          });
+      }
     } catch (error) {
       res
         .status(400)
@@ -105,7 +116,7 @@ router
           order_id: id,
         },
       });
-      console.log(orderDetails);
+      // console.log(orderDetails);
       res.json({
         orderDetails,
       });

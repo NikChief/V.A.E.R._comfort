@@ -11,7 +11,7 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
-  const { currentOrder, currentOrderMessage } = useSelector(state => state.ordersState);
+  const { currentOrder, currentOrderMessage, currentOrderValidationMessage } = useSelector(state => state.ordersState);
   const { basketItems } = useSelector(state => state.basketState);
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
@@ -38,7 +38,7 @@ function OrderForm(props) {
       dispatch(fetchAddOrderItemAC(orderItems))
     }
 
-  }, [currentOrder, basketItems, itemsInfoFromDb, dispatch])
+  }, [currentOrder, basketItems, itemsInfoFromDb, dispatch, currentOrderValidationMessage])
 
   const proceedOrder = useCallback((e) => {
     e.preventDefault(proceedOrder);
@@ -71,8 +71,9 @@ function OrderForm(props) {
             <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)'></input>
           </div>
           <div className='mb-3'>
-            <label for='phone' className='form-label'>Телефон</label>
+            <label for='phone' className='form-label'>Телефон (в формате +79000000000)</label>
             <input required type='text' className='form-control' id='phone' placeholder='Введите номер телефона'></input>
+            <p className={styles.pwValidationError}>{currentOrderValidationMessage}</p>
           </div>
           <div className='mb-3'>
             <label for='name' className='form-label'>Имя</label>

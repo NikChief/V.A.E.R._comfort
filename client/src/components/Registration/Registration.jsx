@@ -55,7 +55,7 @@ function Registration(props) {
           <input type='password' className='form-control' placeholder='Повторите пароль' name='repeat_password' id='repeat_password' />
         </div>
         <div className={styles.errorStatusBox}>
-          {!user.loggedIn && user.message}
+          <p className={styles.validationError}>{!user.loggedIn && user.message}</p>
         </div>
         <div className={styles.button}>
           <input type='submit' className='btn btn-primary' value='Зарегистрироваться' />
