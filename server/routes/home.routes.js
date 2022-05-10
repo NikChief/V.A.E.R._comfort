@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const router = require('express').Router();
+const twilio = require('twilio');
 
 const {
   Color, Type, CategoryType, Category, Pattern, Item,
@@ -68,6 +69,23 @@ router
       res
         .status(200)
         .json(getLowerPrice(patterns));
+    } catch (error) {
+      res
+        .status(400)
+        .json({
+          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
+        });
+    }
+  });
+
+  router
+  .route('/sms')
+  .get(async (req, res) => {
+    
+    const client = new Twilio 
+      res
+        .status(200)
+        .json({message: 'sms sent'});
     } catch (error) {
       res
         .status(400)
