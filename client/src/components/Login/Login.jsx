@@ -46,7 +46,7 @@ function Login(props) {
         <div className={styles.errorStatusBox}>
           <p className={styles.validationError}>{!user.loggedIn && user.message}</p>
         </div>
-        <div className={styles.button}><input type='submit' className='btn btn-primary' value='Войти' /></div>
+        <div className={styles.button}><input type='submit' className={`btn m-3 ${styles.buttonColor}`} value='Войти' /></div>
       </form>
     </div>
   );

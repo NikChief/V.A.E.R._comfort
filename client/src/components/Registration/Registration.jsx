@@ -59,7 +59,7 @@ function Registration(props) {
           <p className={styles.validationError}>{!user.loggedIn && user.message}</p>
         </div>
         <div className={styles.button}>
-          <input type='submit' className='btn btn-primary' value='Зарегистрироваться' />
+          <input type='submit' className={`btn m-3 ${styles.buttonColor}`} value='Зарегистрироваться' />
         </div>
       </form>
     </div>

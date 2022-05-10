@@ -20,7 +20,7 @@ function Category({category}) {
       <div className="card-body d-flex justify-content-center">
       <Link to={`/catalogue/${params.type}/${category.Category.link_name}`} 
             onClick={getCategoryTypeId} 
-            className="btn btn-primary"> {category.Category.name} </Link>
+            className={`btn m-3 ${style.choiceButton}`}> {category.Category.name} </Link>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@
 
 .patternInfoContainer {
   padding: 5px;
+  padding-left: 75px;
   /* border: 2px solid black; */
 }
 
@@ -49,13 +50,13 @@
 
 .leftInputContainer {
   /* border: 2px solid black; */
-  width: 35vw;
+  width: 25vw;
   height: 73vh;
 }
 
 .rightInputContainer{
   /* border: 2px solid black; */
-  width: 35vw;
+  width: 25vw;
   height: 73vh;
   padding-right: 5%;
 }
