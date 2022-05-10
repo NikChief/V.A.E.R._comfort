@@ -3,30 +3,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* height: 75vh; */
+  height: 75vh;
 }
 
 .patternInfoContainer {
   padding: 5px;
   /* border: 2px solid black; */
-}
-
-.modelTitle {
-  /* border: 2px solid black; */
-}
-
-.itemFormContainer {
-  padding-top: 15px;
-  width: 60em;
-  /* border: 2px solid black; */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.materialChoiceFormContainer {
-  /* border: 2px solid black; */
-  margin-top: 40px;
 }
 
 .patternPictureBox {
@@ -39,16 +21,47 @@
   height: 100%;
 }
 
+.modelTitle {
+  /* border: 2px solid black; */
+}
+
+.colorsChoiceForm {
+  /* border: 2px solid black; */
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.itemFormContainer {
+  padding-top: 15px;
+  width: 60em;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.choiceInnerForm {
+  /* border: 2px solid black; */
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .leftInputContainer {
   /* border: 2px solid black; */
-  width: 18em;
+  width: 35vw;
   height: 73vh;
 }
 
 .rightInputContainer{
   /* border: 2px solid black; */
-  width: 35em;
+  width: 35vw;
   height: 73vh;
+  padding-right: 5%;
+}
+
+.patternDescriptionText {
+  font-size: smaller;
 }
 
 .sizeInstructionColor {
@@ -77,8 +90,14 @@
 
 .labelStyle {
   padding-top: 1px;
+  font-size: smaller;
 }
 
 .comment {
   font-size: x-small;
+}
+
+.addToBasketButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }
