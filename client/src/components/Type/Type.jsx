@@ -6,7 +6,7 @@ function Type({type}) {
   return (
     <>
       {/* <Link to={`/catalogue/${type.link_name}`} className="nav-item"> <h3> {type.name} </h3> </Link> */}
-      <li className='nav-item'><NavLink to={`/catalogue/${type.link_name}`} className='nav-link'></NavLink></li>
+      <li className='nav-item'><NavLink to={`/catalogue/${type.link_name}`} className='nav-link'>{type.name}</NavLink></li>
     </>
   );
 }
