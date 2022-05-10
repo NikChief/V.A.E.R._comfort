@@ -31,6 +31,7 @@ function App() {
     <>
       <div style={{'minHeight': '90.0vh'}}>
         <Nav />
+        <div style={{'height': '75.0vh'}}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/orderForm' element={<OrderForm />} />
@@ -42,7 +43,7 @@ function App() {
           (user.loggedIn)
           &&
           <Route path='/profile' element={<Profile />} />
-          }
+        }
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/catalogue/:type' element={<CategoryType />} />
@@ -51,6 +52,7 @@ function App() {
           <Route path='/basket' element={<BasketList />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
+        </div>
       </div>
       <Footer style={{ 'height': '7.5vh' }} />
     </>
