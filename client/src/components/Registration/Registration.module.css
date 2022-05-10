@@ -26,3 +26,13 @@
   /* border: 2px solid black; */
   margin: 1vh;
 }
+
+.pwText {
+  margin-top: 1vh;
+  font-size: x-small;
+}
+
+.validationError {
+  font-size: smaller;
+  color: red;
+}

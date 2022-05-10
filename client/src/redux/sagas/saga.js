@@ -29,8 +29,8 @@ async function fetchData({url, headers, method, body}) {
 
 function* fetchOrdersInit(action) {
   try {
-    const data = yield call(fetchData, { url: '/profile' });
-    yield put(initOrdersAC(data.orders));
+    const data = yield call(fetchData, { url: '/orders' });
+    yield put(initOrdersAC(data));
   } catch (e) {
     yield put({ type: ERR_ORDERS, message: e.message });
   }
@@ -38,7 +38,7 @@ function* fetchOrdersInit(action) {
 
 function* fetchInitOrderDetails(action) {
   try {
-    const data = yield call(fetchData, { url: `/profile/${action.payload}` });
+    const data = yield call(fetchData, { url: `/orders/${action.payload}` });
     yield put(initOrderDetailsAC(data.orderDetails));
   } catch (e) {
     yield put({ type: ERR_ORDERS, message: e.message });
@@ -131,7 +131,7 @@ function* fetchIsUserAuthorized() {
     );
   }
 }
-//
+
 function* fetchEditUser(action) {
   try {
     const data = yield call(
@@ -144,7 +144,7 @@ function* fetchEditUser(action) {
       body: JSON.stringify(action.payload)
     }
     );
-    console.log(data)
+
     yield put(editUserAC(data));
   } catch (e) {
     yield put(
@@ -301,7 +301,7 @@ function* fetchInitCurrentOrder(action) {
   try {
     const data = yield call(
       fetchData, {
-        url: '/profile', 
+        url: '/orders', 
         headers: {
           'Content-Type': 'application/json'
         },
@@ -311,7 +311,7 @@ function* fetchInitCurrentOrder(action) {
     );
     
     yield put(initCurrentOrderAC(data));
-    yield put(initCurrentOrderMessageAC(data.message));
+    yield put(initCurrentOrderMessageAC({ message: data.message, validationMessage: data.validationMessage }));
   } catch (e) {
     yield put(
       {
@@ -339,9 +339,9 @@ function* fetchAddOrderItem(action) {
       yield put(clearCurrentOrderAC())
       yield put(clearBasketAC())
     } else {
-      console.log(data.message)
+      console.log('Ошибка, данные не записаны в базу данных.')
     }
-    // yield put(loggedInUserAC(data));
+
   } catch (e) {
     yield put(
       {
@@ -381,7 +381,7 @@ export function* sagaWatcher() {
   yield takeEvery(SAGA_INIT_COLORS, fetchInitColors)
   yield takeEvery(SAGA_INIT_CURRENT_ITEM, fetchInitCurrentItem)
   yield takeEvery(SAGA_INIT_ORDERS, fetchOrdersInit)
-  yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized)
+  yield takeEvery(SAGA_IS_USER_AUTHORIZED, fetchIsUserAuthorized) //ОК
   yield takeEvery(SAGA_INIT_MATERIALS, fetchInitMaterials)
   yield takeEvery(SAGA_INIT_TYPES, fetchInitTypes)
   yield takeEvery(SAGA_INIT_CATEGORY_TYPES, fetchInitCategoryTypes)

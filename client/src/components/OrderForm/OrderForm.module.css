@@ -8,10 +8,17 @@
   width: 40vw;
 }
 
-.successPurchaseContainer {
+.messageContainer {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  padding: 10vh;
+  padding: 20vh;
   align-items: center;
   height: 100vh;
+  /* border: 2px solid black; */
+}
+
+.pwValidationError {
+  font-size: smaller;
+  color: red;
 }

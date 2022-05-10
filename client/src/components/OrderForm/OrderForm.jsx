@@ -1,8 +1,8 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-// import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { fetchAddOrderItemAC, fetchInitCurrentOrderAC } from '../../redux/actionCreators/ordersAC';
 import styles from './OrderForm.module.css'
 
@@ -11,16 +11,13 @@ function OrderForm(props) {
   const dispatch = useDispatch();
 
   const { user } = useSelector(state => state.userState);
-  const { currentOrder, currentOrderMessage } = useSelector(state => state.ordersState);
-  console.log(currentOrder, 'currentOrder')
-  console.log(currentOrder, 'currentOrderMessage')
+  const { currentOrder, currentOrderMessage, currentOrderValidationMessage } = useSelector(state => state.ordersState);
   const { basketItems } = useSelector(state => state.basketState);
-  console.log(basketItems.length !== 0, 'basketItems')
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
 
   useEffect(() => {
     let orderItems = [];
-
+  
     if (currentOrder !== '') {
       for (let i = 0; i < basketItems.length; i += 1) {
         const obj = {};
@@ -38,13 +35,12 @@ function OrderForm(props) {
         obj.groin_to_bone = basketItems[i]?.groin_to_bone;
         orderItems.push(obj)
       }
-
       dispatch(fetchAddOrderItemAC(orderItems))
     }
 
-  }, [currentOrder, basketItems, itemsInfoFromDb, dispatch])
+  }, [currentOrder, basketItems, itemsInfoFromDb, dispatch, currentOrderValidationMessage])
 
-  const proceedOrder = (e) => {
+  const proceedOrder = useCallback((e) => {
     e.preventDefault(proceedOrder);
 
     const newOrder = {
@@ -52,26 +48,18 @@ function OrderForm(props) {
       status: 'В обработке',
       address: e.target.address.value,
       phone: e.target.phone.value,
-      // name: e.target.name.value,
+      name: e.target.name.value,
     }
     
     dispatch(fetchInitCurrentOrderAC(newOrder))
     localStorage.clear()
-  }
+  }, [dispatch, user.userId])
 
   return (
     <>
-    { 
-    (currentOrderMessage !== '')
-    ?
-    <div className={`card ${styles.successPurchaseContainer}`}>
-      <div>
-        <h5 className='card-title'>{currentOrderMessage}</h5>
-      </div>
-    </div>
-    :
+    {
     (basketItems.length !== 0)
-    &&
+    ?
     (<div className={styles.orderOuterContainer}>
       <div className={styles.orderInnerContainer}>
         <h5>
@@ -83,17 +71,24 @@ function OrderForm(props) {
             <input required type='text' className='form-control' id='address' placeholder='Введите адрес (указать город, индекс, адрес)'></input>
           </div>
           <div className='mb-3'>
-            <label for='phone' className='form-label'>Телефон</label>
+            <label for='phone' className='form-label'>Телефон (в формате +79000000000)</label>
             <input required type='text' className='form-control' id='phone' placeholder='Введите номер телефона'></input>
+            <p className={styles.pwValidationError}>{currentOrderValidationMessage}</p>
           </div>
-          {/* <div className='mb-3'>
+          <div className='mb-3'>
             <label for='name' className='form-label'>Имя</label>
             <input required type='text' className='form-control' id='name' placeholder='Введите имя'></input>
-          </div> */}
+          </div>
           <button type='submit' className='btn btn-primary'>Оформить заказ</button>
         </form>
       </div>
     </div>)
+    :
+    <div className={styles.messageContainer}>
+      <div>
+      <h4>{currentOrderMessage}</h4>
+      </div>
+    </div>
     }
     </>
   )

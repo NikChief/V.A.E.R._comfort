@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -15,7 +16,7 @@ function Registration(props) {
     dispatch(clearUserMessageAC())
   },[dispatch])
 
-  const registrationFunction = (event) => {
+  const registerUser = useCallback((event) => {
     event.preventDefault();
     const body = {
       name: event.target.name.value,
@@ -25,7 +26,7 @@ function Registration(props) {
     }
     
     dispatch(fetchRegisterUserAC(body))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     if (user.loggedIn === true) {
@@ -35,7 +36,7 @@ function Registration(props) {
 
   return (
     <div className={styles.registrationOuterContainer}>
-      <form className={styles.formContainer} method='post' onSubmit={registrationFunction} autoComplete='off'>
+      <form className={styles.formContainer} method='post' onSubmit={registerUser} autoComplete='off'>
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Имя</label>
           <input type='text' className='form-control' placeholder='Введите имя' name='name' id='name' required />
@@ -47,13 +48,14 @@ function Registration(props) {
         <div className='mb-3'>
           <label htmlFor='password' className='form-label'>Пароль</label>
           <input type='password' className='form-control' placeholder='Введите пароль' name='password' id='password' />
+          <p className={styles.pwText}>* Пароль должен содержать минимум 8 символов, заглавные буквы, строчные буквы, цифры, специальные символы, не должен содержать пробелов.</p>
         </div>
         <div className='mb-3'>
           <label htmlFor='repeat_password' className='form-label'>Повторите пароль</label>
           <input type='password' className='form-control' placeholder='Повторите пароль' name='repeat_password' id='repeat_password' />
         </div>
         <div className={styles.errorStatusBox}>
-          {!user.loggedIn && user.message}
+          <p className={styles.validationError}>{!user.loggedIn && user.message}</p>
         </div>
         <div className={styles.button}>
           <input type='submit' className='btn btn-primary' value='Зарегистрироваться' />

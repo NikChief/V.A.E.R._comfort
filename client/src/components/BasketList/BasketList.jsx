@@ -14,7 +14,7 @@ function BasketList(props) {
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basketItems } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
-  
+
   useEffect(() => {
     let totalAmount = 0;
     for (let i = 0; i < basketItems.length; i += 1) {
@@ -24,7 +24,6 @@ function BasketList(props) {
   },[basketItems, itemsInfoFromDb, dispatch])
 
   return (
-    // {}
     <div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
         {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}

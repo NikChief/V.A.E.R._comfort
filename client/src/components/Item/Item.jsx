@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
 import { useParams } from 'react-router-dom';
 import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
@@ -11,18 +10,15 @@ import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
 import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
 import styles from './Item.module.css';
 import { v4 as uuidv4 } from 'uuid';
+import { useCallback } from 'react';
 
 function Item(props) {
 
   const { patternId } = useParams()
 
   const { currentItem, currentItemPrice, currentItemCount, currentItemAmount } = useSelector(state => state.itemState);
-  const { basketItems } = useSelector(state => state.basketState);
-  const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { colorChosenMain, colorChosenExtra1, colorChosenExtra2 } = useSelector(state => state.colorsState);
-
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchInitCurrentItemAC(patternId))
@@ -31,10 +27,10 @@ function Item(props) {
     }
   }, [dispatch, patternId])
 
-  const getCount = (e) => {
+  const getCount = useCallback((e) => {
     const count = e.target.value;
     dispatch(initCurrentItemCountAC(count))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(initCurrentItemAmountAC( { currentItemPrice, currentItemCount }))
@@ -46,16 +42,10 @@ function Item(props) {
   },[dispatch])
 
   useEffect(() => {
-    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
-  }, [basketItems, itemsInfoFromDb]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearCurrentItemAC())
-    }
+    dispatch(clearCurrentItemAC())
   }, [dispatch])
 
-  const getInput = (e) => {
+  const getInput = useCallback((e) => {
     e.preventDefault();
     const body = {
       id: uuidv4(),
@@ -68,28 +58,25 @@ function Item(props) {
       waistline: e.target.waistline?.value,
       pants_length_inseam: e.target.pants_length_inseam?.value,
       groin_to_bone: e.target.groin_to_bone?.value,
-      main_color_id: colorChosenMain,
-      extra_color1_id: colorChosenExtra1,
-      extra_color2_id: colorChosenExtra2,
+      main_color_id: colorChosenMain.id,
+      extra_color1_id: colorChosenExtra1.id,
+      extra_color2_id: colorChosenExtra2.id,
       material_id: JSON.parse(e.target.material.value).id,
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
     }
-   
+
     dispatch(addItemToBasketAC(body));
     dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
-    // надо стереть current item в конце
-    dispatch(clearCurrentItemAC());
     alert('Товар добавлен в корзину.')
-    navigate('/')
-  }
+  }, [dispatch, colorChosenExtra1, colorChosenExtra2, colorChosenMain, currentItem.image, currentItem.name, patternId])
 
   return (
     <div className={styles.itemContainer}>
       <div id='patternInfo' className={styles.patternInfoContainer}>
         <h5 className='card-title'>Модель:</h5>
         <p className='card-text'>{currentItem.name}</p>
-        <img src={`http://localhost:4000/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        <img src={`${process.env.REACT_APP_BASE_URL}/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
       </div>
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
