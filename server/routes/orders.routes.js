@@ -7,12 +7,16 @@ router
   .route('/')
   .get(async (req, res) => {
     try {
-      const orders = await Order.findAll({
-        where: {
-          user_id: req.session.userId,
-        },
-      });
-
+      let orders;
+      if (req.session.userIsAdmin) {
+        orders = await Order.findAll({});
+      } else {
+        orders = await Order.findAll({
+          where: {
+            id: req.session.userId,
+          }
+        })
+      }
       const orderItems = await OrderItem.findAll(
         {
           include: [{
@@ -22,7 +26,7 @@ router
           {
             model: Order,
           },
-        ]
+          ]
         },
       );
 
@@ -38,7 +42,7 @@ router
         }
       }
 
-      
+
       // newOrderItems.map((element) => {
       //   colors.map((color) => {
       //     console.log(element.dataValues)
