@@ -23,8 +23,13 @@ function BasketList(props) {
     dispatch(initBasketTotalAC(totalAmount))
   },[basketItems, itemsInfoFromDb, dispatch])
 
+  console.log(basketItems, '111')
   return (
-    <div className={styles.basketContainer}>
+    <>
+    { 
+    (basketItems.length !== 0)
+    ?
+    (<div className={styles.basketContainer}>
       <div id='basket_items' className={styles.basketInnerContainer}>
         {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
       </div>
@@ -35,10 +40,18 @@ function BasketList(props) {
         <p className="card-text">
         {basketTotal + ' руб.'}
         </p>
-        <Link to='/orderForm' className='btn btn-primary'>Перейти к оформлению</Link>
+        <Link to='/orderForm' className={`btn m-3 ${styles.choiceButton}`}>Перейти к оформлению</Link>
       </div>
       }
+    </div>)
+    :
+    <div className={styles.messageContainer}>
+      <div>
+      <h4>Корзина пуста</h4>
+      </div>
     </div>
+    }
+    </>
   );
 }
 

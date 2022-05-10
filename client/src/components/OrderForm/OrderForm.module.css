@@ -5,7 +5,26 @@
 }
 
 .orderInnerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 40vw;
+
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw
 }
 
 .messageContainer {
@@ -15,10 +34,14 @@
   padding: 20vh;
   align-items: center;
   height: 100vh;
-  /* border: 2px solid black; */
 }
 
 .pwValidationError {
   font-size: smaller;
   color: red;
+}
+
+.buttonColor {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }

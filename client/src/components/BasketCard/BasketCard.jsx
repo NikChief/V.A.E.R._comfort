@@ -28,75 +28,75 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
         </div>
         <div className={`${styles.basketCardInfo}`}>
           <div className={`${styles.basketCardInfoInnerBox}`}>
-            <div>
-              <h5 className="card-title">Модель:</h5>
-              <p className="card-text">{basketItem.pattern_name}</p>
+            <div className={styles.patternBlock}>
+              <h6 className="card-title">Модель:</h6>
+              <p className={`${styles.valueText} card-text`}>{basketItem.pattern_name}</p>
             </div>
-            <div>
-              <h5 className="card-title">Цвета:</h5>
+            <div className={styles.patternBlock}>
+              <h6 className="card-title">Цвета:</h6>
               <div>
-                <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_id.image}`} className={styles.colorChosenImage} alt="..."></img>
-                {basketItem.extra_color1_id?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_id.image}`} className={styles.colorChosenImage} alt="..."></img>}
-                {basketItem.extra_color2_id?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_id.image}`} className={styles.colorChosenImage} alt="..."></img>}   
+                <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_image}`} className={styles.colorChosenImage} alt="..."></img>
+                {basketItem.extra_color1_image?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {basketItem.extra_color2_image?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
-            <div>
-              <h5 className="card-title">Ткань:</h5>
-              <p className="card-text">{basketItem.material_type}</p>
+            <div className={styles.patternBlock}>
+              <h6 className="card-title">Ткань:</h6>
+              <p className={`${styles.valueText} card-text`}>{basketItem.material_type}</p>
             </div>
-            <div>
-              <h5 className="card-title">Количество:</h5>
-              <p className="card-text">{basketItem.count}</p>
+            <div className={styles.patternBlock}>
+              <h6 className="card-title">Количество:</h6>
+              <p className={`${styles.valueText} card-text`}>{basketItem.count}</p>
             </div>
           </div>
           <div>
-            <h5 className="card-title">Размеры:</h5>
+            <h6 className="card-title">Размеры:</h6>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват груди, см:</h6>
+                  <p className={`${styles.valueText} card-text`}>Обхват груди, см:</p>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.bust}</h6>
+                  <p className={`${styles.sizeText}`}>{basketItem.bust}</p>
                 </div>
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват бедер, см:</h6>
+                  <p className={`${styles.valueText} card-text`}>Обхват бедер, см:</p>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.hip_girth}</h6>
-                </div>
-              </div>
-              <div className={`${styles.sizesOuterBox}`}>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Обхват талии, см:</h6>
-                </div>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.waistline}</h6>
+                  <p className={`${styles.sizeText}`}>{basketItem.hip_girth}</p>
                 </div>
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Длина брюк по внутреннему шву, см:</h6>
+                  <p className={`${styles.valueText} card-text`}>Обхват талии, см:</p>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.pants_length_inseam}</h6>
-                </div>
-              </div>
-              <div className={`${styles.sizesOuterBox}`}>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Длина от мотни до косточки на ноге, см:</h6>
-                </div>
-                <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.groin_to_bone}</h6>
+                  <p className={`${styles.sizeText}`}>{basketItem.waistline}</p>
                 </div>
               </div>
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6>Размер (для костюмов данная информация справочно):</h6>
+                  <p className={`${styles.valueText} card-text`}>Длина брюк по внутреннему шву, см:</p>
                 </div>
                 <div className={`${styles.sizesInnerBox}`}>
-                  <h6 className={`${styles.sizeText}`}>{basketItem.base_size}</h6>
+                  <p className={`${styles.sizeText}`}>{basketItem.pants_length_inseam}</p>
+                </div>
+              </div>
+              <div className={`${styles.sizesOuterBox}`}>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <p className={`${styles.valueText} card-text`}>Длина от мотни до косточки на ноге, см:</p>
+                </div>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <p className={`${styles.sizeText}`}>{basketItem.groin_to_bone}</p>
+                </div>
+              </div>
+              <div className={`${styles.sizesOuterBox}`}>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <p className={`${styles.valueText} card-text`}>Размер (для костюмов данная информация справочно):</p>
+                </div>
+                <div className={`${styles.sizesInnerBox}`}>
+                  <p className={`${styles.sizeText}`}>{basketItem.base_size}</p>
                 </div>
               </div>
           </div>
@@ -104,8 +104,8 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
         <div className={styles.rightBox}>
           <h5 className="card-title">Стоимость*:</h5>
           <h6>{Number(basketItem.count) * Number(itemInfoFromDb.price) + ' руб.'}</h6>
-          <p>* на большие размеры цена может быть увеличена</p>
-          <button onClick={deleteItemFromBasket} type="button" className="btn btn-primary btn-sm">Удалить</button>
+          <p  className={`${styles.sizeText}`}>* на большие размеры цена может быть увеличена</p>
+          <button onClick={deleteItemFromBasket} type="button"className={`btn m-3 btn-sm ${styles.choiceButton}`}>Удалить</button>
         </div>
       </div>
     </div>

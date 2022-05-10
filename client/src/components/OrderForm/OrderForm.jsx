@@ -63,9 +63,11 @@ function OrderForm(props) {
     ?
     (<div className={styles.orderOuterContainer}>
       <div className={styles.orderInnerContainer}>
-        <h5>
-          Доставка
-        </h5>
+        <div className={styles.title}>
+          <h5>
+            Доставка
+          </h5>
+        </div>
         <form onSubmit={proceedOrder}>
           <div className='mb-3'>
             <label for='address' className='form-label'>Адрес (указать город, индекс, адрес)</label>
@@ -80,7 +82,9 @@ function OrderForm(props) {
             <label for='name' className='form-label'>Имя</label>
             <input required type='text' className='form-control' id='name' placeholder='Введите имя' autoComplete='off'></input>
           </div>
-          <button type='submit' className='btn btn-primary'>Оформить заказ</button>
+          <div className={styles.button}>
+            <button type='submit' className={`btn m-3 ${styles.buttonColor}`}>Оформить заказ</button>
+          </div>
         </form>
       </div>
     </div>)

@@ -1,7 +1,23 @@
 .basketContainer {
   display: flex;
+  overflow: scroll;
 }
 
 .basketInnerContainer {
   margin: 15px;
+  overflow: scroll;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20vh;
+  align-items: center;
+  height: 100vh;
+}
+
+.choiceButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }

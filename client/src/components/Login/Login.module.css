@@ -22,6 +22,11 @@
   /* justify-content: center; */
 }
 
+.buttonColor {
+  background-color: rgb(128, 192, 205);
+  color:azure;
+}
+
 .errorStatusBox {
   /* border: 2px solid black; */
   margin: 1vh;

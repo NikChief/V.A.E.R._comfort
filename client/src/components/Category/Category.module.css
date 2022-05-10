@@ -2,3 +2,8 @@
   height: 500px;
   
 }
+
+.choiceButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
+}
