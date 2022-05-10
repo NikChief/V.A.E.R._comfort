@@ -78,21 +78,4 @@ router
     }
   });
 
-  router
-  .route('/sms')
-  .get(async (req, res) => {
-    
-    const client = new Twilio 
-      res
-        .status(200)
-        .json({message: 'sms sent'});
-    } catch (error) {
-      res
-        .status(400)
-        .json({
-          message: `Ошибка получения данных из базы данных. Описание ошибки: ${error.message}`,
-        });
-    }
-  });
-
 module.exports = router;
