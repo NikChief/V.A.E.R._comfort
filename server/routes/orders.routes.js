@@ -111,6 +111,30 @@ router
   });
 
 router
+  .route('/status')
+  .put(async (req, res) => {
+    try {
+      const { id, status } = req.body;
+      const order = await Order.update(
+        { status },
+        {
+          where: { id },
+        },
+      );
+      // console.log(orderDetails);
+      res.json({
+        order,
+        id,
+        status,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
+      });
+    }
+  });
+
+router
   .route('/:id')
   .get(async (req, res) => {
     try {
