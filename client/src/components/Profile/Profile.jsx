@@ -106,74 +106,63 @@ function Profile(props) {
           }
           {
             !personalInfoView
-            &&
-            <div id='OrderTableBox'>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th scope="col">Номер заказа</th>
-                    <th scope="col">Дата создания</th>
-                    <th scope="col">Статус заказа</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  заказы
-                </tbody>
-              </table>
-            </div>
+            && <>
+              <div id='PersonalInfoBox' className={styles.personalInfoBox}>
+                <h4>История заказов</h4>
+                <div>
+                  <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
+                    <option value="Все" defaultValue>Все заказы</option>
+                    <option value="В обработке">Заказы в обработке</option>
+                    <option value="Подтвержден">Подтвержденные заказы</option>
+                    <option value="Отменен">Отмененные заказы</option>
+                    <option value="Оплачен">Оплаченные заказы</option>
+                    <option value="Передан в доставку">Заказы, переданные в доставку</option>
+                    <option value="Выполнен">Выполненные заказы</option>
+                  </select>
+                  </div>
+
+                  {(orders?.length) ? (ordersInfo.map(order =>
+                    <ProfileOrderString key={order.id} order={order} />
+                  )) : (<div> Нет заказов</div>)}
+              </div>
+              </>
           }
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <h5 className={`modal-title ${styles.modalTitle}`} id="staticBackdropLabel">Окно изменения личной информации</h5>
-                <div class="modal-header">
-                </div>
-                <div class="modal-body">
-                  <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
-                    <div className='mb-3'>
-                      <label htmlFor='name' className='form-label'>Новое имя</label>
-                      <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required />
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <h5 className={`modal-title ${styles.modalTitle}`} id="staticBackdropLabel">Окно изменения личной информации</h5>
+                    <div class="modal-header">
                     </div>
-                    <div className='mb-3'>
-                      <label htmlFor='email' className='form-label'>Новая электронная почта</label>
-                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
+                    <div class="modal-body">
+                      <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
+                        <div className='mb-3'>
+                          <label htmlFor='name' className='form-label'>Новое имя</label>
+                          <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required />
+                        </div>
+                        <div className='mb-3'>
+                          <label htmlFor='email' className='form-label'>Новая электронная почта</label>
+                          <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
+                        </div>
+                        <div className='mb-3'>
+                          <label htmlFor='name' className='form-label'>Новый пароль</label>
+                          <input type='password' className='form-control' name='password' id='password' required />
+                        </div>
+                        <div>
+                          <input type='submit' className='btn btn-primary' data-bs-dismiss="modal" value='Сохранить изменения' />
+                        </div>
+                      </form>
+                      <hr />
+                      <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>
                     </div>
-                    <div className='mb-3'>
-                      <label htmlFor='name' className='form-label'>Новый пароль</label>
-                      <input type='password' className='form-control' name='password' id='password' required />
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" style={{ margin: "0 auto" }} data-bs-dismiss="modal">Закрыть без изменений</button>
                     </div>
-                    <div>
-                      <input type='submit' className='btn btn-primary' data-bs-dismiss="modal" value='Сохранить изменения' />
-                    </div>
-                  </form>
-                  <hr />
-                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style={{ margin: "0 auto" }} data-bs-dismiss="modal">Закрыть без изменений</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>        <h3>История заказов</h3>
-          <div>
-            <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
-              <option value="Все" defaultValue>Все заказы</option>
-              <option value="В обработке">Заказы в обработке</option>
-              <option value="Подтвержден">Подтвержденные заказы</option>
-              <option value="Отменен">Отмененные заказы</option>
-              <option value="Оплачен">Оплаченные заказы</option>
-              <option value="Передан в доставку">Заказы, переданные в доставку</option>
-              <option value="Выполнен">Выполненные заказы</option>
-            </select>
-          </div>
-
-          {(orders?.length) ? (ordersInfo.map(order =>
-            <ProfileOrderString key={order.id} order={order} />
-          )) : (<div>Нет заказов</div>)}
-        </main>
-      </div>
+            </main>
     </div>
+    </div >
   )
 }
 
