@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { clearBasketAC } from '../../redux/actionCreators/basketAC';
 import { fetchLoggedOutUserAC } from '../../redux/actionCreators/userAC';
 import TypeList from '../TypeList/TypeList';
@@ -37,11 +37,11 @@ function Nav(props) {
               {
               (user.loggedIn && user.userIsAdmin)
               ?
-              <li className='nav-item'><Link to='/profileAdmin' className='nav-link'>Профиль</Link></li>
+              <li className='nav-item'><NavLink to='/profileAdmin' className='nav-link'>Профиль</NavLink></li>
               :
               (user.loggedIn && !user.userIsAdmin)
               &&
-              <li className='nav-item'><Link to='/profile' className='nav-link'>Профиль</Link></li>
+              <li className='nav-item'><NavLink to='/profile' className='nav-link'>Профиль</NavLink></li>
               }
               {user.loggedIn ?
 
@@ -51,11 +51,11 @@ function Nav(props) {
               )
               :
               (<>
-                <li className='nav-item'><Link to='/login' className='nav-link'>Войти</Link></li>
-                <li className='nav-item'><Link to='/registration' className='nav-link'>Зарегистрироваться</Link></li>
+                <li className='nav-item'><NavLink to='/login' className='nav-link'>Войти</NavLink></li>
+                <li className='nav-item'><NavLink to='/registration' className='nav-link'>Зарегистрироваться</NavLink></li>
               </>
               )}
-              <li ><Link to='/basket' className='nav-link'>Корзина</Link></li>
+              <li ><NavLink to='/basket' className='nav-link'>Корзина</NavLink></li>
             </ul>
           </div>
         </div>

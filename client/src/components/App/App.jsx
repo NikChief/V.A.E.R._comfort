@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <div style={{'min-height': '92.5vh'}}>
+      <div style={{'minHeight': '90.0vh'}}>
         <Nav />
         <Routes>
           <Route path='/' element={<Home />} />
