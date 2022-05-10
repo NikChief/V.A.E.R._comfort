@@ -1,0 +1,13 @@
+.orderDetail{
+  flex-basis: 30%;
+  border-radius: 1rem;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 1.6rem;
+  background-color: rgb(229, 239, 241);
+  color: rgba(0, 0, 0, 0.699);
+}
+
+.bold {
+  font-weight: bold;
+}

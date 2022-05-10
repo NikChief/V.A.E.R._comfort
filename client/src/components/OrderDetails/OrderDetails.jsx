@@ -6,13 +6,15 @@ import styles from './OrderDetails.module.css'
 
 function OrderDetails({ order }) {
   const { orders } = useSelector(state => state.ordersState)
-  console.log(orders)
+  // const predproducts = new Set(orders.map(el=>el.order_id))
   const products = orders.filter(el => el.order_id === order.id)
+  // console.log(predproducts)
 
   return (
     <div class="card-body">
       <h6 className={styles.h6}>Детали заказа</h6>
-      {products.map(product => <OrderDetail key={product.id} product={product} />)}
+      <div className={styles.orderDetailContainer}>{products.map(product => <OrderDetail key={product.id} product={product} />)}</div>
+      {/* {products.map(product => <OrderDetail key={product.id} product={product} />)} */}
       {/* <p class="card-text">Статус: {order.Order.status}</p>
           <p class="card-text">Адрес доставки: {order.Order.address}</p>
           <p class="card-text">Контактный телефон: {order.Order.phone}</p> */}

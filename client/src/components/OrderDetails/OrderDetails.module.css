@@ -1,3 +1,10 @@
 .h6 {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
+}
+
+.orderDetailContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
