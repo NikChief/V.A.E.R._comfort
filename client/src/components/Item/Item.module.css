@@ -3,10 +3,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  /* height: 75vh; */
 }
 
 .patternInfoContainer {
-  padding: 15px;
+  padding: 5px;
+  /* border: 2px solid black; */
+}
+
+.modelTitle {
   /* border: 2px solid black; */
 }
 
@@ -24,18 +29,26 @@
   margin-top: 40px;
 }
 
+.patternPictureBox {
+  /* border: 2px solid black; */
+  height: 65vh;
+}
+
 .patternPicture {
   /* border: 2px solid black; */
+  height: 100%;
 }
 
-.colorsChoiceForm {
+.leftInputContainer {
   /* border: 2px solid black; */
   width: 18em;
+  height: 73vh;
 }
 
-.sizeForm{
+.rightInputContainer{
   /* border: 2px solid black; */
   width: 35em;
+  height: 73vh;
 }
 
 .sizeInstructionColor {
@@ -49,4 +62,23 @@
 
 .sizeInstructionText {
   font-size: smaller;
+}
+
+.inputStyle {
+  /* border: 2px solid black !important; */
+  height: 30px;
+}
+
+.textStyle {
+  /* border: 2px solid black !important; */
+  height: 30px;
+  font-size: 11px;
+}
+
+.labelStyle {
+  padding-top: 1px;
+}
+
+.comment {
+  font-size: x-small;
 }
