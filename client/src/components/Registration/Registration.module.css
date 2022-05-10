@@ -23,8 +23,8 @@
 }
 
 .buttonColor {
-  background-color: rgb(128, 192, 205);
-  color:azure;
+  background-color: rgb(128, 192, 205) !important;
+  color:azure !important;
 }
 
 .errorStatusBox {
