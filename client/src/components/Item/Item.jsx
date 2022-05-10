@@ -74,15 +74,19 @@ function Item(props) {
   return (
     <div className={styles.itemContainer}>
       <div id='patternInfo' className={styles.patternInfoContainer}>
-        <h5 className='card-title'>Модель:</h5>
-        <p className='card-text'>{currentItem.name}</p>
-        <img src={`${process.env.REACT_APP_BASE_URL}/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        <div className={styles.modelTitle}>
+          <h5 className='card-title'>Модель:</h5>
+          <p className='card-text'>{currentItem.name}</p>
+        </div>
+        <div className={styles.patternPictureBox}>
+          <img src={`${process.env.REACT_APP_BASE_URL}/${currentItem.image}`} className={`card-img-top ${styles.patternPicture}`} alt='patternImage'></img>  
+        </div>
       </div>
       <div id='inputFromClientFormBlock'>
         <form id='inputFromClientForm' className={styles.itemFormContainer} onSubmit={getInput}> 
-        <div className={styles.colorsChoiceForm}>
+        <div className={styles.leftInputContainer}>
           <div id='colorsChoiceForm'>
-              <h5 className='card-title'>Выберите цвета:</h5>
+              <h6 className='card-title'>Выберите цвета:</h6>
               {(currentItem.color_count === 3)
               ?
               <>
@@ -102,12 +106,12 @@ function Item(props) {
               }
             </div>
             <div id='materialChoiceForm' className={styles.materialChoiceFormContainer}>
-            <h5 className='card-title'>Выберите материал:</h5>
+            <h6 className='card-title'>Выберите материал:</h6>
               <MaterialChoiceForm patternId={patternId} />
             </div>
             <div id='countForm' className={styles.materialChoiceFormContainer}>
-              <label htmlFor='count' className='form-label'>Количество</label>
-              <select onChange={getCount} required className='form-select' id='count'>
+              <label htmlFor='count' className={styles.labelStyle}><h6>Количество</h6></label>
+              <select onChange={getCount} required className={`${styles.inputStyle} ${styles.textStyle} form-select`} id='count'>
                 <option selected disabled value=''>Выбери количество</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
@@ -122,12 +126,12 @@ function Item(props) {
               </select>
             </div>
             <div className={styles.materialChoiceFormContainer}>
-              <h5 className='card-title'>Описание модели:</h5>
+              <h6 className='card-title'>Описание модели:</h6>
               <p className='card-text'>{currentItem.description}</p>
               {/* стили css поправить */}
             </div>
             <div className={styles.materialChoiceFormContainer}>
-              <h5 className='card-title'>Стоимость:</h5>
+              <h6 className='card-title'>Стоимость:</h6>
               {
               (currentItemAmount !== '')
               &&
@@ -135,31 +139,31 @@ function Item(props) {
               }
             </div>
           </div>
-          <div id='sizeForm' className={styles.sizeForm}>
+        <div id='sizeForm' className={styles.rightInputContainer}>
             <h5>Укажите размеры*:</h5>
             {(currentItem.size_type_id === 1)
             &&
             <>
                        
             <div className='mb-3'>
-              <label htmlFor='bust' className='form-label'>Обхват груди, см</label>
-              <input required type='text' className='form-control' id='bust' autoComplete='off'></input>
+              <label htmlFor='bust' className={styles.labelStyle}><h6>Обхват груди, см</h6></label>
+              <input className={`${styles.inputStyle} form-control`} required type='text' id='bust' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='hip_girth' className='form-label'>Обхват бедер, см</label>
-              <input required type='text' className='form-control' id='hip_girth' autoComplete='off'></input>
+              <label htmlFor='hip_girth' className={styles.labelStyle}><h6>Обхват бедер, см</h6></label>
+              <input className={`${styles.inputStyle} form-control`} required type='text' id='hip_girth' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='waistline' className='form-label'>Обхват талии, см</label>
-              <input required type='text' className='form-control' id='waistline' autoComplete='off'></input>
+              <label htmlFor='waistline' className={styles.labelStyle}><h6>Обхват талии, см</h6></label>
+              <input className={`${styles.inputStyle} form-control`} required type='text' id='waistline' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='pants_length_inseam' className='form-label'>Длина брюк по внутреннему шву, см</label>
-              <input required type='text' className='form-control' id='pants_length_inseam' autoComplete='off'></input>
+              <label htmlFor='pants_length_inseam' className={styles.labelStyle}><h6>Длина брюк по внутреннему шву, см</h6></label>
+              <input className={`${styles.inputStyle} form-control`} required type='text' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='groin_to_bone' className='form-label'>Длина от мотни до косточки на ноге, см</label>
-              <input required type='text' className='form-control' id='groin_to_bone' autoComplete='off'></input>
+              <label htmlFor='groin_to_bone' className={styles.labelStyle}><h6>Длина от мотни до косточки на ноге, см</h6></label>
+              <input className={`${styles.inputStyle} form-control`} required type='text' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>
 
@@ -167,7 +171,7 @@ function Item(props) {
             {(currentItem.size_type_id === 3)
             &&
             <div className='mb-3'>
-              <label htmlFor='base_size' className='form-label'>Рост ребенка</label>
+              <label htmlFor='base_size' className={styles.labelStyle}>Рост ребенка</label>
               <select required className='form-select' id='base_size'>
                 <option selected value=''>Выбери рост</option>
                 <option value='110'>110</option>
@@ -179,16 +183,16 @@ function Item(props) {
             {(currentItem.size_type_id === 1 || currentItem.size_type_id === 2)
             &&
             <div className='mb-3'>
-              <label htmlFor='base_size' className='form-label'>Размер (для костюмов данная информация справочно)</label>
-              <select required className='form-select' id='base_size'>
-                <option selected disabled value=''>Выбери размер</option>
+              <label htmlFor='base_size' className={styles.labelStyle}><h6>Размер (для костюмов данная информация справочно)</h6></label>
+              <select required className={`${styles.inputStyle} ${styles.textStyle} form-select`} id='base_size'>
+                <option selected disabled value=''><span>Выбери размер</span></option>
                 <option value='XS'>XS</option>
                 <option value='S'>S</option>
                 <option value='M'>M</option>
                 <option value='L'>L</option>
                 <option value='XL'>XL</option>
               </select>
-              <p>* на большие размеры цена может быть увеличена</p>
+              <p className={styles.comment}>* на большие размеры цена может быть увеличена</p>
             </div>
             }
             <div>
@@ -199,7 +203,7 @@ function Item(props) {
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Инструкция по размерам</h5>
+                    <p className="modal-title" id="exampleModalLabel">Инструкция по размерам</p>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div className="modal-body">
@@ -221,9 +225,9 @@ function Item(props) {
             </div>
             </div>
             <div>
-              <button type='submit' className='btn btn-primary'>Добавить в корзину</button>
+              <button type='submit' className='btn btn-primary btn-sm'>Добавить в корзину</button>
             </div>
-          </div>
+        </div>
         </form>
       </div>
     </div>
