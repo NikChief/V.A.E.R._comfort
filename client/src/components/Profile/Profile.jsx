@@ -7,6 +7,9 @@ import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, f
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
+import { getOrdersInfoAC, getPersonalInfoAC } from '../../redux/actionCreators/profileAC';
+import styles from './Profile.module.css'
+
 
 function Profile(props) {
   const { user } = useSelector(state => state.userState);
@@ -56,27 +59,75 @@ function Profile(props) {
     dispatch(fetchEditUserAC(body))
     alert(user.editErrorMessage)
   }
+  const { personalInfoView } = useSelector(state => state.profileState);
+
+  const getPersonalInfo = () => {
+    dispatch(getPersonalInfoAC());
+  }
+
+  const getOrdersInfo = () => {
+    dispatch(getOrdersInfoAC());
+  }
 
   return (
     <div>
-      {user.loggedIn ?
-        (<div className='container' >
-          <h3>Личная информация</h3>
-          <div>Имя: </div>
-          <div>{user.userName}</div>
-          <div>E-mail: </div>
-          <div>{user.userEmail}</div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Изменить данные профиля
-          </button>
-          <br />
-          <br />
-          {/* <!-- Modal --> */}
+      <div className={styles.container}>
+        <aside className={styles.container__sidebar}>
+          <div className={styles.buttonsContainer}>
+            <div className={styles.buttonContainer}>
+              <h4 onClick={getPersonalInfo} className={styles.button}>Личная информация</h4>
+            </div>
+            <div className={styles.buttonContainer}>
+              <div className={styles.button}>
+                <div>
+                  <h4 onClick={getOrdersInfo}>Заказы</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <main className={styles.container__main}>
+          {
+            personalInfoView
+            &&
+            <div id='PersonalInfoBox' className={styles.personalInfoBox}>
+              <h4>Личная информация</h4>
+              <div><h5>Имя:</h5></div>
+              <p>{user.userName}</p>
+              {/* <div>{user.userName}</div> */}
+              <div><h5>Электронная почта:</h5></div>
+              {/* <div>{user.userEmail}</div> */}
+              <p>{user.userEmail}</p>
+              <div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Изменить данные профиля
+              </button></div>
+            </div>
+
+          }
+          {
+            !personalInfoView
+            &&
+            <div id='OrderTableBox'>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th scope="col">Номер заказа</th>
+                    <th scope="col">Дата создания</th>
+                    <th scope="col">Статус заказа</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  заказы
+                </tbody>
+              </table>
+            </div>
+          }
           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
+                <h5 className={`modal-title ${styles.modalTitle}`} id="staticBackdropLabel">Окно изменения личной информации</h5>
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Окно изменения личной информации</h5>
                 </div>
                 <div class="modal-body">
                   <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
@@ -86,7 +137,7 @@ function Profile(props) {
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='email' className='form-label'>Новая электронная почта</label>
-                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required/>
+                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='name' className='form-label'>Новый пароль</label>
@@ -97,15 +148,14 @@ function Profile(props) {
                     </div>
                   </form>
                   <hr />
-                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>  
+                  <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" style={{margin: "0 auto"}} data-bs-dismiss="modal">Закрыть без изменений</button>
+                  <button type="button" class="btn btn-secondary" style={{ margin: "0 auto" }} data-bs-dismiss="modal">Закрыть без изменений</button>
                 </div>
               </div>
             </div>
-          </div>
-          <h3>История заказов</h3>
+          </div>        <h3>История заказов</h3>
           <div>
             <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
               <option value="Все" defaultValue>Все заказы</option>
@@ -117,26 +167,14 @@ function Profile(props) {
               <option value="Выполнен">Выполненные заказы</option>
             </select>
           </div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Номер заказа</th>
-                <th scope="col">Дата создания</th>
-                <th scope="col">Статус заказа</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {(ordersInfo?.length) ? (ordersInfo.map(order =>
-                <ProfileOrderString key={order.id} order={order} />
-              )) : (<div>Нет заказов</div>)}
-            </tbody>
-          </table>
-        </div>)
-        : navigate('/')}
+
+          {(ordersInfo?.length) ? (orders.map(order =>
+            <ProfileOrderString key={order.id} order={order} />
+          )) : (<div>Нет заказов</div>)}
+        </main>
+      </div>
     </div>
-  );
+  )
 }
 
 export default Profile;
-//

@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  /* border: 2px solid black; */
+}
+
+.container__sidebar {
+  width: 30%;
+  border: 1px solid grey;
+  margin: 1vh;
+  height: 100vh;
+  border-radius: 5px;
+}
+
+.container__main {
+  /* Take the remaining width */
+  flex: 1;
+  border: 1px solid grey;
+  /* Make it scrollable */
+  overflow: auto;
+  /* padding: 1hv; */
+  margin: 1vh;
+  height: 100vh;  
+  border-radius: 5px;
+}
+
+.table {
+  /* border: 2px solid blue; */
+  margin: 5vh;
+  width: 98%;
+  height: 100%;
+}
+
+.personalInfoBox {
+  /* border: 2px solid blue; */
+  margin: 5vh;
+  width: 98%;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  /* border: 1px solid black; */
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  height: 10vh;
+}
+ .modalTitle {
+   text-align: center;
+   margin-top: 20px;
+ }

@@ -1,14 +1,3 @@
-.basketCardBox {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  /* border: 2px solid black; */
-  width: 60rem;
-}
-
-.basketCardOuterBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.h6 {
+  margin-bottom: 1rem;
 }
