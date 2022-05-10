@@ -164,7 +164,7 @@ function Item(props) {
               <input className={`${styles.inputStyle} form-control`} required type='text' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
-              <label htmlFor='groin_to_bone'><h6 className={styles.labelStyle}>Длина от мотни до косточки на ноге, см</h6></label>
+              <label htmlFor='groin_to_bone' className={styles.labelStyle}><h6>Длина от мотни до косточки на ноге, см</h6></label>
               <input className={`${styles.inputStyle} form-control`} required type='text' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>

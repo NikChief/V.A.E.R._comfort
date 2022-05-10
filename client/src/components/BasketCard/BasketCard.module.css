@@ -43,6 +43,9 @@
   display: flex;
   flex-direction: row;
   margin-right: 2vh;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 25px;
 }
 
 .sizeText {
