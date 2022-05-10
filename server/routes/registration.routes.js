@@ -3,6 +3,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const PasswordValidator = require('password-validator');
+const validator = require('email-validator');
 const { User } = require('../db/models');
 
 const schema = new PasswordValidator();
@@ -34,6 +35,13 @@ router
           .json({
             loggedIn: false,
             message: 'Такой пользователь уже существует.',
+          });
+      } else if (!validator.validate(email)) {
+        res
+          .status(400)
+          .json({
+            loggedIn: false,
+            message: 'Некорректная электронная почта.',
           });
       } else if (password !== repeatPassword) {
         res
