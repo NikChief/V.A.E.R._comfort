@@ -3,7 +3,7 @@ import './Carousel.css'
 
 function Carousel(props) {
   return (
-    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" className="carousel slide" style={{'width': '600px'}} data-bs-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img src="carousel_images/car1.jpg" className="d-block w-100" alt="..."/>
