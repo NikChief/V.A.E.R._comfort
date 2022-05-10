@@ -9,6 +9,7 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
 import { getOrdersInfoAC, getPersonalInfoAC } from '../../redux/actionCreators/profileAC';
 import styles from './ProfileAdmin.module.css'
+import ChangeStatus from '../ChangeStatus/ChangeStatus';
 
 
 function ProfileAdmin(props) {
@@ -121,8 +122,9 @@ function ProfileAdmin(props) {
                   </select>
                 </div>
 
-                {(orders?.length) ? (ordersInfo.map(order =>
+                {(orders?.length) ? (ordersInfo.map(order => <>
                   <ProfileOrderString key={order.id} order={order} />
+                  <hr /></>
                 )) : (<div> Нет заказов</div>)}
               </div>
             </>
