@@ -23,6 +23,7 @@ function Login(props) {
       password: event.target.password.value,
     } 
     dispatch(fetchLoggedInUserAC(body))
+    event.target.reset()
   }, [dispatch])
 
   useEffect(() => {

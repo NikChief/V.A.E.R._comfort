@@ -26,6 +26,7 @@ function Registration(props) {
     }
     
     dispatch(fetchRegisterUserAC(body))
+    event.target.reset()
   }, [dispatch])
 
   useEffect(() => {
