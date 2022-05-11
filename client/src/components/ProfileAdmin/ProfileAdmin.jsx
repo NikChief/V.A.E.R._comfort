@@ -119,7 +119,7 @@ function ProfileAdmin(props) {
           {
             !personalInfoView
             && <>
-              <div id='PersonalInfoBox' className={styles.personalInfoBox}>
+              <div id='PersonalInfoBox' className={styles.ordersInfoBox}>
                 <h4>История заказов</h4>
                 <div>
                   <select onChange={filterOrders} className="form-select" aria-label="Default select example">
