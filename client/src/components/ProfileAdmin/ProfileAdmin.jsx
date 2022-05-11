@@ -90,9 +90,9 @@ function ProfileAdmin(props) {
               <h4 onClick={getPersonalInfo} className={styles.button}>Личная информация</h4>
             </div>
             <div className={styles.buttonContainer}>
-              <div className={styles.button}>
+              <div onClick={getOrdersInfo} className={styles.button}>
                 <div>
-                  <h4 onClick={getOrdersInfo}>Заказы</h4>
+                  <h4>Заказы</h4>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ function ProfileAdmin(props) {
               <div><h5>Электронная почта:</h5></div>
               {/* <div>{user.userEmail}</div> */}
               <p>{user.userEmail}</p>
-              <div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <div><button type="button" className={`btn ${styles.buttonColor}`} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Изменить данные профиля
               </button></div>
             </div>
