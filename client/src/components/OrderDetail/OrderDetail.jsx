@@ -18,11 +18,11 @@ function OrderDetail({ product }) {
     </div>
     <div className={styles.rightInnerContainer}>
       {product.base_size && <p class="card-text"><span className={styles.bold}>Базовый размер:</span> {product.base_size}</p>}
-      {product.bust && <p class="card-text"><span className={styles.bold}>Бюст:</span> {product.bust}</p>}
-      {product.hip_girth && <p class="card-text"><span className={styles.bold}>Обхват бедер:</span> {product.hip_girth}</p>}
-      {product.waistline && <p class="card-text"><span className={styles.bold}>Обхват талии:</span> {product.waistline}</p>}
-      {product.pants_length_inseam && <p class="card-text"><span className={styles.bold}>Длина брюк по внутреннему шву:</span> {product.pants_length_inseam}</p>}
-      {product.groin_to_bone && <p class="card-text"><span className={styles.bold}>Длина от мотни до косточки на ноге:</span> {product.groin_to_bone}</p>}
+      {product.bust && <p class="card-text"><span className={styles.bold}>Бюст, см:</span> {product.bust}</p>}
+          {product.hip_girth && <p class="card-text"><span className={styles.bold}>Обхват бедер, см:</span> {product.hip_girth}</p>}
+          {product.waistline && <p class="card-text"><span className={styles.bold}>Обхват талии, см:</span> {product.waistline}</p>}
+          {product.pants_length_inseam && <p class="card-text"><span className={styles.bold}>Длина брюк по внутреннему шву, см:</span> {product.pants_length_inseam}</p>}
+          {product.groin_to_bone && <p class="card-text"><span className={styles.bold}>Длина от мотни до косточки на ноге, см:</span> {product.groin_to_bone}</p>}
       <p class="card-text"><span className={styles.bold}>Сумма за указанный Товар:</span> {product.Item.price*product.count} руб.</p>
     </div>
     </div>

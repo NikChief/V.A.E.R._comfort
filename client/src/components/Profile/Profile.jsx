@@ -17,9 +17,6 @@ function Profile(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
-  // console.log('18', orders);
-  // fetch('/profile')
-  //   .then(res => console.log(res))
 
   useEffect(() => {
     dispatch(fetchInitOrdersAC())
@@ -59,13 +56,13 @@ function Profile(props) {
       <div className={styles.container}>
         <aside className={styles.container__sidebar}>
           <div className={styles.buttonsContainer}>
-            <div onClick={getPersonalInfo} className={styles.buttonContainer}>
-              <h4 className={styles.button}>Личная информация</h4>
+            <div className={styles.buttonContainer}>
+              <h4 onClick={getPersonalInfo} className={!personalInfoView ? `${styles.button} ${styles.buttonFont}` : `${styles.button} ${styles.buttonFont} ${styles.buttonOn}`}>Личная информация</h4>
             </div>
             <div className={styles.buttonContainer}>
-              <div onClick={getOrdersInfo} className={styles.button}>
+              <div onClick={getOrdersInfo} className={personalInfoView ? `${styles.button} ${styles.buttonFont}` : `${styles.button} ${styles.buttonFont} ${styles.buttonOn}`}>
                 <div>
-                  <h4>Заказы</h4>
+                  <h4 className={styles.buttonFont}>Заказы</h4>
                 </div>
               </div>
             </div>
