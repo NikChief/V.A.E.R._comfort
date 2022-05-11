@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     extra_color1_id: DataTypes.INTEGER,
     extra_color2_id: DataTypes.INTEGER,
+    comment: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'OrderItem',
