@@ -1,4 +1,4 @@
-import { CLEAR_USER_MESSAGE, EDIT_USER, LOGGEDIN_USER, LOGOUT_USER } from '../actionTypes/userAT'
+import { CLEAR_USER_MESSAGE, EDIT_USER, EDIT_USER_NAME, EDIT_USER_EMAIL, LOGGEDIN_USER, LOGOUT_USER } from '../actionTypes/userAT'
 
 const initialState = { user: '' }
 
@@ -11,7 +11,12 @@ export function userReducer(state = initialState, action) {
       }
 
     case LOGOUT_USER:
-      return { ...state, user: { loggedIn: false } }
+      return { 
+        ...state, 
+        user: { 
+          loggedIn: false 
+        } 
+      }
 
     case CLEAR_USER_MESSAGE:
       return {
@@ -23,12 +28,15 @@ export function userReducer(state = initialState, action) {
         return {
           ...state, user: { loggedIn: false }
         }
-      }
-      else {
+      } else {
         return {
-          ...state, user: { ...state.user, editErrorMessage: action.payload.message }
+          ...state, user: { 
+            ...state.user, 
+            editErrorMessage: action.payload.message 
+          }
         }
       }
+
     default:
       return state
   }
