@@ -1,6 +1,11 @@
 .orderContainer {
   margin-top: 20px;
-  width: 100%;
+  width: 98%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
   /* border: 2px solid green; */
 }
 
@@ -8,6 +13,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
   /* border: 2px solid blue; */
 }
 
@@ -28,6 +34,7 @@
 
 .orderAmountContainer{
   line-height:15px;
+  
   /* border: 2px solid red; */
 }
 

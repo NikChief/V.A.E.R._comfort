@@ -59,14 +59,12 @@ function Profile(props) {
       <div className={styles.container}>
         <aside className={styles.container__sidebar}>
           <div className={styles.buttonsContainer}>
-            <div onClick={getPersonalInfo} className={styles.buttonContainer}>
+            <div onClick={getPersonalInfo} className={styles.buttonsContainer}>
               <h4 className={styles.button}>Личная информация</h4>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonsContainer}>
               <div onClick={getOrdersInfo} className={styles.button}>
-                <div>
                   <h4>Заказы</h4>
-                </div>
               </div>
             </div>
           </div>
@@ -95,7 +93,7 @@ function Profile(props) {
               <div id='PersonalInfoBox' className={styles.personalInfoBox}>
                 <h4>История заказов</h4>
                 <div>
-                  <select onChange={filterOrders} className="form-select" aria-label="Default select example">
+                  <select onChange={filterOrders} className={`form-select ${styles.selectForm}`} aria-label="Default select example">
                     <option value="Все" defaultValue>Все заказы</option>
                     <option value="В обработке">Заказы в обработке</option>
                     <option value="Подтвержден">Подтвержденные заказы</option>
