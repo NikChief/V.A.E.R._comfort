@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  Order, OrderItem, Item, Color,
+  Order, OrderItem, Item, Color, Pattern, Material,
 } = require('../db/models');
 
 router
@@ -28,29 +28,37 @@ router
           ],
         },
       );
-      console.log('orderItems', orderItems);
+
       const colors = await Color.findAll();
 
       const newOrderItems = [];
-      for (let i = 0; i < orderItems.length; i++) {
-        for (let j = 0; j < orders.length; j++) {
-
+      for (let i = 0; i < orderItems.length; i += 1) {
+        for (let j = 0; j < orders.length; j += 1) {
           if (orderItems[i].order_id === orders[j].dataValues.id) {
             newOrderItems.push(orderItems[i]);
           }
         }
       }
 
+      const patterns = await Pattern.findAll();
+      const materials = await Material.findAll();
 
-      // newOrderItems.map((element) => {
-      //   colors.map((color) => {
-      //     console.log(element.dataValues)
-      //     if (element.dataValues.main_color_id === color.id) {
-      //       return { key: 'value' }
-      //       // return { ...element.dataValues, main_color_id: color.name };
-      //     }
-      //   });
-      // });
+      for (let i = 0; i < newOrderItems.length; i += 1) {
+        for (let j = 0; j < patterns.length; j += 1) {
+          if (newOrderItems[i].Item.pattern_id === patterns[j].id) {
+            newOrderItems[i].dataValues.pattern = patterns[j];
+          }
+        }
+      }
+
+      for (let i = 0; i < newOrderItems.length; i += 1) {
+        for (let j = 0; j < materials.length; j += 1) {
+          if (newOrderItems[i].Item.material_id === materials[j].id) {
+            newOrderItems[i].dataValues.material = materials[j];
+          }
+        }
+      }
+
       res.json({
         orders,
         colors,
