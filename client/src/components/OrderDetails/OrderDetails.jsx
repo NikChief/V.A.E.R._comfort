@@ -18,7 +18,7 @@ function OrderDetails({ order }) {
       <h6 className={styles.h6}>Детали заказа</h6>
       <div className={styles.orderDetailContainer}>{products.map(product => <OrderDetail key={product.id} product={product} />)}</div>
       <h6 className={styles.h6}>Стоимость всего заказа</h6>
-      <div>{pr}</div>
+      <div>{pr} руб.</div>
       {/* {products.map(product => <OrderDetail key={product.id} product={product} />)} */}
       {/* <p class="card-text">Статус: {order.Order.status}</p>
           <p class="card-text">Адрес доставки: {order.Order.address}</p>

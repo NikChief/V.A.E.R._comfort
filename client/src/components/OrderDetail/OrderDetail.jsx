@@ -19,7 +19,7 @@ function OrderDetail({ product }) {
       {product.waistline && <p class="card-text">Обхват талии: {product.waistline}</p>}
       {product.pants_length_inseam && <p class="card-text">Длина брюк по внутреннему шву: {product.pants_length_inseam}</p>}
       {product.groin_to_bone && <p class="card-text">Длина от мотни до косточки на ноге: {product.groin_to_bone}</p>}
-      <p class="card-text">Сумма товаров: {product.Item.price*product.count}</p>
+      <p class="card-text">Сумма за указанный Товар: {product.Item.price*product.count} руб.</p>
     </div>
     </>
   );
