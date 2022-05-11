@@ -7,7 +7,7 @@ const initialState = { orders: [], currentOrder: '', currentOrderMessage: '', cu
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
-      console.log('10', action.payload)
+      console.log('10INIT', action.payload)
       const colorNames = [];
       let colors = action.payload.colors
       let newOrderItems = action.payload.newOrderItems

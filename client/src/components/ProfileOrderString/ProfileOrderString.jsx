@@ -10,7 +10,6 @@ function ProfileOrderString({ order }) {
   const { orders} = useSelector(state => state.ordersState);
   const { user } = useSelector(state => state.userState);
 
-
   console.log(order)
   return (
     <div className={styles.orderContainer}>
