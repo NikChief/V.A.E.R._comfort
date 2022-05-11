@@ -7,7 +7,13 @@ import {
   SAGA_REGISTER_USER, 
   SAGA_IS_USER_AUTHORIZED, 
   EDIT_USER,
-  SAGA_EDIT_USER
+  SAGA_EDIT_USER,
+  SAGA_EDIT_USER_NAME,
+  EDIT_USER_NAME,
+  EDIT_USER_EMAIL,
+  SAGA_EDIT_USER_EMAIL,
+  EDIT_USER_PASSWORD,
+  SAGA_EDIT_USER_PASSWORD
 } from '../actionTypes/userAT'
 
 export function loggedInUserAC(payload) {
@@ -62,9 +68,24 @@ export function editUserAC(payload) {
   }
 }
 
-export function fetchEditUserAC(payload) {
+export function fetchEditUserNameAC(payload) {
   return {
-    type: SAGA_EDIT_USER,
+    type: SAGA_EDIT_USER_NAME,
+    payload
+  }
+}
+
+export function fetchEditUserEmailAC(payload) {
+  return {
+    type: SAGA_EDIT_USER_EMAIL,
+    payload
+  }
+}
+
+
+export function fetchEditUserPasswordAC(payload) {
+  return {
+    type: SAGA_EDIT_USER_PASSWORD,
     payload
   }
 }

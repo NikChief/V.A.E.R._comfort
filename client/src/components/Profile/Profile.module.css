@@ -83,3 +83,17 @@
   background-color: rgb(128, 192, 205) !important;
   color: azure !important;
 }
+
+.modalTitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modalFooter {
+  text-align: justify;
+  font-size: smaller;
+}
+
+.personalInfoInnerBox {
+  margin-top: 25px;
+} 

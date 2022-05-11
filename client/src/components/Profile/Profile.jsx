@@ -2,21 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { useNavigate } from 'react-router-dom';
 import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, filterOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
+import { fetchEditUserAC, fetchEditUserEmailAC, fetchEditUserNameAC, fetchEditUserPasswordAC } from '../../redux/actionCreators/userAC';
 import { getOrdersInfoAC, getPersonalInfoAC } from '../../redux/actionCreators/profileAC';
 import styles from './Profile.module.css'
+import { useCallback } from 'react';
 
 
 function Profile(props) {
-  const { user } = useSelector(state => state.userState);
-  // console.log(user);
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
+
+  
+  const { user } = useSelector(state => state.userState);
+  const { ordersInfoFiltered } = useSelector(state => state.ordersState);
 
   useEffect(() => {
     dispatch(fetchInitOrdersAC())
@@ -31,16 +32,41 @@ function Profile(props) {
     }
       }
 
-  const editProfileFunction = (event) => {
-    event.preventDefault();
-    const body = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
-    }
-    dispatch(fetchEditUserAC(body))
-    alert(user.editErrorMessage)
-  }
+      const editUserName = useCallback((event) => {
+        event.preventDefault();
+        const body = {
+          name: event.target.name.value,
+        }
+        dispatch(fetchEditUserNameAC(body))
+        if (user.editErrorMessage) {
+          alert(user.editErrorMessage)
+        }
+      }, [dispatch, user.editErrorMessage])
+    
+      const editUserEmail = useCallback((event) => {
+        event.preventDefault();
+        const body = {
+          email: event.target.email.value,
+        }
+        dispatch(fetchEditUserEmailAC(body))
+        if (user.editErrorMessage) {
+          alert(user.editErrorMessage)
+        }
+      }, [dispatch, user.editErrorMessage])
+    
+      const editUserPassword = useCallback((event) => {
+        event.preventDefault();
+        const body = {
+          password: event.target.password.value,
+        }
+        console.log('====', body)
+        dispatch(fetchEditUserPasswordAC(body))
+        if (user.editErrorMessage) {
+          alert(user.editErrorMessage)
+        }
+      }, [dispatch, user.editErrorMessage])
+
+      
   const { personalInfoView } = useSelector(state => state.profileState);
 
   const getPersonalInfo = () => {
@@ -74,15 +100,25 @@ function Profile(props) {
             &&
             <div id='PersonalInfoBox' className={styles.personalInfoBox}>
               <h4>Личная информация</h4>
-              <div><h5>Имя:</h5></div>
+              <div><h6>Имя:</h6></div>
               <p>{user.userName}</p>
-              {/* <div>{user.userName}</div> */}
-              <div><h5>Электронная почта:</h5></div>
-              {/* <div>{user.userEmail}</div> */}
+              <div>
+                <button type='button' className={`btn ${styles.buttonColor}`} data-bs-toggle='modal' data-bs-target='#editName'>
+                  Изменить имя
+                </button>
+              </div>
+              <div className={styles.personalInfoInnerBox}><h6>Электронная почта:</h6></div>
               <p>{user.userEmail}</p>
-              <div><button type="button" className={`btn ${styles.buttonColor}`} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Изменить данные профиля
-              </button></div>
+              <div>
+                <button type='button' className={`btn ${styles.buttonColor}`} data-bs-toggle='modal' data-bs-target='#editEmail'>
+                Изменить электронную почту
+                </button>
+              </div>
+              <div className={styles.personalInfoInnerBox}>
+                <button type='button' className={`btn ${styles.buttonColor}`} data-bs-toggle='modal' data-bs-target='#editPassword'>
+                  Изменить пароль
+                </button>
+              </div>
             </div>
 
           }
@@ -101,7 +137,7 @@ function Profile(props) {
                     <option value="Передан в доставку">Заказы, переданные в доставку</option>
                     <option value="Выполнен">Выполненные заказы</option>
                   </select>
-                  </div>
+                </div>
 
                   {(ordersInfoFiltered?.length) ? (ordersInfoFiltered.map(order =>
                     <ProfileOrderString key={order.id} order={order} />
@@ -109,42 +145,88 @@ function Profile(props) {
               </div>
               </>
           }
-              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <h5 className={`modal-title ${styles.modalTitle}`} id="staticBackdropLabel">Окно изменения личной информации</h5>
-                    <div class="modal-header">
+          <div class='modal fade' id='editName' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+              <div class='modal-content'>
+                <h5 className={`modal-title ${styles.modalTitle}`} id='staticBackdropLabel'>Окно изменения личной информации</h5>
+                <div class='modal-header'>
+                </div>
+                <div class='modal-body'>
+                  <form action='/editprofile' onSubmit={editUserName} method='put' autoComplete='off'>
+                    <div className='mb-3'>
+                      <label htmlFor='name' className='form-label'>Введите имя:</label>
+                      <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required/>
                     </div>
-                    <div class="modal-body">
-                      <form action='/editprofile' onSubmit={editProfileFunction} method='post' autoComplete='off'>
-                        <div className='mb-3'>
-                          <label htmlFor='name' className='form-label'>Новое имя</label>
-                          <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required />
-                        </div>
-                        <div className='mb-3'>
-                          <label htmlFor='email' className='form-label'>Новая электронная почта</label>
-                          <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
-                        </div>
-                        <div className='mb-3'>
-                          <label htmlFor='name' className='form-label'>Новый пароль</label>
-                          <input type='password' className='form-control' name='password' id='password' required />
-                        </div>
-                        <div>
-                          <input type='submit' className='btn btn-primary' data-bs-dismiss="modal" value='Сохранить изменения' />
-                        </div>
-                      </form>
-                      <hr />
-                      <div>Внимание! Обращаем внимание, что e-mail, указанный в форме ниже должен быть уникален,а поля формы не могут быть пустыми. После успешного редактирования личной информации, вы будете разлогинены и переадресованы на главную страницу. Для доступа в профиль необходимо вновь войти в систему с новыми данными.</div>
+                    <div>
+                      <input type='submit' className={`btn ${styles.buttonColor}`} data-bs-dismiss='modal' value='Сохранить изменения' />
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" style={{ margin: "0 auto" }} data-bs-dismiss="modal">Закрыть без изменений</button>
-                    </div>
-                  </div>
+                  </form>
+                  <hr />
+                  <div><p className={styles.modalFooter}>Обращаем внимание, что поле не может быть пустым. После успешного редактирования личной информации, вы будете переадресованы на главную страницу и вам нужно будет снова войти в личный кабинет.</p></div>
+                </div>
+                <div class='modal-footer'>
+                  <button type='button' class='btn btn-secondary' style={{ margin: '0 auto' }} data-bs-dismiss='modal'>Закрыть без изменений</button>
                 </div>
               </div>
-            </main>
+            </div>
+          </div>
+
+          <div class='modal fade' id='editEmail' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+              <div class='modal-content'>
+                <h5 className={`modal-title ${styles.modalTitle}`} id='staticBackdropLabel'>Окно изменения личной информации</h5>
+                <div class='modal-header'>
+                </div>
+                <div class='modal-body'>
+                  <form action='/editprofile' onSubmit={editUserEmail} method='put' autoComplete='off'>
+                  <div className='mb-3'>
+                      <label htmlFor='email' className='form-label'>Введите электронную почту:</label>
+                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
+                    </div>
+                    <div>
+                      <input type='submit' className={`btn ${styles.buttonColor}`} data-bs-dismiss='modal' value='Сохранить изменения' />
+                    </div>
+                  </form>
+                  <hr />
+                  <div><p className={styles.modalFooter}>Обращаем внимание, что поле не может быть пустым. После успешного редактирования личной информации, вы будете переадресованы на главную страницу и вам нужно будет снова войти в личный кабинет.</p></div>
+                </div>
+                <div class='modal-footer'>
+                  <button type='button' class='btn btn-secondary' style={{ margin: '0 auto' }} data-bs-dismiss='modal'>Закрыть без изменений</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='modal fade' id='editPassword' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+              <div class='modal-content'>
+                <h5 className={`modal-title ${styles.modalTitle}`} id='staticBackdropLabel'>Окно изменения личной информации</h5>
+                <div class='modal-header'>
+                </div>
+                <div class='modal-body'>
+                  <form action='/editprofile' onSubmit={editUserPassword} method='put' autoComplete='off'>
+                  <div className='mb-3'>
+                      <label htmlFor='email' className='form-label'>Введите новый пароль:</label>
+                      <input type='text' className='form-control' name='password' id='password' required />
+                    </div>
+                    <div>
+                      <input type='submit' className={`btn ${styles.buttonColor}`} data-bs-dismiss='modal' value='Сохранить изменения' />
+                    </div>
+                  </form>
+                  <hr />
+                  <div><p className={styles.modalFooter}>Обращаем внимание, что поле не может быть пустым. После успешного редактирования личной информации, вы будете переадресованы на главную страницу и вам нужно будет снова войти в личный кабинет.</p></div>
+                </div>
+                <div class='modal-footer'>
+                  <button type='button' class='btn btn-secondary' style={{ margin: '0 auto' }} data-bs-dismiss='modal'>Закрыть без изменений</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+        </main>
+      </div>
     </div>
-    </div >
   )
 }
 
