@@ -15,9 +15,9 @@ function ProfileOrderString({ order }) {
 
   console.log(order)
   return (
-    <div className={`${styles.orderContainer} card-header`}>
-      <div class="card text-dark bg-light mb-3" style={{ maxWidth: "18 rem" }}>
-        <div class="card-header"><h5 className="card-title">Заказ №{order.id} от {order.createdAt.match(/\d{4}.\d{2}.\d{2}/gm)[0].replace('T', ' ')}</h5></div>
+    <div className={`${styles.orderContainer}`}>
+      <div class="text-dark mb-3" style={{ maxWidth: "18 rem" }}>
+        <div class={`${styles.mb3rem}`}><h5 className={`${styles.orderHeader}`}>Заказ №{order.id} от {order.createdAt.match(/\d{4}.\d{2}.\d{2}/gm)[0].replace('T', ' ')}</h5></div>
           <div className={styles.orderDataInnerContainer}>
             <div className={styles.orderDataLeftContainer}>
               <p className={styles.orderDataText}><strong>Статус: </strong>{order.status}</p>
@@ -26,7 +26,7 @@ function ProfileOrderString({ order }) {
             </div>
             <div className={styles.orderDataRightContainer}>
               <div className={styles.orderAmountContainer}>
-                <p class="card-text"><strong>Сумма за указанный Товар:</strong></p>
+              <p class={`${styles.mb05rem}`}><strong>Сумма заказа:</strong></p>
                 <p class="card-text">{orderAmount} руб.</p>
               </div>
               {user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}
