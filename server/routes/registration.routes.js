@@ -12,7 +12,6 @@ schema.has().uppercase();
 schema.has().lowercase();
 schema.has().digits(1);
 schema.has().not().spaces();
-schema.has().symbols(1);
 
 router
   .route('/')
