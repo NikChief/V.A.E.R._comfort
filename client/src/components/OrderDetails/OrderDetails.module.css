@@ -4,7 +4,15 @@
 }
 
 .orderDetailContainer {
+  /* border: 2px solid blue; */
+  padding: 1rem
+}
+
+.orderDetailInnerContainer {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   flex-wrap: wrap;
+  /* border: 2px solid black; */
+  /* height: fit-content; */
 }

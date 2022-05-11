@@ -10,15 +10,12 @@ function OrderDetails({ order }) {
   console.log('10', orders)
   const products = orders.filter(el => el.order_id === order.id)
   console.log('12', products)
-  const pr = products.reduce((prev, next) => prev + Number(next.Item.price)*Number(next.count), 0);
-  console.log('14', pr);
+
 
   return (
-    <div class="card-body">
+    <div className={styles.orderDetailContainer}>
       <h6 className={styles.h6}>Детали заказа</h6>
-      <div className={styles.orderDetailContainer}>{products.map(product => <OrderDetail key={product.id} product={product} />)}</div>
-      <h6 className={styles.h6}>Стоимость всего заказа</h6>
-      <div>{pr} руб.</div>
+      <div className={styles.orderDetailInnerContainer}>{products.map(product => <OrderDetail key={product.id} product={product} />)}</div>
       {/* {products.map(product => <OrderDetail key={product.id} product={product} />)} */}
       {/* <p class="card-text">Статус: {order.Order.status}</p>
           <p class="card-text">Адрес доставки: {order.Order.address}</p>

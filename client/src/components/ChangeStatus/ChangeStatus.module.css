@@ -1,3 +1,4 @@
 .changeStatusContainer{
-  width: 30%;
+  width: fit-content;
+  /* border: 2px solid red; */
 }
