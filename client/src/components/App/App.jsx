@@ -29,9 +29,9 @@ function App() {
 
   return (
     <>
-      <div style={{'minHeight': '90.0vh'}}>
+      <div >
+        <div style={{'minHeight': '92vh'}}>
         <Nav />
-        <div style={{'minHeight': '75.0vh'}}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/orderForm' element={<OrderForm />} />
@@ -53,8 +53,8 @@ function App() {
           <Route path='*' element={<Error404 />} />
         </Routes>
         </div>
+      <Footer/>
       </div>
-      <Footer style={{ 'height': '7.5vh' }} />
     </>
   );
 }

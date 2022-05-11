@@ -3,8 +3,8 @@ import style from './Footer.module.css'
 
 function Footer(props) {
   return (
-    <footer className={`page-footer ${style.footer}`} >
-      <div className="footer-copyright text-center py-3 bg-dark text-muted d-flex justify-content-between">
+    <footer className={`page-footer`}  >
+      <div className="footer-copyright text-center py-2 bg-dark text-muted d-flex justify-content-between" style={{ 'maxHeight': '8vh' }}>
         <p className={style.footerText}>© 2022 V.A.E.R._comfort </p>
         <div className={style.footerSocial}>
 
