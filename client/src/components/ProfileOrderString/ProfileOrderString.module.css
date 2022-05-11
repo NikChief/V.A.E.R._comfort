@@ -4,20 +4,34 @@
   border: 2px solid green;
 }
 
-.orderDataContainer {
+.orderDataInnerContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 }
 
-.orderDataInnerContainer {
-  border: 2px solid violet;
-  width: fit-content;
+.orderDataLeftContainer {
+  /* border: 2px solid violet; */
   margin: 5vh;
 }
 
+.orderDataRightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* align-items: center; */
+  /* border: 2px solid blue; */
+  height: 150px;
+  margin: 5vh;
+}
+
+.orderAmountContainer{
+  line-height:15px;
+  /* border: 2px solid red; */
+}
+
 .orderDataText {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   width: fit-content;
 }
