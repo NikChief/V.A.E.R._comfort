@@ -41,7 +41,7 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
               </div>
             </div>
             <div className="modal-footer">
-               <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Ок</button>
+               <button type="button" className={`btn ${style.choiseButton}`} data-bs-dismiss="modal">Ок</button>
             </div>
           </form> 
         </div>
