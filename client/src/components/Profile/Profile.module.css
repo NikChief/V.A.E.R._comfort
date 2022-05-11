@@ -61,3 +61,8 @@
    text-align: center;
    margin-top: 20px;
  }
+
+.buttonColor {
+  background-color: rgb(128, 192, 205) !important;
+  color:azure !important;
+}

@@ -7,6 +7,7 @@ import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, f
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
+import styles from './AdminProfile.module.css'
 
 function AdminProfile(props) {
   const { user } = useSelector(state => state.userState);
@@ -66,8 +67,8 @@ function AdminProfile(props) {
           <div>{user.userName}</div>
           <div>E-mail: </div>
           <div>{user.userEmail}</div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Изменить данные профиля
+          <button type="button" className={`btn m-3 ${styles.buttonColor}`} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Изменить данные профиляclassName={`btn m-3 ${styles.buttonColor}`}
           </button>
           <br />
           <br />

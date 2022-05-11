@@ -99,7 +99,7 @@ function ProfileAdmin(props) {
               <div><h5>Электронная почта:</h5></div>
               {/* <div>{user.userEmail}</div> */}
               <p>{user.userEmail}</p>
-              <div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <div><button type="button" className={`btn ${styles.buttonColor}`} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Изменить данные профиля
               </button></div>
             </div>
