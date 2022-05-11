@@ -20,6 +20,11 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
 
+  console.log(basketItem.main_color_image, '3-----------')
+  console.log(basketItem.extra_color1_image, '1--------------')
+  console.log(basketItem.extra_color2_image, '2--------------')
+
+
   return (
     <div className={`${styles.basketCardOuterBox}`}>
       <div className={`card ${styles.basketCardBox}`}>
@@ -36,8 +41,8 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               <h6 className="card-title">Цвета:</h6>
               <div>
                 <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_image}`} className={styles.colorChosenImage} alt="..."></img>
-                {basketItem.extra_color1_image && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
-                {basketItem.extra_color2_image && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_image}`} className={styles.colorChosenImage} alt="..."></img>}   
+                {(basketItem.extra_color1_image !== 'pngwing.com.png') && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {(basketItem.extra_color2_image !== 'pngwing.com.png') && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
             <div className={styles.patternBlock}>
