@@ -157,23 +157,23 @@ function Item(props) {
                        
             <div className='mb-3'>
               <label htmlFor='bust' className={styles.labelStyle}><h6>Обхват груди, см</h6></label>
-              <input className={`${styles.inputStyle} form-control`} required type='text' id='bust' autoComplete='off'></input>
+              <input className={`${styles.inputStyle} form-control`} required type='number' id='bust' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='hip_girth' className={styles.labelStyle}><h6>Обхват бедер, см</h6></label>
-              <input className={`${styles.inputStyle} form-control`} required type='text' id='hip_girth' autoComplete='off'></input>
+              <input className={`${styles.inputStyle} form-control`} required type='number' id='hip_girth' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='waistline' className={styles.labelStyle}><h6>Обхват талии, см</h6></label>
-              <input className={`${styles.inputStyle} form-control`} required type='text' id='waistline' autoComplete='off'></input>
+              <input className={`${styles.inputStyle} form-control`} required type='number' id='waistline' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='pants_length_inseam' className={styles.labelStyle}><h6>Длина брюк по внутреннему шву, см</h6></label>
-              <input className={`${styles.inputStyle} form-control`} required type='text' id='pants_length_inseam' autoComplete='off'></input>
+              <input className={`${styles.inputStyle} form-control`} required type='number' id='pants_length_inseam' autoComplete='off'></input>
             </div>
             <div className='mb-3'>
               <label htmlFor='groin_to_bone' className={styles.labelStyle}><h6>Длина от мотни до косточки на ноге, см</h6></label>
-              <input className={`${styles.inputStyle} form-control`} required type='text' id='groin_to_bone' autoComplete='off'></input>
+              <input className={`${styles.inputStyle} form-control`} required type='number' id='groin_to_bone' autoComplete='off'></input>
             </div>
             </>
 
