@@ -29,21 +29,27 @@ function BasketList(props) {
     { 
     (basketItems.length !== 0)
     ?
-    (<div className={styles.basketContainer}>
-      <div id='basket_items' className={styles.basketInnerContainer}>
-        {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
+    (
+    <div className='container'>
+      <div className={styles.basketContainer}>
+        <div id='basket_items' className={styles.basketInnerContainer}>
+          {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
+        </div>
+        {(basketItems.length !== 0)
+        &&
+        <div className='container'>
+          <div id='basket_info' className={styles.price}>
+            <div className="card-title">Общая стоимость:</div>
+            <div className="card-text">
+            {basketTotal + ' руб.'}
+            </div>
+            <Link to='/orderForm' className={`btn m-3 ${styles.choiceButton}`}>Перейти к оформлению</Link>
+          </div>
+        </div>
+        }
       </div>
-      {(basketItems.length !== 0)
-      &&
-      <div id='basket_info' className={styles.basketInnerContainer}>
-        <h5 className="card-title">Общая стоимость:</h5>
-        <p className="card-text">
-        {basketTotal + ' руб.'}
-        </p>
-        <Link to='/orderForm' className={`btn m-3 ${styles.choiceButton}`}>Перейти к оформлению</Link>
-      </div>
-      }
-    </div>)
+    </div>
+    )
     :
     <div className={styles.messageContainer}>
       <div>
