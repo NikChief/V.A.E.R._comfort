@@ -2,7 +2,7 @@ import React from 'react';
 
 function Info(props) {
   return (
-    <div className='container mt-3'>
+    <div className='container mt-5 d-flex flex-column justify-content-center'>
       <h4>Сроки изготовления</h4>
       <p>
          Сроки изготовления: 2-4 рабочих дня при условии наличия ткани,

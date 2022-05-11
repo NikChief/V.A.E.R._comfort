@@ -1,4 +1,4 @@
-.footerText {
+.footerTextLeft {
   display: flex !important;
   margin: 0% !important;
   align-items: center !important;
@@ -8,11 +8,21 @@
 
 }
 
+.footerTextCenter {
+  display: flex !important;
+  margin: 0% !important;
+  align-items: center !important;
+  font-size: 18px;
+  color: rgb(229,239,241) !important;
+}
+
 .footerSocial {
+  display: flex;
+  align-items: center;
   margin-right: 3vh;
 }
 
 .icons {
-  margin-right: 1vh;
-  margin-left: 1vh;
+  margin-right: 1.5vh;
+  margin-left: 1.5vh;
 }
