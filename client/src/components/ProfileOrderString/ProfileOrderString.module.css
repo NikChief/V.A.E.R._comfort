@@ -1,3 +1,23 @@
 .orderContainer {
   margin-top: 20px;
+  width: 100%;
+  border: 2px solid green;
+}
+
+.orderDataContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid blue;
+}
+
+.orderDataInnerContainer {
+  border: 2px solid violet;
+  width: fit-content;
+  margin: 5vh;
+}
+
+.orderDataText {
+  border: 2px solid black;
+  width: fit-content;
 }

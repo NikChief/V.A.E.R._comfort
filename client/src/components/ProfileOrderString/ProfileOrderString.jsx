@@ -16,12 +16,16 @@ function ProfileOrderString({ order }) {
     <div className={styles.orderContainer}>
       <div class="card text-dark bg-light mb-3" style={{ maxWidth: "18 rem" }}>
         <div class="card-header"><h5 className="card-title">Заказ №{order.id} от {order.createdAt.match(/\d{4}.\d{2}.\d{2}.\d{2}:\d{2}:\d{2}/gm)[0].replace('T', ' ')}</h5></div>
-        {user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}
-        <div class="card-body">
-          <p class="card-text">Статус: {order.status}</p>
-          <p class="card-text">Адрес доставки: {order.address}</p>
-          <p class="card-text">Контактный телефон: {order.phone}</p>
-        </div>
+          <div className={styles.orderDataContainer}>
+            <div className={styles.orderDataInnerContainer}>
+              <p className={styles.orderDataText}>Статус: {order.status}</p>
+              <p className={styles.orderDataText}>Адрес доставки: {order.address}</p>
+              <p className={styles.orderDataText}>Контактный телефон: {order.phone}</p>
+            </div>
+            <div className={styles.orderDataInnerContainer}>
+              {user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}
+            </div>
+          </div>  
       </div>
       {(orders.length) ? (<OrderDetails key={order.id} order={order} />) : (<></>)}
     </div>
