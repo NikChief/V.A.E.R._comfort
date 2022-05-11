@@ -3,7 +3,7 @@
   /* border: 2px solid black; */
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
+  height: 100%;
 }
 
 .formContainer {
