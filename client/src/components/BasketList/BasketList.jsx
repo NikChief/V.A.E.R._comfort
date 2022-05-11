@@ -16,6 +16,10 @@ function BasketList(props) {
   const { basketTotal } = useSelector(state => state.basketState);
 
   useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
+  }, [basketItems, itemsInfoFromDb]);
+  
+  useEffect(() => {
     let totalAmount = 0;
     for (let i = 0; i < basketItems.length; i += 1) {
       totalAmount = totalAmount + Number(basketItems[i].count) * Number(itemsInfoFromDb[i]?.price)
