@@ -106,7 +106,7 @@ function Profile(props) {
                   </select>
                   </div>
 
-                  {(orders?.length) ? (ordersInfoFiltered.map(order =>
+                  {(ordersInfoFiltered?.length) ? (ordersInfoFiltered.map(order =>
                     <ProfileOrderString key={order.id} order={order} />
                   )) : (<div> Нет заказов</div>)}
               </div>
