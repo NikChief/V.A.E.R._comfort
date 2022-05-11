@@ -57,3 +57,8 @@
   margin-bottom: 5vh;
   height: 10vh;
 }
+
+.buttonColor {
+  background-color: rgb(128, 192, 205) !important;
+  color:azure !important;
+}
