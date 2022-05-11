@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate } from 'react-router-dom';
-import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
+import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, filterOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
@@ -17,37 +17,48 @@ function ProfileAdmin(props) {
   // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { orders, ordersInfo } = useSelector(state => state.ordersState);
+  const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
+  console.log('ordersInfo', ordersInfo)
+  console.log('ordersInfoFiltered', ordersInfoFiltered)
+
   // console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
+
 
   useEffect(() => {
     dispatch(fetchInitOrdersAC())
   }, [dispatch])
 
-  function changeOrdersState(event) {
-    if (event.target.value === 'Все') {
+  function filterOrders(event) {
+    const orderStatus = event.target.value;
+    if (orderStatus === 'Все') {
       dispatch(allOrdersAC())
+    } else {
+      dispatch(filterOrdersAC(orderStatus))
     }
-    if (event.target.value === 'В обработке') {
-      dispatch(inProcessingOrdersAC())
-    }
-    if (event.target.value === 'Подтвержден') {
-      dispatch(confirmedOrdersAC())
-    }
-    if (event.target.value === 'Отменен') {
-      dispatch(rejectedOrdersAC())
-    }
-    if (event.target.value === 'Оплачен') {
-      dispatch(paidOrdersAC())
-    }
-    if (event.target.value === 'Передан в доставку') {
-      dispatch(onDeliveryOrdersAC())
-    }
-    if (event.target.value === 'Выполнен') {
-      dispatch(completedOrdersAC())
-    }
+    
+    // if (event.target.value === 'Все') {
+    //   dispatch(allOrdersAC())
+    // }
+    // if (event.target.value === 'В обработке') {
+    //   dispatch(inProcessingOrdersAC())
+    // }
+    // if (event.target.value === 'Подтвержден') {
+    //   dispatch(confirmedOrdersAC())
+    // }
+    // if (event.target.value === 'Отменен') {
+    //   dispatch(rejectedOrdersAC())
+    // }
+    // if (event.target.value === 'Оплачен') {
+    //   dispatch(paidOrdersAC())
+    // }
+    // if (event.target.value === 'Передан в доставку') {
+    //   dispatch(onDeliveryOrdersAC())
+    // }
+    // if (event.target.value === 'Выполнен') {
+    //   dispatch(completedOrdersAC())
+    // }
   }
 
   const editProfileFunction = (event) => {
@@ -99,7 +110,7 @@ function ProfileAdmin(props) {
               <div><h5>Электронная почта:</h5></div>
               {/* <div>{user.userEmail}</div> */}
               <p>{user.userEmail}</p>
-              <div><button type="button" className={`btn ${styles.buttonColor}`} data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Изменить данные профиля
               </button></div>
             </div>
@@ -111,7 +122,7 @@ function ProfileAdmin(props) {
               <div id='PersonalInfoBox' className={styles.personalInfoBox}>
                 <h4>История заказов</h4>
                 <div>
-                  <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
+                  <select onChange={filterOrders} className="form-select" aria-label="Default select example">
                     <option value="Все" defaultValue>Все заказы</option>
                     <option value="В обработке">Заказы в обработке</option>
                     <option value="Подтвержден">Подтвержденные заказы</option>
@@ -122,10 +133,14 @@ function ProfileAdmin(props) {
                   </select>
                 </div>
 
-                {(orders?.length) ? (ordersInfo.map(order => <>
+                {(orders?.length) 
+                ?
+                (ordersInfoFiltered.map(order => <>
                   <ProfileOrderString key={order.id} order={order} />
                   <hr /></>
-                )) : (<div> Нет заказов</div>)}
+                )) 
+                : 
+                (<div> Нет заказов</div>)}
               </div>
             </>
           }
