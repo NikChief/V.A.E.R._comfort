@@ -4,6 +4,16 @@
 }
 
 .choiceButton {
-  background-color: rgb(128, 192, 205);
-  color:azure;
+  /* background-color: rgb(128, 192, 205); */
+  color: rgb(71,74,75);
+  background-color: rgb(229,239,241);
+  font-style: italic;
+  font-size: large;
+  
+}
+
+.choiceButton:hover {
+  background-color: #F4EBDB;
+  font-weight: 450;
+  /* background-color: rgb(229,239,241); */
 }
