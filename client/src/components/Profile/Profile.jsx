@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate } from 'react-router-dom';
-import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
+import { allOrdersAC, completedOrdersAC, confirmedOrdersAC, fetchInitOrdersAC, filterOrdersAC, fullfiledOrdersAC, initOrdersAC, inProcessingOrdersAC, onDeliveryOrdersAC, paidOrdersAC, payedOrdersAC, rejectedOrdersAC } from '../../redux/actionCreators/ordersAC';
 import ProfileOrderString from '../ProfileOrderString/ProfileOrderString';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { fetchEditUserAC } from '../../redux/actionCreators/userAC';
@@ -16,7 +16,7 @@ function Profile(props) {
   // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { orders, ordersInfo } = useSelector(state => state.ordersState);
+  const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
   // console.log('18', orders);
   // fetch('/profile')
   //   .then(res => console.log(res))
@@ -25,29 +25,14 @@ function Profile(props) {
     dispatch(fetchInitOrdersAC())
   }, [dispatch])
 
-  function changeOrdersState(event) {
-    if (event.target.value === 'Все') {
+  function filterOrders(event) {
+    const orderStatus = event.target.value;
+    if (orderStatus === 'Все') {
       dispatch(allOrdersAC())
+    } else {
+      dispatch(filterOrdersAC(orderStatus))
     }
-    if (event.target.value === 'В обработке') {
-      dispatch(inProcessingOrdersAC())
-    }
-    if (event.target.value === 'Подтвержден') {
-      dispatch(confirmedOrdersAC())
-    }
-    if (event.target.value === 'Отменен') {
-      dispatch(rejectedOrdersAC())
-    }
-    if (event.target.value === 'Оплачен') {
-      dispatch(paidOrdersAC())
-    }
-    if (event.target.value === 'Передан в доставку') {
-      dispatch(onDeliveryOrdersAC())
-    }
-    if (event.target.value === 'Выполнен') {
-      dispatch(completedOrdersAC())
-    }
-  }
+      }
 
   const editProfileFunction = (event) => {
     event.preventDefault();
@@ -110,7 +95,7 @@ function Profile(props) {
               <div id='PersonalInfoBox' className={styles.personalInfoBox}>
                 <h4>История заказов</h4>
                 <div>
-                  <select onChange={changeOrdersState} className="form-select" aria-label="Default select example">
+                  <select onChange={filterOrders} className="form-select" aria-label="Default select example">
                     <option value="Все" defaultValue>Все заказы</option>
                     <option value="В обработке">Заказы в обработке</option>
                     <option value="Подтвержден">Подтвержденные заказы</option>
@@ -121,7 +106,7 @@ function Profile(props) {
                   </select>
                   </div>
 
-                  {(orders?.length) ? (ordersInfo.map(order =>
+                  {(orders?.length) ? (ordersInfoFiltered.map(order =>
                     <ProfileOrderString key={order.id} order={order} />
                   )) : (<div> Нет заказов</div>)}
               </div>
