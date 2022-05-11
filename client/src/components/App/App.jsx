@@ -31,7 +31,7 @@ function App() {
     <>
       <div style={{'minHeight': '90.0vh'}}>
         <Nav />
-        <div style={{'height': '75.0vh'}}>
+        <div style={{'minHeight': '75.0vh'}}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/orderForm' element={<OrderForm />} />
