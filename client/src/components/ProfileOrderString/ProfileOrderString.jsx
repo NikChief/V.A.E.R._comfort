@@ -15,7 +15,7 @@ function ProfileOrderString({ order }) {
   return (
     <div className={styles.orderContainer}>
       <div class="card text-dark bg-light mb-3" style={{ maxWidth: "18 rem" }}>
-        <div class="card-header"><h5 className="card-title">Заказ №{order.id} от {order.createdAt.match(/\d{4}.\d{2}.\d{2}.\d{2}:\d{2}:\d{2}/gm)[0].replace('T', ' ')}</h5></div>
+        <div class="card-header"><h5 className="card-title">Заказ №{order.id} от {order.createdAt.match(/\d{4}-\d{2}-\d{2}/gm)[0].replace('T', ' ')}</h5></div>
         {user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}
         <div class="card-body">
           <p class="card-text">Статус: {order.status}</p>

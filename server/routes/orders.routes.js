@@ -13,7 +13,7 @@ router
       } else {
         orders = await Order.findAll({
           where: {
-            id: req.session.userId,
+            user_id: req.session.userId,
           }
         })
       }
