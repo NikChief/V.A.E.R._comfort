@@ -32,7 +32,7 @@
 
 .personalInfoBox {
   /* border: 2px solid blue; */
-  margin: 4vh;
+  margin: 5vh;
   width: 98%;
 }
 
@@ -56,25 +56,7 @@
   margin-top: 3vh;
   margin-bottom: 5vh;
   height: 10vh;
-  cursor: pointer;
-
 }
-
-.button:hover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin-left: 1vh;
-  margin-right: 1vh;
-  margin-top: 3vh;
-  margin-bottom: 5vh;
-  height: 10vh;
-  cursor: pointer;
-  background-color: rgb(229,239,241);
-}
-
  .modalTitle {
    text-align: center;
    margin-top: 20px;
@@ -83,9 +65,4 @@
 .buttonColor {
   background-color: rgb(128, 192, 205) !important;
   color:azure !important;
-}
-
-.selectForm{
-  width: 95% !important;
-  margin-left: 2vh;
 }
