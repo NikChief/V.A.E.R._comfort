@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addItemToBasketAC, fetchItemsInfoAC } from '../../redux/actionCreators/basketAC';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { clearCurrentItemAC, fetchInitCurrentItemAC, initCurrentItemAmountAC, initCurrentItemCountAC } from '../../redux/actionCreators/itemAC';
 import { clearChosenColorsAC, fetchInitColorsAC } from '../../redux/actionCreators/colorsAC';
 import ColorChoiceForm from '../ColorChoiceForm/ColorChoiceForm';
@@ -11,6 +11,7 @@ import MaterialChoiceForm from '../MaterialChoiceForm/MaterialChoiceForm';
 import styles from './Item.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useCallback } from 'react';
+import { Modal } from 'bootstrap'
 
 function Item(props) {
 
@@ -70,8 +71,9 @@ function Item(props) {
     }
 
     dispatch(addItemToBasketAC(body));
-    dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })) 
-    alert('Товар добавлен в корзину.')
+    dispatch(fetchItemsInfoAC({ basketId: body.id, patternId: body.pattern_id, materialId: body.material_id })); 
+    const modal = new Modal(document.querySelector('#message'));
+    modal.show();
   }, [dispatch, colorChosenExtra1, colorChosenExtra2, colorChosenMain, currentItem.image, currentItem.name, patternId])
 
   return (
@@ -231,6 +233,23 @@ function Item(props) {
             </div>
         </div>
         </form>
+      </div>
+     
+      {/* <!-- Modal --> */}
+      <div class="modal fade" id="message" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h5 class="modal-body">
+              Товар добавлен в корзину
+            </h5>
+            <div class="modal-footer">
+              <Link to='/basket'><button type="button" class={`btn btn-sm ${styles.addToBasketButton}`} data-bs-dismiss="modal">Перейти в корзину</button></Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
