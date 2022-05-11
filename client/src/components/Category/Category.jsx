@@ -16,12 +16,14 @@ function Category({category}) {
 
   return (
     <div className="card" style={{"width": "20rem"}}>
-      <img src={`${process.env.REACT_APP_BASE_URL}/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
-      <div className="card-body d-flex justify-content-center">
       <Link to={`/catalogue/${params.type}/${category.Category.link_name}`} 
             onClick={getCategoryTypeId} 
-            className={`btn m-3 ${style.choiceButton}`}> {category.Category.name} </Link>
-      </div>
+            className={`btn m-3 ${style.choiceButton}`}> 
+            <img src={`${process.env.REACT_APP_BASE_URL}/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
+            <div className="card-body d-flex justify-content-center">
+            {category.Category.name} 
+            </div>
+      </Link>
     </div>
   );
 }

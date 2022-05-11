@@ -67,6 +67,9 @@ module.exports = {
           key: 'id',
         },
       },
+      comment: {
+        type: Sequelize.TEXT,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

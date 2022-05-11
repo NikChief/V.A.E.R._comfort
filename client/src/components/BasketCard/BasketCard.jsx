@@ -20,11 +20,6 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
     localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
   }, [basketItems, itemsInfoFromDb]);
 
-  console.log(basketItem.main_color_image, '3-----------')
-  console.log(basketItem.extra_color1_image, '1--------------')
-  console.log(basketItem.extra_color2_image, '2--------------')
-
-
   return (
     <div className={`${styles.basketCardOuterBox}`}>
       <div className={`card ${styles.basketCardBox}`}>
@@ -56,6 +51,9 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
           </div>
           <div>
             <h6 className="card-title">Размеры:</h6>
+              {
+                basketItem.bust
+              &&
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Обхват груди, см:</p>
@@ -64,6 +62,10 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
                   <p className={`${styles.sizeText}`}>{basketItem.bust}</p>
                 </div>
               </div>
+              }
+              {
+              basketItem.hip_girth
+              &&
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Обхват бедер, см:</p>
@@ -72,6 +74,10 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
                   <p className={`${styles.sizeText}`}>{basketItem.hip_girth}</p>
                 </div>
               </div>
+              }
+              {
+              basketItem.waistline
+              &&
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Обхват талии, см:</p>
@@ -80,6 +86,10 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
                   <p className={`${styles.sizeText}`}>{basketItem.waistline}</p>
                 </div>
               </div>
+              }
+              {
+              basketItem.pants_length_inseam
+              &&
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Длина брюк по внутреннему шву, см:</p>
@@ -88,6 +98,10 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
                   <p className={`${styles.sizeText}`}>{basketItem.pants_length_inseam}</p>
                 </div>
               </div>
+              }
+              {
+              basketItem.groin_to_bone
+              &&
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Длина от мотни до косточки на ноге, см:</p>
@@ -96,6 +110,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
                   <p className={`${styles.sizeText}`}>{basketItem.groin_to_bone}</p>
                 </div>
               </div>
+              }
               <div className={`${styles.sizesOuterBox}`}>
                 <div className={`${styles.sizesInnerBox}`}>
                   <p className={`${styles.valueText} card-text`}>Размер (для костюмов данная информация справочно):</p>
