@@ -65,12 +65,12 @@ function ProfileAdmin(props) {
         <aside className={styles.container__sidebar}>
           <div className={styles.buttonsContainer}>
             <div className={styles.buttonContainer}>
-              <h4 onClick={getPersonalInfo} className={styles.button}>Личная информация</h4>
+              <h4 onClick={getPersonalInfo} className={!personalInfoView ? `${styles.button} ${styles.buttonFont}` : `${styles.button} ${styles.buttonFont} ${styles.buttonOn}` }>Личная информация</h4>
             </div>
             <div className={styles.buttonContainer}>
-              <div onClick={getOrdersInfo} className={styles.button}>
+              <div onClick={getOrdersInfo} className={personalInfoView ? `${styles.button} ${styles.buttonFont}` : `${styles.button} ${styles.buttonFont} ${styles.buttonOn}`}>
                 <div>
-                  <h4>Заказы</h4>
+                  <h4 className={styles.buttonFont}>Заказы</h4>
                 </div>
               </div>
             </div>

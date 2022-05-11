@@ -5,21 +5,22 @@
 
 .container__sidebar {
   width: 30%;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   margin: 1vh;
   height: 100vh;
   border-radius: 5px;
+
 }
 
 .container__main {
   /* Take the remaining width */
   flex: 1;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   /* Make it scrollable */
   overflow: auto;
   /* padding: 1hv; */
   margin: 1vh;
-  height: 100vh;  
+  height: 100vh;
   border-radius: 5px;
 }
 
@@ -44,6 +45,7 @@
 .buttonsContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .buttonContainer {
@@ -54,17 +56,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
   border-radius: 5px;
   margin-left: 1vh;
   margin-right: 1vh;
   margin-top: 3vh;
-  margin-bottom: 5vh;
+  margin-bottom: 1vh;
   height: 10vh;
+  background-color: rgb(229, 239, 241)
+
   /* border: 1px solid green; */
+}
+
+.buttonFont {
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: rgb(128, 192, 205);
+  color: aliceblue;
+}
+
+.buttonOn {
+  background-color: rgb(128, 192, 205);
+  color: aliceblue;
 }
 
 .buttonColor {
   background-color: rgb(128, 192, 205) !important;
-  color:azure !important;
+  color: azure !important;
 }

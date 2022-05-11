@@ -3,9 +3,10 @@ import styles from './OrderDetail.module.css';
 
 function OrderDetail({ product }) {
   console.log(product)
-  
+
   return (
     <>
+
     <div className={styles.orderDetail}>
     <div className={styles.leftInnerContainer}>
       <p class="card-text"><span className={styles.bold}>Модель:</span> {product.pattern.name}</p>
