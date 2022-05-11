@@ -93,13 +93,21 @@ export function ordersReducer(state = initialState, action) {
       }
 
     case SET_ORDER_STATUS:
-      console.log(action.payload)
+      console.log('96', action.payload)
       let newOrders;
+      let newOrdersFiltered;
       if (action.payload.order[0] === 1) {
         newOrders = [...state.ordersInfo].map(order => order.id === action.payload.id ? { ...order, status: action.payload.status } : order)
+        newOrdersFiltered = [...state.ordersInfoFiltered].map(order => order.id === action.payload.id ? { ...order, status: action.payload.status } : order)
       }
-      return {
+      const abc = {
         ...state, ordersInfo: newOrders
+      }
+      console.log('100', abc)
+      return {
+        ...state, 
+        ordersInfo: newOrders,
+        ordersInfoFiltered: newOrdersFiltered,
       }
 
     default:

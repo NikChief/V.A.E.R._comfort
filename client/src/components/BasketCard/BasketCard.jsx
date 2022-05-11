@@ -36,8 +36,8 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               <h6 className="card-title">Цвета:</h6>
               <div>
                 <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_image}`} className={styles.colorChosenImage} alt="..."></img>
-                {basketItem.extra_color1_image?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
-                {basketItem.extra_color2_image?.id && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_image}`} className={styles.colorChosenImage} alt="..."></img>}   
+                {basketItem.extra_color1_image && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
+                {basketItem.extra_color2_image && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color2_image}`} className={styles.colorChosenImage} alt="..."></img>}   
               </div>
             </div>
             <div className={styles.patternBlock}>

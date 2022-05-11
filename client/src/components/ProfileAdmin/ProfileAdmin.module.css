@@ -47,7 +47,7 @@
 }
 
 .buttonContainer {
-  /* border: 1px solid black; */
+  /* border: 1px solid red; */
 }
 
 .button {
@@ -61,6 +61,7 @@
   margin-top: 3vh;
   margin-bottom: 5vh;
   height: 10vh;
+  /* border: 1px solid green; */
 }
 
 .buttonColor {
