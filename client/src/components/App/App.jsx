@@ -16,6 +16,7 @@ import Item from '../Item/Item'
 import PatternList from '../PatternList/PatternList'
 import ProfileAdmin from '../ProfileAdmin/ProfileAdmin';
 import { useSelector } from 'react-redux';
+import Info from '../Info/Info';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
           <Route path='/catalogue/:type/:categoryType' element={<PatternList />} />
           <Route path='/catalogue/:type/:categoryType/:patternId' element={<Item />} />
           <Route path='/basket' element={<BasketList />} />
+          <Route path='/info' element={<Info />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
         </div>

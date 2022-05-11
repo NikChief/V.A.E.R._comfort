@@ -1,11 +1,13 @@
 import React from 'react';
 import style from './Footer.module.css'
+import {NavLink} from 'react-router-dom'
 
 function Footer(props) {
   return (
     <footer className={`page-footer ${style.footer}`} >
       <div className="footer-copyright text-center py-3 bg-dark text-muted d-flex justify-content-between">
         <p className={style.footerText}>© 2022 V.A.E.R._comfort </p>
+        <p className={style.footerText}> <NavLink to='/info' className={`nav-link ${style.footerText}`} >Информация для клиентов</NavLink> </p>
         <div className={style.footerSocial}>
 
         <a className={style.icons} href="https://vk.com/vaer_komfort" target='_blank' rel='noreferrer noopener'>
