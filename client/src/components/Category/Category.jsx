@@ -15,7 +15,7 @@ function Category({category}) {
   }
 
   return (
-    <div className="card" style={{"width": "20rem"}}>
+    <div className="card" style={{"width": "23rem"}}>
       <Link to={`/catalogue/${params.type}/${category.Category.link_name}`} 
             onClick={getCategoryTypeId} 
             className={`btn m-3 ${style.choiceButton}`}> 

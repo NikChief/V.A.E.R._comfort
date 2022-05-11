@@ -1,11 +1,21 @@
 .basketContainer {
   display: flex;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .basketInnerContainer {
   margin: 15px;
-  overflow: scroll;
+  /* overflow: scroll; */
+}
+
+.price {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: large;
+  font-weight: 400;
 }
 
 .messageContainer {
