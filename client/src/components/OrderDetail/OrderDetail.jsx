@@ -8,12 +8,12 @@ function OrderDetail({ product }) {
     <>
     <div className={styles.orderDetail}>
     <div className={styles.leftInnerContainer}>
-      <p class="card-text"><span className={styles.bold}>ID модели:</span> {product.item_id}</p>
+      <p class="card-text"><span className={styles.bold}>Модель:</span> {product.pattern.name}</p>
       <p class="card-text"><span className={styles.bold}>Количество, шт:</span> {product.count}</p>
       <p class="card-text"><span className={styles.bold}>Основной цвет:</span> {product.main_color_id} </p>
       {product.extra_color1_id && <p class="card-text"><span className={styles.bold}>Дополнительный цвет 1:</span> {product.extra_color1_id}</p>}
       {product.extra_color2_id && <p class="card-text"><span className={styles.bold}>Дополнительный цвет 2:</span> {product.extra_color2_id}</p>}
-      {product.Item.material_id && <p class="card-text"><span className={styles.bold}>ID Материала:</span> {product.Item.material_id}</p>}
+      {product.Item.material_id && <p class="card-text"><span className={styles.bold}>Материал:</span> {product.material.type}</p>}
     </div>
     <div className={styles.rightInnerContainer}>
       {product.base_size && <p class="card-text"><span className={styles.bold}>Базовый размер:</span> {product.base_size}</p>}
