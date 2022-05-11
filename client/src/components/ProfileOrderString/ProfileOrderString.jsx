@@ -29,7 +29,7 @@ function ProfileOrderString({ order }) {
               <p class={`${styles.mb05rem}`}><strong>Сумма заказа:</strong></p>
                 <p class="card-text">{orderAmount} руб.</p>
               </div>
-              {user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}
+            <div>{user.userIsAdmin && <ChangeStatus key={order.id} order={order} />}</div>
             </div>
           </div>  
       {(orders.length) ? (<OrderDetails key={order.id} order={order} />) : (<></>)}

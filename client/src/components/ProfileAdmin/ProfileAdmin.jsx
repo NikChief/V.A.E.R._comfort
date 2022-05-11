@@ -19,13 +19,6 @@ function ProfileAdmin(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
-  console.log('ordersInfo', ordersInfo)
-  console.log('ordersInfoFiltered', ordersInfoFiltered)
-
-  // console.log('18', orders);
-  // fetch('/profile')
-  //   .then(res => console.log(res))
-
 
   useEffect(() => {
     dispatch(fetchInitOrdersAC())

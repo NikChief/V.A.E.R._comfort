@@ -4,8 +4,7 @@
 }
 
 .container__sidebar {
-  width: 30%;
-  /* border: 1px solid grey; */
+  width: 28%;
   margin: 1vh;
   height: 100vh;
   border-radius: 5px;
@@ -15,10 +14,7 @@
 .container__main {
   /* Take the remaining width */
   flex: 1;
-  /* border: 1px solid grey; */
-  /* Make it scrollable */
   overflow: auto;
-  /* padding: 1hv; */
   margin: 1vh;
   height: 100vh;
   border-radius: 5px;
@@ -34,7 +30,7 @@
 .personalInfoBox {
   /* border: 2px solid blue; */
   margin: 5vh;
-  width: 98%;
+  width: 92%;
 }
 
 .ordersInfoBox {
@@ -62,8 +58,7 @@
   margin-top: 3vh;
   margin-bottom: 1vh;
   height: 10vh;
-  background-color: rgb(229, 239, 241)
-
+  background-color: rgb(229, 239, 241);
   /* border: 1px solid green; */
 }
 
