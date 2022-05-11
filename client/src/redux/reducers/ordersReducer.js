@@ -1,12 +1,13 @@
-import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, INIT_CURRENT_ORDER_MESSAGE, SET_ORDER_STATUS } from '../actionTypes/ordersAT'
+import { INIT_ORDERS, FULLFILED_ORDERS, COMPLETED_ORDERS, REJECTED_ORDERS, PAYED_ORDERS, ALL_ORDERS, IN_PROCESSING_ORDERS, CONFIRMED_ORDERS, PAID_ORDERS, ON_DELIVERY_ORDERS, INIT_CURRENT_ORDER, CLEAR_CURRENT_ORDER, INIT_CURRENT_ORDER_MESSAGE, SET_ORDER_STATUS, FILTER_ORDERS } from '../actionTypes/ordersAT'
 
 
-const initialState = { orders: [], currentOrder: '', currentOrderMessage: '', currentOrderValidationMessage: '', ordersInfo: [] }
+const initialState = { orders: [], currentOrder: '', currentOrderMessage: '', currentOrderValidationMessage: '', ordersInfo: [], ordersInfoFiltered: [] }
 
 
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
+      console.log('10', action.payload)
       const colorNames = [];
       let colors = action.payload.colors
       let newOrderItems = action.payload.newOrderItems
@@ -28,14 +29,22 @@ export function ordersReducer(state = initialState, action) {
         }
         colorNames.push(newOrderItems[i])
       }
-      console.log(colorNames)
       return {
-        ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders
+        ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders, ordersInfoFiltered: action.payload.orders,
       }
     case ALL_ORDERS:
       return {
-        ...state, orders: [...state.constOrders]
+        ...state, 
+        ordersInfoFiltered: [...state.ordersInfo]
       }
+
+    case FILTER_ORDERS:
+      return {
+        ...state, 
+        ordersInfoFiltered: [...state.ordersInfo].filter(order => order.status === action.payload),
+      };
+
+      
     case IN_PROCESSING_ORDERS:
       return {
         ...state, orders: [...state.constOrders.filter(order => order.Order.status === 'В обработке')]
@@ -64,6 +73,8 @@ export function ordersReducer(state = initialState, action) {
       return {
         ...state, orders: [...state.constOrders.filter(order => order.Order.status === 'completed')]
       }
+
+    
 
     case INIT_CURRENT_ORDER:
       return {
