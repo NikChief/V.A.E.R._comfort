@@ -21,15 +21,14 @@ router
         {
           include: [{
             model: Item,
-
           },
           {
             model: Order,
           },
-          ]
+          ],
         },
       );
-
+      console.log('orderItems', orderItems);
       const colors = await Color.findAll();
 
       const newOrderItems = [];
@@ -56,6 +55,7 @@ router
         orders,
         colors,
         newOrderItems,
+        orderItems,
       });
     } catch (error) {
       res.status(400).json({

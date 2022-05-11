@@ -59,13 +59,13 @@ function Profile(props) {
       <div className={styles.container}>
         <aside className={styles.container__sidebar}>
           <div className={styles.buttonsContainer}>
-            <div className={styles.buttonContainer}>
-              <h4 onClick={getPersonalInfo} className={styles.button}>Личная информация</h4>
+            <div onClick={getPersonalInfo} className={styles.buttonContainer}>
+              <h4 className={styles.button}>Личная информация</h4>
             </div>
             <div className={styles.buttonContainer}>
-              <div className={styles.button}>
+              <div onClick={getOrdersInfo} className={styles.button}>
                 <div>
-                  <h4 onClick={getOrdersInfo}>Заказы</h4>
+                  <h4>Заказы</h4>
                 </div>
               </div>
             </div>
