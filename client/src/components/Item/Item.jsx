@@ -68,6 +68,7 @@ function Item(props) {
       material_id: JSON.parse(e.target.material.value).id,
       material_type: JSON.parse(e.target.material.value).type,
       count: e.target.count.value,
+      comment: e.target.comment.value,
     }
 
     dispatch(addItemToBasketAC(body));
@@ -109,6 +110,7 @@ function Item(props) {
             :
             <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
             }
+            <p className={styles.comment}>* можно оставить комментарий, или согласовать по телефону</p>
           </div>
           <div id='materialChoiceForm' className={styles.choiceInnerForm}>
             <h6 className='card-title'>Выберите материал:</h6>
@@ -141,6 +143,10 @@ function Item(props) {
             &&
             <p className='card-text'>{currentItemAmount + ' руб.'}</p>
             }
+          </div>
+          <div className={styles.choiceInnerForm}>
+            <label for="comment" className={styles.labelStyle}><h6>Комментарий:</h6></label>
+            <textarea class="form-control" id="comment" rows="1"></textarea>
           </div>
         </div>
         <div id='sizeForm' className={styles.rightInputContainer}>

@@ -32,6 +32,7 @@ router
           waistline: item.hip_girth ? item.hip_girth : null,
           pants_length_inseam: item.pants_length_inseam ? item.pants_length_inseam : null,
           groin_to_bone: item.groin_to_bone ? item.groin_to_bone : null,
+          comment: item.comment ? item.comment : null,
         });
         // console.log('newOrderItem', newOrderItem)
       }
