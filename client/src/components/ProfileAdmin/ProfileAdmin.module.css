@@ -30,7 +30,7 @@
 .personalInfoBox {
   /* border: 2px solid blue; */
   margin: 5vh;
-  width: 94%;
+  width: 92%;
 }
 
 .ordersInfoBox {
@@ -59,7 +59,6 @@
   margin-bottom: 1vh;
   height: 10vh;
   background-color: rgb(229, 239, 241);
-
   /* border: 1px solid green; */
 }
 
