@@ -37,28 +37,6 @@ function ProfileAdmin(props) {
     } else {
       dispatch(filterOrdersAC(orderStatus))
     }
-    
-    // if (event.target.value === 'Все') {
-    //   dispatch(allOrdersAC())
-    // }
-    // if (event.target.value === 'В обработке') {
-    //   dispatch(inProcessingOrdersAC())
-    // }
-    // if (event.target.value === 'Подтвержден') {
-    //   dispatch(confirmedOrdersAC())
-    // }
-    // if (event.target.value === 'Отменен') {
-    //   dispatch(rejectedOrdersAC())
-    // }
-    // if (event.target.value === 'Оплачен') {
-    //   dispatch(paidOrdersAC())
-    // }
-    // if (event.target.value === 'Передан в доставку') {
-    //   dispatch(onDeliveryOrdersAC())
-    // }
-    // if (event.target.value === 'Выполнен') {
-    //   dispatch(completedOrdersAC())
-    // }
   }
 
   const editProfileFunction = (event) => {

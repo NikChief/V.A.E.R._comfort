@@ -33,6 +33,7 @@ function OrderForm(props) {
         obj.waistline = basketItems[i]?.hip_girth;
         obj.pants_length_inseam = basketItems[i]?.pants_length_inseam;
         obj.groin_to_bone = basketItems[i]?.groin_to_bone;
+        obj.comment = basketItems[i]?.comment;
         orderItems.push(obj)
       }
       dispatch(fetchAddOrderItemAC(orderItems))

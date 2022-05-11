@@ -29,6 +29,10 @@ export function ordersReducer(state = initialState, action) {
         }
         colorNames.push(newOrderItems[i])
       }
+      const test = {
+        ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders, ordersInfoFiltered: action.payload.orders,
+      }
+      console.log('35', test)
       return {
         ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders, ordersInfoFiltered: action.payload.orders,
       }
