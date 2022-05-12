@@ -48,7 +48,7 @@ function Nav(props) {
               {user.loggedIn ?
 
               (<>
-                <li className='nav-item' onClick={logout}><p className='nav-link'>Выйти</p></li>
+                <li className={`nav-item ${style.logout}`} onClick={logout}><p className='nav-link'>Выйти</p></li>
               </>
               )
               :

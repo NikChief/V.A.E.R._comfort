@@ -155,7 +155,7 @@ function Profile(props) {
                   <form action='/editprofile' onSubmit={editUserName} method='put' autoComplete='off'>
                     <div className='mb-3'>
                       <label htmlFor='name' className='form-label'>Введите имя:</label>
-                      <input type='text' className='form-control' placeholder={user.userName} name='name' id='name' required/>
+                      <input type='text' className='form-control' defaultValue={user.userName} name='name' id='name' required/>
                     </div>
                     <div>
                       <input type='submit' className={`btn ${styles.buttonColor}`} data-bs-dismiss='modal' value='Сохранить изменения' />
@@ -181,7 +181,7 @@ function Profile(props) {
                   <form action='/editprofile' onSubmit={editUserEmail} method='put' autoComplete='off'>
                   <div className='mb-3'>
                       <label htmlFor='email' className='form-label'>Введите электронную почту:</label>
-                      <input type='email' className='form-control' placeholder={user.userEmail} name='email' id='email' required />
+                      <input type='email' className='form-control' defaultValue={user.userEmail} name='email' id='email' required />
                     </div>
                     <div>
                       <input type='submit' className={`btn ${styles.buttonColor}`} data-bs-dismiss='modal' value='Сохранить изменения' />

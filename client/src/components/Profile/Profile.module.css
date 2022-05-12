@@ -59,7 +59,8 @@
   margin-top: 3vh;
   margin-bottom: 1vh;
   height: 10vh;
-  background-color: rgb(229, 239, 241)
+  background-color: rgb(229, 239, 241);
+  cursor: pointer;
 }
 
 .modalTitle {
