@@ -23,6 +23,7 @@ function OrderDetail({ product }) {
           {product.waistline && <p class="card-text"><span className={styles.bold}>Обхват талии, см:</span> {product.waistline}</p>}
           {product.pants_length_inseam && <p class="card-text"><span className={styles.bold}>Длина брюк по внутреннему шву, см:</span> {product.pants_length_inseam}</p>}
           {product.groin_to_bone && <p class="card-text"><span className={styles.bold}>Длина от мотни до косточки на ноге, см:</span> {product.groin_to_bone}</p>}
+          {product.comment && <p class="card-text"><span className={styles.bold}>Комментарий:</span> {product.comment}</p>}
           <p class="card-text"><span className={styles.bold}>Сумма за указанный Товар:</span> {product.Item.price * product.count} руб.</p>
         </div>
       </div>
