@@ -234,8 +234,8 @@ function Item(props) {
               </div>
             </div>
             </div>
-            <div>
-              <button type='submit' className={`btn btn-sm ${styles.addToBasketButton}`}>Добавить в корзину</button>
+            <div className={`${styles.buttonBox} d-grid gap-2`}>
+              <button type='submit' className={`btn btn-bg ${styles.addToBasketButton}`}>Добавить в корзину</button>
             </div>
         </div>
         </form>
