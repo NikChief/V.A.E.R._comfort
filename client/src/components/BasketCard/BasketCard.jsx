@@ -25,7 +25,7 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               <p className={`${styles.valueText} card-text`}>{basketItem.pattern_name}</p>
             </div>
             <div className={styles.patternBlock}>
-              <h6 className="card-title">Цвета:</h6>
+              <h6 className="card-title my-1  ">Цвета:</h6>
               <div>
                 <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.main_color_image}`} className={styles.colorChosenImage} alt="..."></img>
                 {(basketItem.extra_color1_image !== 'pngwing.com.png') && <img src={`${process.env.REACT_APP_BASE_URL}/${basketItem.extra_color1_image}`} className={styles.colorChosenImage} alt="..."></img>}
@@ -33,11 +33,11 @@ function Basketcard({ basketItem, itemInfoFromDb }) {
               </div>
             </div>
             <div className={styles.patternBlock}>
-              <h6 className="card-title">Ткань:</h6>
+              <h6 className="card-title my-1">Ткань:</h6>
               <p className={`${styles.valueText} card-text`}>{basketItem.material_type}</p>
             </div>
             <div className={styles.patternBlock}>
-              <h6 className="card-title">Количество:</h6>
+              <h6 className="card-title my-1">Количество:</h6>
               <p className={`${styles.valueText} card-text`}>{basketItem.count}</p>
             </div>
           </div>

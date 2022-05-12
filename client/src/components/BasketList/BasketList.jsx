@@ -27,14 +27,13 @@ function BasketList(props) {
     dispatch(initBasketTotalAC(totalAmount))
   },[basketItems, itemsInfoFromDb, dispatch])
 
-  console.log(basketItems, '111')
   return (
     <>
     { 
     (basketItems.length !== 0)
     ?
     (
-    <div className='container'>
+    <div className='container mx-5 mt-3'>
       <div className={styles.basketContainer}>
         <div id='basket_items' className={styles.basketInnerContainer}>
           {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}

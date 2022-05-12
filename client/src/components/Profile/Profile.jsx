@@ -59,7 +59,7 @@ function Profile(props) {
         const body = {
           password: event.target.password.value,
         }
-        console.log('====', body)
+
         dispatch(fetchEditUserPasswordAC(body))
         if (user.editErrorMessage) {
           alert(user.editErrorMessage)

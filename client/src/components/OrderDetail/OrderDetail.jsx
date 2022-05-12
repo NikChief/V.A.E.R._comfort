@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './OrderDetail.module.css';
 
 function OrderDetail({ product }) {
-  console.log(product)
 
   return (
     <>
