@@ -103,4 +103,10 @@
 .addToBasketButton {
   background-color: rgb(128, 192, 205);
   color:azure;
+  width: 350px;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
 }
