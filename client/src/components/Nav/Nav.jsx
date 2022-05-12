@@ -29,12 +29,12 @@ function Nav(props) {
     <div className={style.main}>
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid' style={{'backgroundColor': 'rgb(229,239,241)'}}>
-          <Link className='navbar-brand' to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="logo" style={{height: "70px"}}/></Link>
+          <Link className={`navbar-brand ${style.logo}`} to='/'><img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="logo" style={{height: "70px"}}/></Link>
           {/* <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon'></span>
           </button> */}
           <TypeList/>
-          <div className='' id='navbarNav'>
+          <div className={style.navbarNav} id='navbarNav'>
             <ul className='navbar-nav'>
               {
               (user.loggedIn && user.userIsAdmin)
