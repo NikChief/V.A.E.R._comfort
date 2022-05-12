@@ -5,7 +5,6 @@ import Nav from '../Nav/Nav';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
-import Error404 from '../Error404/Error404';
 import Profile from '../Profile/Profile';
 import { useEffect } from 'react';
 import CategoryType from '../CategoryType/CategoryType';
@@ -52,7 +51,7 @@ function App() {
           <Route path='/catalogue/:type/:categoryType/:patternId' element={<Item />} />
           <Route path='/basket' element={<BasketList />} />
           <Route path='/info' element={<Info />} />
-          <Route path='*' element={<Error404 />} />
+          <Route path='*' element={<Home />} />
         </Routes>
         </div>
       <Footer/>
