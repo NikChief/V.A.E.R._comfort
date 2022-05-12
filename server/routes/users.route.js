@@ -99,7 +99,6 @@ router
       let {
         password,
       } = req.body;
-      console.log(password, '======')
 
       const user1 = await User.findOne({
         where: {

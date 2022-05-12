@@ -7,7 +7,6 @@ const initialState = { orders: [], currentOrder: '', currentOrderMessage: '', cu
 export function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case INIT_ORDERS:
-      console.log('10INIT', action.payload)
       const colorNames = [];
       let colors = action.payload.colors
       let newOrderItems = action.payload.newOrderItems
@@ -29,10 +28,7 @@ export function ordersReducer(state = initialState, action) {
         }
         colorNames.push(newOrderItems[i])
       }
-      const test = {
-        ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders, ordersInfoFiltered: action.payload.orders,
-      }
-      console.log('35', test)
+
       return {
         ...state, orders: colorNames, constOrders: colorNames, ordersInfo: action.payload.orders, ordersInfoFiltered: action.payload.orders,
       }
@@ -97,17 +93,13 @@ export function ordersReducer(state = initialState, action) {
       }
 
     case SET_ORDER_STATUS:
-      console.log('96', action.payload)
       let newOrders;
       let newOrdersFiltered;
       if (action.payload.order[0] === 1) {
         newOrders = [...state.ordersInfo].map(order => order.id === action.payload.id ? { ...order, status: action.payload.status } : order)
         newOrdersFiltered = [...state.ordersInfoFiltered].map(order => order.id === action.payload.id ? { ...order, status: action.payload.status } : order)
       }
-      const abc = {
-        ...state, ordersInfo: newOrders
-      }
-      console.log('100', abc)
+
       return {
         ...state, 
         ordersInfo: newOrders,

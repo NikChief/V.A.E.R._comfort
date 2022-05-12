@@ -34,7 +34,6 @@ router
           groin_to_bone: item.groin_to_bone ? item.groin_to_bone : null,
           comment: item.comment ? item.comment : null,
         });
-        // console.log('newOrderItem', newOrderItem)
       }
 
       res
