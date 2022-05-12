@@ -110,6 +110,11 @@
   width: 350px;
 }
 
+.addToBasketConfirmButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
+}
+
 .buttonBox {
   display: flex;
   justify-content: center;

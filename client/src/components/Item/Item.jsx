@@ -248,11 +248,11 @@ function Item(props) {
             <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <h5 class="modal-body">
+            <h5 class="modal-body d-flex justify-content-center">
               Товар добавлен в корзину
             </h5>
             <div class="modal-footer">
-              <Link to='/basket'><button type="button" class={`btn btn-sm ${styles.addToBasketButton}`} data-bs-dismiss="modal">Перейти в корзину</button></Link>
+              <Link to='/basket'><button type="button" class={`btn btn-sm ${styles.addToBasketConfirmButton}`} data-bs-dismiss="modal">Перейти в корзину</button></Link>
             </div>
           </div>
         </div>
