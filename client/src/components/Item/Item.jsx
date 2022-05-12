@@ -99,6 +99,7 @@ function Item(props) {
             <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
             <ColorChoiceForm colorType={'дополнительный цвет'} actionType={'PIC_EXTRA1'} stateName={'colorChosenExtra1'} />
             <ColorChoiceForm colorType={'дополнительный цвет 2'} actionType={'PIC_EXTRA2'} stateName={'colorChosenExtra2'} />
+            <p className={styles.comment}>* можно оставить комментарий, или согласовать по телефону</p>
             </>
             :
             (currentItem.color_count === 2) 
@@ -110,7 +111,6 @@ function Item(props) {
             :
             <ColorChoiceForm colorType={'основной цвет'} actionType={'PIC_MAIN'} stateName={'colorChosenMain'} />
             }
-            <p className={styles.comment}>* можно оставить комментарий, или согласовать по телефону</p>
           </div>
           <div id='materialChoiceForm' className={styles.choiceInnerForm}>
             <h6 className='card-title'>Выберите материал:</h6>
