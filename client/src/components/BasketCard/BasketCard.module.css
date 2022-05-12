@@ -4,8 +4,10 @@
   align-items: flex-start;
   justify-content: space-around;
   width: 75vw;
-  height: 30vh;
+  height: 28,5vh;
+  margin-bottom: 10px;
   /* overflow: scroll; */
+  box-shadow: 10px 10px 10px rgb(229,239,241);
 }
 
 .basketCardOuterBox {
@@ -69,7 +71,7 @@
 }
 
 .valueText {
-  font-size: smaller;
+  font-size: small;
 }
 
 .choiceButton {
