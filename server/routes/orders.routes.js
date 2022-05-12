@@ -28,7 +28,7 @@ router
           ],
         },
       );
-
+      console.log('orderItems=======>', orderItems);
       const colors = await Color.findAll();
 
       const newOrderItems = [];
@@ -39,7 +39,7 @@ router
           }
         }
       }
-
+      
       const patterns = await Pattern.findAll();
       const materials = await Material.findAll();
 
