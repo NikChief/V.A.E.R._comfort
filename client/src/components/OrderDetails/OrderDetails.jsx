@@ -7,10 +7,7 @@ import styles from './OrderDetails.module.css'
 function OrderDetails({ order }) {
   const { orders } = useSelector(state => state.ordersState)
   // const predproducts = new Set(orders.map(el=>el.order_id))
-  console.log('10', orders)
   const products = orders.filter(el => el.order_id === order.id)
-  console.log('12', products)
-
 
   return (
     <div className={styles.orderDetailContainer}>

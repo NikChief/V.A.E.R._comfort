@@ -15,7 +15,7 @@ import { useCallback } from 'react';
 
 function ProfileAdmin(props) {
   const { user } = useSelector(state => state.userState);
-  // console.log(user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { orders, ordersInfo, ordersInfoFiltered } = useSelector(state => state.ordersState);
@@ -60,7 +60,7 @@ function ProfileAdmin(props) {
     const body = {
       password: event.target.password.value,
     }
-    console.log('====', body)
+
     dispatch(fetchEditUserPasswordAC(body))
     if (user.editErrorMessage) {
       alert(user.editErrorMessage)

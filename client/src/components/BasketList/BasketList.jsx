@@ -27,7 +27,6 @@ function BasketList(props) {
     dispatch(initBasketTotalAC(totalAmount))
   },[basketItems, itemsInfoFromDb, dispatch])
 
-  console.log(basketItems, '111')
   return (
     <>
     { 

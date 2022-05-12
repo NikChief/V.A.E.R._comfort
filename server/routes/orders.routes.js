@@ -28,7 +28,7 @@ router
           ],
         },
       );
-      console.log('orderItems=======>', orderItems);
+
       const colors = await Color.findAll();
 
       const newOrderItems = [];
@@ -129,7 +129,7 @@ router
           where: { id },
         },
       );
-      // console.log(orderDetails);
+
       res.json({
         order,
         id,
@@ -152,7 +152,7 @@ router
           order_id: id,
         },
       });
-      // console.log(orderDetails);
+
       res.json({
         orderDetails,
       });

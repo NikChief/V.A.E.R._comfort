@@ -13,7 +13,6 @@ function ProfileOrderString({ order }) {
   const orderItems = orders.filter(el => el.order_id === order.id)
   const orderAmount = orderItems.reduce((prev, next) => prev + Number(next.Item.price)*Number(next.count), 0);
 
-  console.log(order)
   return (
     <div className={`${styles.orderContainer}`}>
       <div class="text-dark mb-3" style={{ maxWidth: "18 rem" }}>
