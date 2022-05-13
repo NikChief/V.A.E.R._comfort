@@ -1,7 +1,33 @@
 .basketContainer {
   display: flex;
+  /* overflow: scroll; */
 }
 
 .basketInnerContainer {
   margin: 15px;
+  /* overflow: scroll; */
+}
+
+.price {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: large;
+  font-weight: 400;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20vh;
+  align-items: center;
+  height: 100vh;
+}
+
+.choiceButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }

@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  /* border: 2px solid black; */
+}
+
+.container__sidebar {
+  width: 28%;
+  margin: 1vh;
+  height: 100vh;
+  border-radius: 5px;
+
+}
+
+.container__main {
+  /* Take the remaining width */
+  flex: 1;
+  overflow: auto;
+  margin: 1vh;
+  height: 100vh;
+  border-radius: 5px;
+}
+
+.table {
+  /* border: 2px solid blue; */
+  margin: 5vh;
+  width: 98%;
+  height: 100%;
+}
+
+.personalInfoBox {
+  /* border: 2px solid blue; */
+  margin: 5vh;
+  width: 92%;
+}
+
+.ordersInfoBox {
+  /* border: 2px solid yellow; */
+  margin: 5vh;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.buttonContainer {
+  /* border: 1px solid red; */
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  height: 10vh;
+  background-color: rgb(229, 239, 241);
+  /* border: 1px solid green; */
+}
+
+.buttonFont {
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: rgb(128, 192, 205);
+  color: aliceblue;
+}
+
+.buttonOn {
+  background-color: rgb(128, 192, 205);
+  color: aliceblue;
+}
+
+.buttonColor {
+  background-color: rgb(128, 192, 205) !important;
+  color: azure !important;
+}
+
+.modalTitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.modalFooter {
+  text-align: justify;
+  font-size: smaller;
+}
+
+.personalInfoInnerBox {
+  margin-top: 25px;
+} 

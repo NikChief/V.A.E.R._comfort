@@ -341,22 +341,6 @@ module.exports = {
       },
       {
         pattern_id: 25,
-        material_id: 3,
-        price: 0,
-        old_price: null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-      {
-        pattern_id: 26,
-        material_id: 3,
-        price: 0,
-        old_price: null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-      {
-        pattern_id: 27,
         material_id: 1,
         price: 5390,
         old_price: null,
@@ -364,7 +348,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 28,
+        pattern_id: 26,
         material_id: 1,
         price: 5190,
         old_price: null,
@@ -372,7 +356,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 29,
+        pattern_id: 27,
         material_id: 1,
         price: 4890,
         old_price: null,
@@ -380,15 +364,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 30,
-        material_id: 1,
-        price: 0,
-        old_price: null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-      {
-        pattern_id: 31,
+        pattern_id: 28,
         material_id: 1,
         price: 1590,
         old_price: 1990,
@@ -396,7 +372,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 32,
+        pattern_id: 29,
         material_id: 1,
         price: 2100,
         old_price: 2990,
@@ -404,7 +380,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 33,
+        pattern_id: 30,
         material_id: 1,
         price: 1360,
         old_price: 1950,
@@ -412,7 +388,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 34,
+        pattern_id: 31,
         material_id: 1,
         price: 1050,
         old_price: null,
@@ -420,7 +396,7 @@ module.exports = {
         updatedAt: new Date().toISOString(),
       },
       {
-        pattern_id: 35,
+        pattern_id: 32,
         material_id: 1,
         price: 1360,
         old_price: 1950,

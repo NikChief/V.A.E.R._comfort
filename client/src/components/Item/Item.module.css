@@ -3,11 +3,36 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  height: 100%;
+  margin-bottom: 20px;
+  /* height: 75vh; */
 }
 
 .patternInfoContainer {
-  padding: 15px;
+  padding: 5px;
+  padding-left: 75px;
   /* border: 2px solid black; */
+}
+
+.patternPictureBox {
+  /* border: 2px solid black; */
+  height: 65vh;
+}
+
+.patternPicture {
+  /* border: 2px solid black; */
+  height: 100%;
+}
+
+.modelTitle {
+  /* border: 2px solid black; */
+  font-style: italic;
+}
+
+.colorsChoiceForm {
+  /* border: 2px solid black; */
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .itemFormContainer {
@@ -19,21 +44,78 @@
   justify-content: space-around;
 }
 
-.materialChoiceFormContainer {
+.choiceInnerForm {
   /* border: 2px solid black; */
-  margin-top: 40px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-.patternPicture {
+.leftInputContainer {
   /* border: 2px solid black; */
+  width: 25vw;
+  /* height: 73vh; */
+  height: 100%;
+
 }
 
-.colorsChoiceForm {
+.rightInputContainer{
   /* border: 2px solid black; */
-  width: 18em;
+  width: 25vw;
+  /* height: 73vh; */
+  height: 100%;
+  padding-right: 5%;
 }
 
-.sizeForm{
-  /* border: 2px solid black; */
-  width: 35em;
+.patternDescriptionText {
+  font-size: smaller;
+}
+
+.sizeInstructionColor {
+  color:rgb(87, 93, 215);
+  text-decoration: underline;
+}
+
+.sizeInstructionHeaders {
+  font-size: smaller;
+}
+
+.sizeInstructionText {
+  font-size: smaller;
+}
+
+.inputStyle {
+  /* border: 2px solid black !important; */
+  height: 30px;
+}
+
+.textStyle {
+  /* border: 2px solid black !important; */
+  height: 30px;
+  font-size: 11px;
+}
+
+.labelStyle {
+  padding-top: 1px;
+  font-size: smaller;
+}
+
+.comment {
+  font-size: x-small;
+}
+
+.addToBasketButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
+  width: 350px;
+}
+
+.addToBasketConfirmButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
 }

@@ -1,14 +1,20 @@
-.basketCardBox {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  /* border: 2px solid black; */
-  width: 60rem;
+.h6 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-decoration: underline;
 }
 
-.basketCardOuterBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.orderDetailContainer {
+  /* border: 2px solid blue; */
+}
+
+.orderDetailInnerContainer {
+  margin: 0 auto;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap; */
+  /* border: 2px solid black; */
+  /* height: fit-content; */
 }

@@ -1,0 +1,61 @@
+.orderContainer {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition-duration: 1s;
+  /* border: 2px solid green; */
+}
+
+.orderContainer:hover {
+  box-shadow: 5px -5px 8px 1px rgb(229, 239, 241);
+  background-color: rgb(229, 239, 241);
+}
+
+.orderDataInnerContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  /* border: 2px solid blue; */
+}
+
+.orderDataLeftContainer {
+  flex-basis: 35%;
+  padding: 10px;
+  /* border: 2px solid violet; */
+  /* margin: 5vh; */
+}
+
+.orderDataRightContainer {
+  flex-basis: 35%;
+  padding: 10px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  /* border: 2px solid blue; */
+  /* height: 150px; */
+  /* margin: 5vh; */
+}
+
+.orderAmountContainer {
+  /* line-height:15px; */
+  /* border: 2px solid red; */
+}
+
+.orderDataText {
+  /* border: 2px solid black; */
+  width: fit-content;
+}
+
+.mb3rem {
+  margin-bottom: 2rem;
+}
+
+.mb05rem {
+  margin-bottom: 0.5rem;
+}
+
+.orderHeader {
+  background-color: rgb(229, 239, 241);
+  padding: 20px;
+}

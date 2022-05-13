@@ -7,20 +7,30 @@ const { User } = require('../db/models');
 router
   .route('/')
   .get((req, res) => {
-    if (req.session.userId) {
+    try {
+      if (req.session.userId) {
+        res
+          .status(200)
+          .json({
+            loggedIn: true,
+            userId: req.session.userId,
+            userName: req.session.userName,
+            userEmail: req.session.userEmail,
+            userIsAdmin: req.session.userIsAdmin,
+          });
+      } else {
+        res
+          .status(200)
+          .json({
+            loggedIn: false,
+          });
+      }
+    } catch (error) {
       res
-        .status(200)
-        .json({
-          loggedIn: true,
-          userId: req.session.userId,
-          userName: req.session.userName,
-          userEmail: req.session.userEmail,
-        });
-    } else {
-      res
-        .status(200)
+        .status(400)
         .json({
           loggedIn: false,
+          message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
         });
     }
   })
@@ -39,6 +49,7 @@ router
         req.session.userId = user.id;
         req.session.userEmail = user.email;
         req.session.userName = user.name;
+        req.session.userIsAdmin = user.isAdmin;
         res
           .status(200)
           .json({
@@ -47,6 +58,7 @@ router
             userId: req.session.userId,
             userEmail: req.session.userEmail,
             userName: req.session.userName,
+            userIsAdmin: req.session.userIsAdmin,
           });
       } else {
         res
@@ -61,7 +73,7 @@ router
         .status(400)
         .json({
           loggedIn: false,
-          message: `Ошибка регистрации, \n ${error.message}`,
+          message: `Что-то пошло не так. Описание ошибки: ${error.message}`,
         });
     }
   });

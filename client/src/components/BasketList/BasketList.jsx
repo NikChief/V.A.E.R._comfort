@@ -14,6 +14,10 @@ function BasketList(props) {
   const { itemsInfoFromDb } = useSelector(state => state.basketState);
   const { basketItems } = useSelector(state => state.basketState);
   const { basketTotal } = useSelector(state => state.basketState);
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify({basketItems, itemsInfoFromDb}));
+  }, [basketItems, itemsInfoFromDb]);
   
   useEffect(() => {
     let totalAmount = 0;
@@ -24,22 +28,39 @@ function BasketList(props) {
   },[basketItems, itemsInfoFromDb, dispatch])
 
   return (
-    // {}
-    <div className={styles.basketContainer}>
-      <div id='basket_items' className={styles.basketInnerContainer}>
-        {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
+    <>
+    { 
+    (basketItems.length !== 0)
+    ?
+    (
+    <div className='container mx-5 mt-3'>
+      <div className={styles.basketContainer}>
+        <div id='basket_items' className={styles.basketInnerContainer}>
+          {basketItems.map((item, i) => <Basketcard key={item.id} basketItem={item} itemInfoFromDb={itemsInfoFromDb[i]} />)}
+        </div>
+        {(basketItems.length !== 0)
+        &&
+        <div className='container'>
+          <div id='basket_info' className={styles.price}>
+            <div className="card-title">Общая стоимость:</div>
+            <div className="card-text">
+            {basketTotal + ' руб.'}
+            </div>
+            <Link to='/orderForm' className={`btn m-3 ${styles.choiceButton}`}>Перейти к оформлению</Link>
+          </div>
+        </div>
+        }
       </div>
-      {(basketItems.length !== 0)
-      &&
-      <div id='basket_info' className={styles.basketInnerContainer}>
-        <h5 className="card-title">Общая стоимость:</h5>
-        <p className="card-text">
-        {basketTotal + ' руб.'}
-        </p>
-        <Link to='/orderForm' className='btn btn-primary'>Перейти к оформлению</Link>
-      </div>
-      }
     </div>
+    )
+    :
+    <div className={styles.messageContainer}>
+      <div>
+      <h4>Корзина пуста</h4>
+      </div>
+    </div>
+    }
+    </>
   );
 }
 

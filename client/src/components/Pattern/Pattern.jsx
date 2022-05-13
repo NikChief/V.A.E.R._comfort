@@ -7,13 +7,14 @@ function Pattrn({pattern}) {
   const params = useParams();
   
   return (
-    <div className="card m-3" style={{"width": "20rem"}}>
-      {/* <Link to={`/catalogue/${params.type}/${params.categoryType}/${pattern.id}`} className="btn btn-primary">перейти</Link> */}
-      <Link to={`/catalogue/${params.type}/${params.categoryType}/${pattern.id}`} className="btn btn-primary">
-      <img src={`http://localhost:4000/${pattern.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
-      <div className="card-body d-flex justify-content-center">
-        <div>{`Модель ${pattern.name}`}</div> &nbsp;
-        <div>{`от ${pattern.Items.lower_price} руб`}</div>&nbsp;
+    <div className={`card m-3 ${style.container}`}>
+      <Link to={`/catalogue/${params.type}/${params.categoryType}/${pattern.id}`} className={`btn btn-primary ${style.card}`}>
+      <div className="card-body d-flex flex-column justify-content-space-between, align-items-center" >
+        <div style={{'backgroundImage': `url(${process.env.REACT_APP_BASE_URL}/${pattern.image})`, 'height': '60vh', 'width' : '40vh', 'backgroundRepeat': 'no-repeat', 'backgroundPosition': 'center, center', 'backgroundSize': 'contain'}} ></div>
+        <div className={style.description}>
+          <div>{`Модель ${pattern.name}`}</div>
+          <div className={style.price}>{`от ${pattern.Items.lower_price} руб`}</div>
+        </div>
       </div>
       </Link>
     </div>

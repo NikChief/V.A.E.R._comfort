@@ -5,11 +5,44 @@
 }
 
 .orderInnerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 40vw;
+
 }
 
-.successPurchaseContainer {
+.title {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 30vw
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20vh;
+  align-items: center;
+  /* height: 100vh; */
+  height: 100%;
+}
+
+.pwValidationError {
+  font-size: smaller;
+  color: red;
+}
+
+.buttonColor {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }

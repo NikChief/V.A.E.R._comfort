@@ -1,3 +1,17 @@
 .main {
   font-size: 20px;
 }
+
+.logout {
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor:pointer;
+}
+
+.logo {
+  margin-left: 1.2rem;
+}
+
+.navbarNav {
+  margin-right: 1rem;
+}

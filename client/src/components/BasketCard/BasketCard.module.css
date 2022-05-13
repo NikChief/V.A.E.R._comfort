@@ -3,58 +3,55 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-around;
-  /* border: 2px solid black; */
   width: 75vw;
-  height: 30vh;
+  height: 28,5vh;
+  margin-bottom: 10px;
+  /* overflow: scroll; */
+  box-shadow: 10px 10px 10px rgb(229,239,241);
 }
 
 .basketCardOuterBox {
   display: flex;
   flex-direction: row;
-  /* border: 2px solid black; */
   justify-content: center;
 }
 
 .basketCardImageBox {
-  display: flexbox;
+  display: flex;
   width: 13vw;
-  /* border: 2px solid black; */
 }
 
 .basketCardImage {
   /* margin: 2vh; */
   height: 28vh;
-  /* border: 2px solid black; */
 }
 
 .basketCardInfo {
-  /* border: 2px solid black; */
   display: flex;
   width: 50vw;
   margin: 2vh;
 }
 
 .basketCardInfoInnerBox {
-  /* border: 2px solid black; */
   width: 17vw;
 }
 
 .sizesOuterBox {
   display: flex;
   flex-direction: row;
-  /* border: 2px solid black; */
-  /* justify-content: space-between; */
 }
 
 .sizesInnerBox {
   display: flex;
   flex-direction: row;
-  /* border: 2px solid black; */
   margin-right: 2vh;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 25px;
 }
 
 .sizeText {
-  font-weight: normal;
+  font-size: smaller;
 }
 
 .colorChosenImage {
@@ -65,8 +62,19 @@
 }
 
 .rightBox {
-  /* border: 2px solid black;
-  width: 15vw; */
   font-size: smaller;
   margin: 2vh;
+}
+
+.patternBlock {
+  font-size: smaller;
+}
+
+.valueText {
+  font-size: small;
+}
+
+.choiceButton {
+  background-color: rgb(128, 192, 205);
+  color:azure;
 }

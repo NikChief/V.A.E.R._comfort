@@ -9,6 +9,7 @@ import { typesReducer } from "./typesReducer";
 import { categoryTypesReducer } from "./categoryTypesReducer";
 import { ordersDetailsReducer } from "./ordersDetailsReducer";
 import { patternReducer } from "./patternReducer";
+import { profileReducer } from "./profileReducer";
 
 
 
@@ -23,4 +24,5 @@ export const rootReducer = combineReducers({
   typesState: typesReducer,
   categoryTypesState: categoryTypesReducer,
   patternState: patternReducer,
+  profileState: profileReducer,
 })

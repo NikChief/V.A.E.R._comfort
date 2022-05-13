@@ -15,13 +15,15 @@ function Category({category}) {
   }
 
   return (
-    <div className="card" style={{"width": "20rem"}}>
-      <img src={`http://localhost:4000/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
-      <div className="card-body d-flex justify-content-center">
+    <div className="card" style={{"width": "23rem"}}>
       <Link to={`/catalogue/${params.type}/${category.Category.link_name}`} 
             onClick={getCategoryTypeId} 
-            className="btn btn-primary"> {category.Category.name} </Link>
-      </div>
+            className={`btn m-3 ${style.choiceButton}`}> 
+            <img src={`${process.env.REACT_APP_BASE_URL}/${category.image}`} className={`card-img-top ${style.cardImg}`} alt="..."/>
+            <div className="card-body d-flex justify-content-center">
+            {category.Category.name} 
+            </div>
+      </Link>
     </div>
   );
 }

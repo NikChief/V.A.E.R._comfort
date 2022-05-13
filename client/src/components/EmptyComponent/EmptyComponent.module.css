@@ -8,7 +8,7 @@
 }
 
 .card {
-  background-image: url('http://localhost:3000/images/empty.jpg');
+  
   background-repeat: no-repeat;
   background-position: center;
   height: 250px;

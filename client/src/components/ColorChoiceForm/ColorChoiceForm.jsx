@@ -9,7 +9,6 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
 
   const dispatch = useDispatch()
   const idModal = colorType.split(' ').join('')
-  console.log('idModal', idModal);
   const state = useSelector(state => state.colorsState);
   const { colors } = state;
   const currentColor = state[stateName];
@@ -22,16 +21,13 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
   
   return (
     <div>
-      {/* <!-- Button trigger modal --> */}
-      <div className={style.choiseForm}>
-
-      <button type="button" className="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
-       {colorType}
-      </button>
-      <img src={`http://localhost:4000/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
-
+      <div className={style.choiceForm}>
+        <button type="button" className={`btn m-3 ${style.choiceButton}`} data-bs-toggle="modal" data-bs-target={`#${idModal}`}>
+          {colorType}
+        </button>
+        <img src={`${process.env.REACT_APP_BASE_URL}/${currentColor.image}`} className={style.colorChosenImage} alt='...' />
       </div>
-      {/* <!-- Modal --> */}
+      
       <div className="modal fade" id={`${idModal}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <form onChange={changeHandler} className="modal-content">
@@ -45,7 +41,7 @@ function ColorChoiceForm({colorType, stateName, actionType}) {
               </div>
             </div>
             <div className="modal-footer">
-               <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Ок</button>
+               <button type="button" className={`btn ${style.choiseButton}`} data-bs-dismiss="modal">Ок</button>
             </div>
           </form> 
         </div>
